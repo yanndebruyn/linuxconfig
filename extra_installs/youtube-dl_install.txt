@@ -1,0 +1,4 @@
+
+sudo apt purge youtuebe-dl
+sudo pip install youtube-dl
+(or: sudo pip3 install youtube-dl   if available)

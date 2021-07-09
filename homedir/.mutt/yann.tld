@@ -1,0 +1,20 @@
+
+color status green default
+
+set imap_user = "yann@yanndebruyn.com"
+set imap_pass = "144y1F3M\$F2Ltjc"
+
+set smtp_url = “smtp://yann@yanndebruyn.com@mail.yanndebruyn.com:587/”
+set smtp_pass= "144y1F3M\$F2Ltjc"
+
+set from = "yann@yanndebruyn.com"
+set realname = "Yann De Bruyn"
+set status_format = "yann@yanndebruyn.com"
+
+set spoolfile=imaps://mail.yanndebruyn.com/
+set folder = "imaps://mail.yanndebruyn.com/INBOX/
+
+set record="=Sent"
+set postponed ="=Drafts"
+set spoolfile = "+INBOX"
+set certificate_file =~/.mutt/certificates

@@ -1,0 +1,12 @@
+bookmark_brave	    == open a bookmark in brave browser
+bookmark_w3m	    == open a bookmark in w3m
+directory_ranger    == open directory in ranger
+film	            == open film
+popup-edit   == edit popup launcher
+script_edit	    == edit a script from ~/bin/scripts
+script_run	    == run a script from ~/bin/scripts
+surfraw_brave	    == search the web with surfraw search engines in brave browser
+surfraw_w3m	    == search the web with surfraw search engines in w3m
+video_tutorialinux  == open tutorialinux sysadmin video
+wallpaper_open	    == open wallpaper image
+wallpaper_set	    == set wallpaper as background

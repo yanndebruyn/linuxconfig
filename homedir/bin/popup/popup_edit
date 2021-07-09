@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo i3-msg exec "alacritty -e vim `ls /home/yann/bin/popup/* | fzf --exact`"

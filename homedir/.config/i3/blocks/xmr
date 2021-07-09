@@ -1,0 +1,5 @@
+#!/bin/bash
+
+XMR=$(coinmon -t 26 | grep XMR | awk '{print $4,$6}')
+
+echo "${XMR}"

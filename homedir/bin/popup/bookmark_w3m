@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo i3-msg exec "alacritty -e w3m `cat /home/yann/.w3m/bookmarks | sort -u | fzf --exact`"

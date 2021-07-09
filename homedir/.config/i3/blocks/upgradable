@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo $(expr `apt list --upgradable | wc -l` - 1)
+

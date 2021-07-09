@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#ARTIST=$(cmus-remote -Q | grep -w 'artist' | cut -d " " -f 3-)
+#ALBUM=$(cmus-remote -Q | grep -w 'album' | cut -d " " -f 3-)
+
+STATUS=$(cmus-remote -Q | grep -w 'status' | cut -d " " -f 2)
+TITLE=$(cmus-remote -Q | grep -w 'title' | cut -d " " -f 3-)
+FILENAME=$(cmus-remote -Q | grep 'file' | rev | cut -d/ -f1 | rev)
+POSITION=$(cmus-remote -Q | grep -w 'position' | cut -d " " -f 2)
+DURATION=$(cmus-remote -Q | grep -w 'duration' | cut -d " " -f 2)
+REMAINING=`expr $DURATION - $POSITION`
+VOLUME=$(cmus-remote -Q | grep -w 'vol_left' | cut -d " " -f 3)
+
+if [ "$STATUS" != "" ]; then
+	if [ "$STATUS" != "stopped" ]; then
+		echo -n "vol:$VOLUME% ["
+	fi
+	if [ $(( $REMAINING / 60 )) -lt 10 ]; then 
+		echo -n "0"; 
+	fi
+	echo -n "$(( $REMAINING / 60 )):" 
+	if [ $(( $REMAINING % 60 )) -lt 10 ]; then 
+		echo -n "0"; 
+	fi
+	echo -n "$(( $REMAINING % 60  ))] $FILENAME"
+fi
+
+unset TITLE
+

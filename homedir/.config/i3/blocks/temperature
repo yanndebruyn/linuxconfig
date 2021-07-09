@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+echo "$(sensors | grep 'Core' | awk 'NR==1{print $3}')"
+

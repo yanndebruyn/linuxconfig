@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ETH=$(coinmon -t 26 | grep ETH | awk '{print $4,$6}')
+
+echo "${ETH}"

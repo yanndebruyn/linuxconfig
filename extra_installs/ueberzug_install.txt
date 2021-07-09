@@ -1,0 +1,7 @@
+https://github.com/seebye/ueberzug
+
+Dependencies:
+	sudo apt install libjpeg8-dev zlib1g-dev python-dev python3-dev libxtst-dev
+
+Installation:
+  sudo pip install ueberzug

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BATTERY=0
+BATTERY_INFO=$(acpi -b | grep "Battery ${BATTERY}")
+BATTERY_STATE=$(echo "${BATTERY_INFO}" | grep -wo "Full\|Charging\|Discharging")
+BATTERY_POWER=$(echo "${BATTERY_INFO}" | grep -o '[0-9]\+%' | tr -d '%')
+
+URGENT_VALUE=15
+
+if [[ "${BATTERY_STATE}" = "Discharging" ]]; then
+ if [[ "${BATTERY_POWER}" -le "${URGENT_VALUE}" ]]; then
+  notify-send -u critical "Battery low!"
+  ( speaker-test -t sine -f 1000 )& pid=$! ; sleep 0.2s ; kill -9 $pid
+ fi
+fi
+

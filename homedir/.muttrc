@@ -1,0 +1,100 @@
+
+# .mutt/muttrc
+folder-hook 'public.tld' 'source ~/.mutt/public.tld'
+folder-hook 'yann.tld' 'source ~/.mutt/yann.tld'
+folder-hook 'admin.tld' 'source ~/.mutt/admin.tld'
+folder-hook 'elly.tld' 'source ~/.mutt/elly.tld'
+
+macro index <F2> '<sync-mailbox><enter-command>source ~/.mutt/public.tld<enter><change-folder>!<enter>'
+macro index <F3> '<sync-mailbox><enter-command>source ~/.mutt/yann.tld<enter><change-folder>!<enter>'
+macro index <F4> '<sync-mailbox><enter-command>source ~/.mutt/admin.tld<enter><change-folder>!<enter>'
+macro index <F5> '<sync-mailbox><enter-command>source ~/.mutt/elly.tld<enter><change-folder>!<enter>'
+
+account-hook public.tld 'set public@yanndebruyn.com imap_pass=o62I09wIU0\%uMOG'
+account-hook yann.tld 'set yann@yanndebruyn.com imap_pass=144y1F3M\$F2Ltjc'
+account-hook admin.tld 'set admin@yanndebruyn.com imap_pass=1H4f7571!hiB\$^F'
+account-hook elly.tld 'set elly@ellystaes.com imap_pass=Vlindervrij2018'
+
+#set move=no  #Prevents mutt from asking to move read messages to INBOX
+set imap_keepalive = 900
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc #Sorting emails by the given criteria (from left
+ignore *
+unignore from: date subject to cc
+unignore x-mailing-list: posted-to:
+unignore x-mailer: #Nice looks
+set markers=no # removes the "+" sign from the beginning of wrapped lines
+set pager_index_lines= 5
+set sort = 'threads'
+set sort_aux = 'reverse-date'
+#
+#Set your editor
+set editor=vim
+#
+# Choose which account should be loaded on startup
+source ~/.mutt/public.tld
+
+
+# COLOR for the body - special text parts
+# ==================================================
+#
+# Show  attachments:
+color attachment  yellow  default
+
+# Quoted text - coloring only the first four levels:
+color quoted      cyan   default  # pager body
+color quoted1     red    default  # pager body
+color quoted2     cyan   default  # pager body
+color quoted3     yellow default  # pager body
+
+#  The Signature:
+color signature   red    default  # pager body
+color tilde       blue   default  # pager body
+
+#  Bold and unerlined text:
+color bold        green  default   # bold text
+color underline   yellow default   # underlined text
+
+#  How this works:  Mutt recognizes sequences with embedded CTRL-H ('^H').
+#  If this matches one of the following kinds
+#  then you get to see the text as either "bold text" or "underlined text"
+#  depending on the capabilities of your terminal.
+#  bold:       "c^Hc" -> "bold 'c'"
+#  underline:  "c^H_" -> "underlined 'c'"
+#  On color terminals you will see them with their own color.
+
+#COLOR for data about the *sender*
+#  Info relating to the sender:
+color header       black     yellow    "date: "
+color header       magenta   black    "from: "
+
+color header       cyan      black    "To: "
+color header       green     black    "Subject: "
+
+#color header       black    yellow    "from "
+#color header       black    yellow    "sender: "
+
+#  "Organisation:" and "Organization:":
+color header       red      black    "organi[sz]ation: "
+
+#  Programs involved with creation and sending:
+color header   white      black    "user-agent: "
+color header   white      black    "x-editor: "
+color header   white      black    "x-mailer: "
+color header   white      black    "x-posting-agent: "
+
+#  Message Identification.
+#  Message-ID, In-Reply-To, and References:
+color header       yellow  black "message-id:"
+color header       yellow  black "in-reply-to: "
+color header       yellow  black "references: "
+
+#  Redirection of answers (ie followups and replies):
+#  (using the same color for Reply-To as for From: -
+#   unfortunately you cannot "link" color groups.)
+color header brightgreen    black "^followup-to: "
+color header brightgreen    black "^mail-followup-to: "
+color header       white    red "^reply-to: "
+

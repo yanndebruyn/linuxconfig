@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	pactl set-sink-volume 0 +5%
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+	pactl set-sink-mute 0 toggle
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  pactl set-sink-volume 0 -5%
+fi
+
+statusLine=$(amixer get Master | tail -n 1)
+status=$(echo "${statusLine}" | grep -wo "on")
+volume=$(pactl list sinks | grep front-left: | awk 'FNR == 1 {print $5}')
+
+if [[ "${status}" == "on" ]]; then
+  echo "${volume}"
+  echo "${volume}"
+  echo ""
+else
+  echo "off"
+  echo "off"
+  echo ""
+fi

@@ -1,0 +1,26 @@
+pl-create Abraham_Hicks
+pl-create Abraham Hicks
+save -p
+pl-rename Joanna_Newsom
+save -p joanna_newsom
+pl-rename Joanna Newsom
+pl-create Joanna Newsome
+save -p meditation
+save -p Joanna
+add playlist
+pl-create Meditative
+bind -f browser i toggle show_hidden
+bind -f browser backspace browser-up
+refresh 
+colorscheme solarized-dark
+colorscheme cyan
+colorscheme jellybeans
+colorscheme night
+colorscheme solarized-light
+colorscheme zenburn
+help
+colorscheme
+o
+options
+q
+add ~/Music

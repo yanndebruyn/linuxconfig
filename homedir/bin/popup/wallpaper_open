@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo i3-msg exec "feh /home/yann/Pictures/wallpapers/`ls -R
+~/Pictures/wallpapers | fzf -e --preview='feh {}'`"

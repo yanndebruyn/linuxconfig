@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo i3-msg exec "alacritty -e /home/yann/bin/scripts/`ls /home/yann/bin/scripts | fzf --exact`"

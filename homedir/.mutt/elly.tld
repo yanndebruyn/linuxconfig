@@ -1,0 +1,20 @@
+
+color status red default
+
+set imap_user = "elly@ellystaes.com"
+set imap_pass = "Vlindervrij2018"
+
+set smtp_url = “smtp://elly@ellystaes.com@mail.ellystaes.com:587/”
+set smtp_pass= "Vlindervrij2018"
+
+set from = "elly@ellystaes.com"
+set realname = "Elly Staes"
+set status_format = "elly@ellystaes.com"
+
+set spoolfile=imaps://mail.ellystaes.com/
+set folder = "imaps://mail.ellystaes.com/INBOX/
+
+set record="=Sent"
+set postponed ="=Drafts"
+set spoolfile = "+INBOX"
+set certificate_file =~/.mutt/certificates

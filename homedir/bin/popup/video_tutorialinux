@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mpv --no-osd-bar --osd-font-size=20 --sub-font-size=35 /home/yann/Videos/Linux_administration_playlist/`ls /home/yann/Videos/Linux_administration_playlist | fzf -e`

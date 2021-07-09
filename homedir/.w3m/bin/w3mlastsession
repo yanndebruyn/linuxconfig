@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+w3m -N \
+'https://linux.org/' 

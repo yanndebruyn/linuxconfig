@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo i3-msg exec "feh --bg-fill /home/yann/Pictures/wallpapers/`ls -R ~/Pictures/wallpapers | fzf -e`"

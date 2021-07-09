@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BTC=$(coinmon -t 26 | grep BTC | awk '{print $4,$6}')
+
+echo "${BTC}"

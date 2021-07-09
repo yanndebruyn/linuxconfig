@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo i3-msg exec "alacritty -e ranger `sudo find / -type d ! -path *timeshift* |
+fzf -e --preview='ls -l {}'`"

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+  notify-send -u critical "Battery low!"
+  ( speaker-test -t sine -f 1000 )& pid=$! ; sleep 0.2s ; kill -9 $pid
+

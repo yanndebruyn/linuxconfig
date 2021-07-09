@@ -1,0 +1,254 @@
+
+! xterm configuration
+
+!!!!!!!!!!!!!!!
+!!  General  !!
+!!!!!!!!!!!!!!!
+
+! set xterm mod key
+xterm*modifier: alt
+! set shell $TERM variable
+xterm*termName: xterm-color
+! do not automatically scroll to bottom when tty receives output
+xterm*scrollTtyOutput:  false
+! do scroll to bottom when a non-special key is pressed
+xterm*scrollTtyKeypress:  true
+! xterm*scrollKey: true
+! start urxvt as a login shell
+xterm*loginShell:  true
+! Do not scroll with scrollback buffer when tty recieves new lines, adds some speed
+xterm*scrollWithBuffer:  false
+xterm*locale: false
+xterm*utf8: true
+xterm*bellIsUrgent: true
+xterm*metaSendsEscape: true
+xterm*saveLines: 10000
+
+
+!!!!!!!!!!!!!!!!!!!!
+!!  key bindings  !!
+!!!!!!!!!!!!!!!!!!!!
+
+xterm*translations: #override \n\
+Ctrl Shift <Key>K: scroll-back(1, line) \n\
+Ctrl Shift <Key>J: scroll-forw(1, line) \n\
+Ctrl Shift <Key>U: scroll-back(1, halfpage) \n\
+Ctrl Shift <Key>D: scroll-forw(1, halfpage) \n\
+Ctrl Shift <Key>B: scroll-back(1, page) \n\
+Ctrl Shift <Key>F: scroll-forw(1, page) \n\
+Ctrl Shift <Key>Y: copy-selection(CLIPBOARD) \n\
+Ctrl Shift <Key>P: insert-selection(CLIPBOARD) \n\
+Alt <Key>equal: larger-vt-font() \n\
+Alt <Key>minus: smaller-vt-font() \n\
+Alt <Key>0: set-vt-font(d) \n\
+
+
+!!!!!!!!!!!!!!!
+!!  styling  !!
+!!!!!!!!!!!!!!!
+
+xterm*faceName: DejaVu Sans Mono
+!xterm.vt100.faceName: Inconsolata
+!xterm*faceName: Liberation Mono
+xterm*faceSize: 14
+xterm*boldMode: false
+xterm*internalBorder: 16
+xterm*borderWidth: 0
+!xterm*transparent: true
+
+
+!!!!!!!!!!!!!!
+!!  colors  !!
+!!!!!!!!!!!!!!
+
+xterm*cursorColor: rgb:8a/61/d2
+! normal text
+xterm*foreground: rgb:dd/dd/dd
+! background
+xterm*background: rgb:1b/29/29
+!xterm*background: rgb:09/30/30
+
+! black
+xterm*color0: rgb:33/33/33 
+! white
+xterm*color15: rgb:ff/ff/ff
+
+! darkgrey
+xterm*color8: rgb:5b/5b/5b
+! lightgrey
+xterm*color7: rgb:aa/aa/aa
+
+! darkred
+xterm*color1: rgb:c3/3e/3e
+! lightred
+xterm*color9: rgb:ec/52/52
+
+! darkgreen
+xterm*color2: rgb:48/8f/25
+! lightgreen
+xterm*color10: rgb:6d/bc/20
+
+! darkblue
+xterm*color4: rgb:37/84/ea
+! lightblue
+xterm*color12: rgb:5f/9c/dc
+
+! darkyellow
+xterm*color3: rgb:bf/88/18
+! lightyellow
+xterm*color11: rgb:c4/a0/00
+
+! darkcyan
+xterm*color6: rgb:06/98/9a
+! darkmagenta
+xterm*color5: rgb:e6/4f/d9
+
+! lightmagenta
+xterm*color13: rgb:df/79/d6
+! lightcyan
+xterm*color14: rgb:34/e2/e2
+
+!Use the specified colour to disp1ay underlined characters when the foreground colour is the default
+xterm*colorUL: rgb:e6/a8/2d
+!If set, use the specified colour as the colour for the underline itself. If unset, use the foreground colour
+xterm*underlineColor: rgb:e6/a8/2d 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!  Rxvt-unicode configuration  !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!! General
+
+urxvt*modifier: alt
+! Set environment $TERM variable
+urxvt*termName:  screen-256color
+! Do not automatically scroll to bottom when tty receives output
+urxvt*scrollTtyOutput:  false
+! Do scroll to bottom when a non-special key is pressed
+urxvt*scrollTtyKeypress:  true
+! Start urxvt as a login shell
+urxvt*loginShell:  true
+! Do not scroll with scrollback buffer when tty recieves new lines, adds some speed
+urxvt*scrollWithBuffer:  false
+
+!Comma-separated list(s) of perl extension scripts (default: "default") to use
+!in this terminal instance, blank disables. By setting these both to blank, it
+!completely disables perl from being initialized, thus much faster and smaller
+!footprint.
+urxvt*perl-lib:        ~/.urxvt/ext/
+urxvt*perl-ext:				 resize-font,keyboard-select
+urxvt*perl-ext-common: default,matcher,xkr-clipboard,clipboard
+
+
+! Key bindings for resize-font extention
+! URxvt.keysym.C-A-j:  resize-font:bigger
+! URxvt.keysym.C-A-k:  resize-font:smaller
+! URxvt.keysym.C-A-l:  resize-font:reset
+! URxvt.keysym.C-A-i:  resize-font:show
+! font-resize increments
+URxvt.resize-font.step: 2
+
+
+! Settings for matcher URL selection
+urxvt*urlLauncher:		   brave
+urxvt*matcher.button:    1
+urxvt*matcher.pattern.1: \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+
+
+! Alt-u: select URLs
+! URxvt.keysym.A-u:				 perl:matcher:list
+!URxvt.keysym.C-u:        perl:matcher:last
+
+
+! Control-i: find and select in terminal
+! Control-m: selection mode
+! URxvt.keysym.A-s: perl:keyboard-select:activate
+! URxvt.keysym.A-f: perl:keyboard-select:search
+
+! Control-x copies primary selection to system clipboard
+! URxvt.keysym.A-x: perl:clipboard:copy
+! Settings for xkr-clipboard to enable copy to clipboard in urxvt
+URxvt.iso14755:               false
+URxvt.keysym.Control-Insert:  perl:clipboard:copy
+
+
+!! Appearance
+
+! Window
+urxvt*scrollBar: false
+urxvt*geometry: 275x84
+! Fade window when focus is lost
+urxvt*fading:  15
+urxvt*fadeColor:  #0B262A
+
+! A comma separated list of font names that are checked in order when trying to find glyphs for characters
+urxvt*font:  xft:Inconsolata:antialias=true:autohint=true:pixelsize=17
+urxvt*boldFont:  xft:Inconsolata:antialias=true:bold:autohint=true:pixelsize=17
+urxvt*italicFont:  xft:Inconsolata:antialias=true:italic:autohint=true:pixelsize=17
+urxvt*boldItalicFont:  xft:Inconsolata:bold:antialias=true:italic:autohint=true:pixelsize=17
+
+! Space between letters and lines
+urxvt*letterSpace: -1
+urxvt*lineSpace: 0
+
+! Fake transparency
+urxvt*transparent: true
+urxvt*shading: 75
+
+! Real transparency
+!urxvt*transparent: true
+!urxvt*depth: 32
+!urxvt*background: [50]#0B262A
+
+
+!! Colors
+
+URxvt*cursorColor:									#8A61D2
+
+urxvt*foreground: 									#DDDDDD
+!urxvt*background:                    #0B262A
+
+! Black + DarkGrey
+urxvt*color0:                        #333333
+urxvt*color8:                        #898989
+
+! DarkRed + Red
+urxvt*color1:                        #FF2B2B
+urxvt*color9:                        #EC5252
+
+! DarkGreen + Green
+urxvt*color2:                        #488F25
+! #638046
+urxvt*color10:                       #6DBC20
+! #80a65b
+
+! DarkYellow + Yellow
+urxvt*color3:                        #BF8818
+! #bf8c25									
+urxvt*color11:                       #C4A000
+! #D8D561
+
+! DarkBlue + Blue
+urxvt*color4:                        #3784EA
+! #4d6d99
+urxvt*color12:                       #5F9CDC
+! #6088bf
+
+! DarkMangenta + Mangenta
+urxvt*color5:                        #E64FD9
+urxvt*color13:                       #DF79D6
+
+! DarkCyan + Cyan
+urxvt*color6:                        #06989A
+urxvt*color14:                       #34E2E2
+
+! LightGrey + White
+urxvt*color7:                        #AAAAAA
+urxvt*color15:                       #FFFFFF
+
+
+!Use the specified colour to disp1ay underlined characters when the foreground colour is the default
+urxvt*colorUL:    								   #E6A82D
+!If set, use the specified colour as the colour for the underline itself. If unset, use the foreground colour
+urxvt*underlineColor:  				    	  #E6A82D	

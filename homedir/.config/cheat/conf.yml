@@ -1,0 +1,11 @@
+
+cheatpaths:
+  - name: cheatsheets                 # a name for the cheatpath
+    path: ~/.cheat									  # the path's location on the filesystem
+    tags: [ cheatsheets ]             # these tags will be applied to all sheets on the path
+    readonly: false                   # if true, `cheat` will not create new cheatsheets here
+
+  - name: sharedcheatsheets
+    path: /usr/share/cheat					  # this is a separate directory and repository than above
+    tags: [ shared ]
+    readonly: true                    
