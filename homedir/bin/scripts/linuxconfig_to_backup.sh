@@ -16,7 +16,8 @@ cp /home/yann/.profile /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.tmux.conf /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.vimrc /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.Xresources /home/yann/backup/linuxconfig/homedir/
-cp /usr/lib/w3m/cgi-bin/restore_tab.cgi /home/yann/backup/linuxconfig/usr/lib/w3m/cgi-bin
+cp /home/yann/.fzf/shell/key-bindings.bash /home/yann/backup/linuxconfig/homedir/.fzf/shell/
+cp /usr/lib/w3m/cgi-bin/restore_tab.cgi /home/yann/backup/linuxconfig/usr/lib/w3m/cgi-bin/
 
 cp -r /home/yann/.config/cheat /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/cmus /home/yann/backup/linuxconfig/homedir/.config/
