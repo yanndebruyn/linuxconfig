@@ -299,7 +299,7 @@ exec pactl load-module module-dbus-protocol
 exec sudo rfkill block bluetooth
 
 # Disable wifi
-exec sudo nmcli radio wifi off
+# exec sudo nmcli radio wifi off
 
 # Enable laptop mode
 exec sudo laptop_mode

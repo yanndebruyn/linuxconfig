@@ -37,6 +37,7 @@ cp -r /home/yann/Pictures/wallpapers/abstract-desert.jpg /home/yann/backup/linux
 
 cp -r /home/yann/bin/scripts /home/yann/backup/linuxconfig/homedir/bin/
 cp -r /home/yann/bin/popup /home/yann/backup/linuxconfig/homedir/bin/
+cp /home/yann/bin/popup.sh /home/yann/backup/linuxconfig/homedir/bin/
 cp -r /home/yann/.ssh /home/yann/backup/linuxconfig/homedir/
 cp -r /home/yann/.urxvt/ext /home/yann/backup/linuxconfig/homedir/.urxvt/
 cp /home/yann/.vim/autoload/plug.vim /home/yann/backup/linuxconfig/homedir/.vim/autoload/
