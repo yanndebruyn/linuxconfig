@@ -7,6 +7,7 @@ cp /etc/systemd/logind.conf /home/yann/backup/linuxconfig/etc/systemd/
 cp /etc/xdg/dunst/dunstrc /home/yann/backup/linuxconfig/etc/xdg/dunst/
 
 cp -r	/home/yann/.cheat /home/yann/backup/linuxconfig/homedir/
+cp -r	/home/yann/.calcurse /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.bash_aliases /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.bashrc /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.compton.conf /home/yann/backup/linuxconfig/homedir/
@@ -25,6 +26,7 @@ cp -r /home/yann/.config/cointop /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/dunst /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/i3 /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/mpv /home/yann/backup/linuxconfig/homedir/.config/
+cp -r /home/yann/.config/mutt /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/ranger /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/zathura /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/alacritty /home/yann/backup/linuxconfig/homedir/.config/

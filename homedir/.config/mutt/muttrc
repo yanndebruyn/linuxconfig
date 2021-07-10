@@ -1,0 +1,63 @@
+
+# set folder hooks
+folder-hook 'public@yanndebruyn.com' 'source ~/.config/mutt/account.public@yanndebruyn.com'
+folder-hook 'yann@yanndebruyn.com' 'source ~/.config/mutt/account.yann@yanndebruyn.com'
+
+
+# set default account
+source ~/.config/mutt/account.public@yanndebruyn.com
+
+
+##########################
+##  custom keybindings  ##
+##########################
+
+macro index <F12> \
+'<sync-mailbox><enter-command>source ~/.config/mutt/\
+account.public@yanndebruyn.com<enter><change-folder>!<enter>'
+
+macro index <F11> \
+'<sync-mailbox><enter-command>source ~/.config/mutt/\
+account.yann@yanndebruyn.com<enter><change-folder>!<enter>'
+
+macro index <Return> '<enter-command>set pager_index_lines=0<enter><display-message>'
+
+macro index <Space> \
+'<enter-command>set pager_index_lines=14<enter><display-message>'
+
+macro index <Esc>j '<next-new-then-unread>'
+
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+bind index,pager J sidebar-next
+bind index,pager K sidebar-prev
+bind index,pager L sidebar-open
+bind index,pager L sidebar-open
+
+
+########################
+##  general settings  ##
+########################
+
+set editor = vim
+set sort = 'reverse-date'
+set date_format="%d/%m %H:%M"
+auto_view text/html # view html automatically
+alternative_order text/plain text/enriched text/html # preferred render-order
+set index_format="%2C %Z %d %-15.15F %s (%-4.4c)"
+unset mark_old # So messages marked as 'new' (N) will stick after reload
+set pager_index_lines = 14 # Size of horizontal split pane
+
+# set sidebar_visible = yes
+set sidebar_width = 20
+
+
+###########################
+##  load external files  ##
+###########################
+
+source ~/.config/mutt/color.muttrc 
+source ~/.config/mutt/keybindings.muttrc 
+source ~/.config/mutt/aliases.muttrc 
+
+

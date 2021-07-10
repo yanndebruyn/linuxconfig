@@ -1,0 +1,5 @@
+
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
