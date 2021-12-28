@@ -65,7 +65,7 @@ bindsym $mod+Shift+Control+r exec sudo reboot
 bindsym $mod+Shift+Control+l exec i3-msg exit
 
 # i3lock
-bindsym $mod+Shift+Control+x exec i3lock -i /home/yann/Pictures/wallpapers/polyscape-triangle-centered-dark.png -t 
+bindsym $mod+Shift+Control+x exec i3lock -i /home/yann/Pictures/wallpapers/matrix-dark.png -t 
 
 # Toggle keyboard layout
 bindsym $mod+Control+Shift+k exec toggle_keyboard_layout.sh
