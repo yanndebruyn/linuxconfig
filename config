@@ -1,0 +1,331 @@
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+
+# set mod key
+set $mod Mod4
+
+# set gaps
+gaps inner 25
+gaps outer -7
+gaps top -8
+gaps bottom -15
+smart_borders on
+bindsym $mod+g gaps outer current toggle -24
+bindsym $mod+shift+g gaps outer current minus 5
+
+#########################################################################
+##  select specific windows types.																		 ##
+##  'instance' is the first string in the WM_CLASS variable of xprop.  ##
+##  'class' is the second.																						 ##
+#########################################################################
+
+# make a 'pop-up' window type
+for_window [instance="popup"] floating enable, resize set 1300px 800px, move left 250px, move up 100px
+
+# remove borders from all windows
+for_window [class=".*"] border pixel 0
+# for_window [class="Firefox"] border 1px
+# for_window [class="Brave-browser"] border 1px
+# for_window [class="Thunderbird"] border 1px
+# for_window [class="Gimp"] border 1px
+# for_window [class="vlc"] border 1px
+# for_window [class="mpv"] border 1px
+
+# define usable workspaces
+set $workspace1 "1.Tmux"
+set $workspace2 "2.Work"
+set $workspace3 "3.Video"
+set $workspace11 "11.Web"
+set $workspace12 "12.Email"
+set $workspace13 "13."
+
+# Always open certain applications on a certain workspace
+assign [class="mpv"] $workspace3
+assign [class="Firefox"] $workspace11
+assign [class="Thunderbird"] $workspace12
+assign [class="Brave-browser"] $workspace11
+for_window[title="Signal"] move container to workspace $workspace12
+assign [class="Gimp"] $workspace13
+
+
+# Do not focus windows on hover over
+focus_follows_mouse no
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec alacritty -e tmux -2
+bindsym $mod+Control+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml -e tmux -2
+bindsym $mod+Shift+Return exec alacritty
+
+# power off pc
+bindsym $mod+Shift+Control+p exec sudo poweroff
+bindsym $mod+Shift+Control+r exec sudo reboot
+bindsym $mod+Shift+Control+l exec i3-msg exit
+
+# i3lock
+bindsym $mod+Shift+Control+x exec i3lock -i /home/yann/Pictures/wallpapers/matrix-dark.png -t 
+
+# Toggle keyboard layout
+bindsym $mod+Control+Shift+k exec toggle_keyboard_layout.sh
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+Control+d exec dmenu_run -fn 'monospace:pixelsize=20' -l 40
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left 30px
+bindsym $mod+Shift+j move down 30px
+bindsym $mod+Shift+k move up 30px
+bindsym $mod+Shift+l move right 30px
+
+# resize focused window
+bindsym $mod+Shift+Left resize shrink width 20px
+bindsym $mod+Shift+Down resize shrink height 20px
+bindsym $mod+Shift+Up resize grow height 20px
+bindsym $mod+Shift+Right resize grow width 20px
+
+# toggle layout split
+bindsym $mod+v split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+d layout tabbed
+bindsym $mod+a layout toggle split
+
+# toggle tiling / floating of current window
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+# bindsym $mod+p focus parent
+
+#bindsym $mod+d focus child
+
+
+
+
+#############################
+##  Application shortcuts  ##
+#############################
+
+bindsym $mod+b exec brave
+bindsym $mod+t exec thunderbird
+bindsym $mod+n exec nicotine
+# start system-wide pulseaudio equalizer tool
+bindsym $mod+q exec qpaeq
+# Signal:
+bindsym $mod+Control+s exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal --file-forwarding org.signal.Signal @@u %U @@
+
+bindsym $mod+Control+c exec ~/bin/scripts/dmenu_select_configs.sh
+bindsym $mod+Control+b exec ~/bin/scripts/dmenu_select_i3blocks.sh
+bindsym $mod+Control+e exec ~/bin/scripts/dmenu_select_editscript.sh
+bindsym $mod+Control+Shift+s exec ~/bin/scripts/dmenu_select_runscript.sh
+
+bindsym $mod+u exec udiskie
+bindsym $mod+Control+u exec ~/bin/scripts/dmenu_select_unmount.sh
+bindsym $mod+Control+m exec ~/bin/scripts/dmenu_select_mounted.sh
+bindsym $mod+Control+p exec ~/bin/scripts/passmenu.sh
+
+bindsym $mod+m exec ~/bin/scripts/classicalmusic.sh
+bindsym $mod+Shift+m exec brave http://www.radio.net/popupplayer/index.html?station=klara&tenant=www.radio.net
+bindsym $mod+Shift+Control+m exec brave https://www.radio.net/s/radiominerva
+
+bindsym $mod+y exec alacritty -e ytfzf -t -f
+bindsym $mod+Shift+y exec alacritty -e ytfzf -t -l
+bindsym $mod+Shift+Control+y exec alacritty -e ytfzf -t -l --subs=20
+
+bindsym $mod+p exec alacritty --class popup -e /home/yann/bin/popup.sh
+
+
+# change background image
+bindsym $mod+Control+1 exec feh --bg-fill ~/Pictures/wallpapers/polyscape-triangle-centered-dark.png
+bindsym $mod+Control+2 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
+
+# Switch mono and dual monitor setup
+# bindsym $mod+F10 exec xrandr --output LVDS-1 --primary --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
+# bindsym $mod+F11 exec xrandr --output VGA-1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output LVDS-1 --off
+# bindsym $mod+F12 exec xrandr --output LVDS-1 --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --primary --mode 1920x1080 --pos 1600x0 --rotate normal 
+
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+F1 workspace $workspace11
+bindsym $mod+F2 workspace $workspace12
+bindsym $mod+F3 workspace $workspace13
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+F1 move container to workspace $workspace11
+bindsym $mod+Shift+F2 move container to workspace $workspace12
+bindsym $mod+Shift+F3 move container to workspace $workspace13
+
+# bindsym $mod+Control+l move workspace to output right
+# bindsym $mod+Control+h move workspace to output left
+
+# workspace $workspace0 output eDP-1
+workspace $workspace1 output $PRIMARY
+workspace $workspace2 output $PRIMARY
+workspace $workspace3 output $PRIMARY
+workspace $workspace11 output $PRIMARY
+workspace $workspace12 output $PRIMARY
+workspace $workspace13 output $PRIMARY
+# workspace $workspace13 output $HDMI-2
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+Control+Shift+Left resize shrink width 5px or 5ppt
+bindsym $mod+Control+Shift+Up resize grow height 5px or 5ppt
+bindsym $mod+Control+Shift+Down resize shrink height 5px or 5ppt
+bindsym $mod+Control+Shift+Right resize grow width 5px or 5ppt
+
+
+# Window borders are 1 pixel and no title bar when split
+default_border pixel 1
+hide_edge_borders smart
+
+# Window titles are centered
+title_align center
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 10
+
+# title bar colors			BORDER	BACKGR.	TEXT		INDICATOR	CHILD_BORDER
+client.focused          #000000 #593942 #ffbf00 #000000   #66426D
+client.focused_inactive #000000 #896112 #000000 #000000   #000000
+client.unfocused        #000000 #404040 #888888 #000000   #000000
+client.urgent           #000000 #000000 #ffffff #000000   #000000
+client.placeholder      #000000 #000000 #ffffff #000000   #000000
+
+
+# start polybar
+exec --no-startup-id polybar example
+
+# Screenshot
+bindsym Print exec --no-startup-id scrot ~/Pictures/screenshots/'screenshot_%d-%m-%Y_%H:%m:%S.jpg'
+
+# mpc controls
+ bindsym $mod+backslash  exec --no-startup-id mpc toggle
+ bindsym $mod+BackSpace exec --no-startup-id mpc stop
+ bindsym $mod+Shift+equal exec --no-startup-id mpc volume +5
+ bindsym $mod+Shift+minus exec --no-startup-id mpc volume -5
+ bindsym $mod+bracketleft exec --no-startup-id mpc seek -5
+ bindsym $mod+bracketright exec --no-startup-id mpc seek +5
+ bindsym $mod+semicolon exec --no-startup-id mpc prev
+ bindsym $mod+apostrophe exec --no-startup-id mpc next
+
+# Volume controls
+bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym $mod+0 exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Sreen brightness controls
+bindsym $mod+Control+equal exec --no-startup-id ~/bin/scripts/brightness-up.sh
+bindsym $mod+Control+minus exec --no-startup-id ~/bin/scripts/brightness-down.sh
+bindsym $mod+Control+0 exec --no-startup-id /home/yann/bin/scripts/monitor-off-toggle.sh
+
+
+# Auto Starts
+#############
+
+# set up laptop screen with 2 monitors
+# exec_always --no-startup-id xrandr --output HDMI-1 --off --output DP-1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output eDP-1 --mode 1920x1080 --pos 0x360 --rotate normal --output HDMI-2 --mode 1920x1080 --pos 4480x64 --rotate normal
+
+# exec_always --no-startup-id xrandr --output LVDS-1 --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --primary --mode 1920x1080 --pos 1600x0 --rotate normal
+
+# Start picom in the background for transparency
+exec picom -b --experimental
+
+# auto start feh
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
+
+# # start scratchpad
+# exec alacritty -sh 1.5 -title scratchpad -e tmux -2 & 
+# for_window [title="scratchpad"] floating enable, resize set 1923 1060, move scratchpad
+# Bindsym F1 [title="scratchpad"] scratchpad show, move position center
+
+# auto start udiskie for automatic disk mounting
+exec --no-startup-id udiskie
+
+# auto start unclutter to auto-hide mouse cursor
+exec --no-startup-id unclutter
+
+# auto start script for changing caps lock to delete key
+exec --no-startup-id ~/bin/scripts/xmodmap.sh
+
+# change keyboard repeat rate
+exec --no-startup-id xset r rate 200 30
+
+# turn numlock on
+exec numlockx on
+
+# bind toggling of bluetooth service
+bindsym $mod+Shift+b exec --no-startup-id bluetooth toggle
+
+# auto start blueman for bluetooth tray applet
+exec --no-startup-id blueman-applet
+
+# auto start pasystray audio tray applet
+# exec --no-startup-id /usr/bin/pasystray
+
+# auto start network applet in bar
+exec --no-startup-id nm-applet
+
+# load pulseaudio modules for equalizer, so that qpaeq can be run
+exec pactl load-module module-equalizer-sink
+exec pactl load-module module-dbus-protocol
+
+# Disable bluetooth
+# exec sudo rfkill block bluetooth
+
+# Disable wifi
+# exec sudo nmcli radio wifi off
+
+# Start laptop power saving settings
+exec sudo tlp start
+
+# Enable Energy Star features
+exec xset +dpms
+
+# Go to standby mode (screen off) after 5 minutes
+exec xset dpms 320
+
+# start the dunst daemon
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+# bindsym $mod+Control+space exec --no-startup-id dunstctl action
+# bindsym $mod+Shift+space exec --no-startup-id dunstctl close
+ bindsym $mod+KP_Add exec --no-startup-id dunstctl action
+ bindsym $mod+KP_Subtract exec --no-startup-id dunstctl close
+
+# start mpd daemon
+exec --no-startup-id mpd
+
+# start the calcurse daemon
+# exec calcurse --daemon
+
+# start i3 on workspace1
+exec_always --no-startup-id i3-msg workspace $workspace1 
+
+exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e tmux -2
