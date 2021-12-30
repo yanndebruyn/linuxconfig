@@ -85,6 +85,10 @@ set hlsearch   "highligh matches
 
 " Enable Fuzzy Finder in Vim
 set rtp+=~/.fzf
+" remove default mapping of control-o
+map <C-o> <Nop>
+" map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
+map <C-o> :call fzf#run({'sink': 'tabedit'})<CR>
 
 " Folding
 set foldenable     "enable folding of code
@@ -92,10 +96,10 @@ set foldlevelstart=99 "open folds by default
 set foldmethod=indent "fold based on indent level
 
 
-" Immediately detect and apply changes saved to .vimrc. No more typing :so %
+" Immediately detect and apply changes saved to init.vim No more typing :so %
 augroup myvimrc
     au!
-				au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC |
+				au BufWritePost /home/yann/.config/nvim/init.vim so $MYVIMRC |
 				if has('gui_running') | so $MYGVIMRC | endif 
 augroup  END
 
@@ -116,12 +120,12 @@ inoremap jj <esc>
 "register:
 autocmd InsertEnter * :let @/ = ""
 
-".. and re-source .vimrc to fix the lightline losing color bug
+".. and re-source init.vim to fix the lightline losing color bug
 :map <Leader>q :w<CR>:q<CR>
-:map <Leader>w :w<CR>:so ~/.vimrc<CR>:noh<CR>
+:map <Leader>w :w<CR>:so ~/.config/nvim/init.vim<CR>:noh<CR>
 :map <Leader>x :q<CR>
 :map <Leader>/ :noh<CR>
-:map <Leader>g :Goyo<CR>:so ~/.vimrc<CR>
+:map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 :map <C-n> :NERDTreeToggle<CR>
 
 "move vertically by visual line
@@ -142,7 +146,8 @@ nnoremap d<C-a> d$
 nnoremap c<C-i> c^
 nnoremap c<C-a> c$
 
-" copy visually selected to clipboard
+" copy visually selected to clipboard (vim needs to be compiled with
+" +xterm_clipboard for this to work)
 vnoremap <Leader>y "+y 
 " paste clipboard
 nnoremap <Leader>p "+p
@@ -169,21 +174,38 @@ nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 
 "Buffers (windows)
-"go to next buffer
-:map <C-h> :bp<CR>
 "go to previous buffer
-:map <C-l> :bn<CR>
+:map <C-k> :bp<CR>
+"go to next buffer
+:map <C-j> :bn<CR>
 "close current buffer
-:map <C-q> :bd<CR>
+:map <C-x> :bd<CR>
 ":map <Leader>q :bd<CR>
 
 " tabs
 nnoremap <C-c> :tabnew %<CR>
-nnoremap <C-k> :tabp<CR>
-nnoremap <C-j> :tabn<CR>
+nnoremap <C-h> :tabp<CR>
+nnoremap <C-l> :tabn<CR>
+nnoremap <C-q> :tabclose<CR>
+
+" open files in tabs
+:map <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
+:map <Leader>ew :tabnew ~/.w3m/keymap<CR>
+:map <Leader>ei :tabnew ~/.config/i3/config<CR>
+:map <Leader>eb :tabnew ~/.bashrc<CR>
+:map <Leader>el :tabnew ~/.bash_aliases<CR>
+:map <Leader>ea :tabnew ~/.config/alacritty/alacritty.yml<CR>
+:map <Leader>et :tabnew ~/.tmux.conf<CR>
+:map <Leader>er :tabnew ~/.config/ranger/rc.conf<CR>
+:map <Leader>eR :tabnew ~/.config/ranger/rifle.conf<CR>
+:map <Leader>ep :tabnew ~/.config/polybar/config<CR>
+:map <Leader>ex :tabnew ~/.Xresources<CR>
+:map <Leader>ex :tabnew ~/.config/ytfzf/conf.sh<CR>
+:map <Leader>en :tabnew ~/Documents/notes<CR>
+:map <Leader>ec :tabnew ~/.config/picom/picom.conf<CR>
 
 
-"LaTeX bindings:
+"LaTeX bindings
 "format current sentence
 :map <Leader>ff gqas
 "format current paragraph 
@@ -208,8 +230,10 @@ au FileType tex nnoremap  <C-x> :! zathura $(echo % \| sed 's/tex$/pdf/') & diso
 " =========================
   
 " Specify a directory for plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
+" insatll fzf for vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }"
 " display color names in that color
 Plug 'https://github.com/tpope/vim-commentary'
 "Plug 'https://github.com/preservim/nerdcommenter'

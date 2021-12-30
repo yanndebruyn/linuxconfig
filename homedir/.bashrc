@@ -136,10 +136,16 @@ PS1="\n\[\033[00;90m\]┌[\[\033[00;33m\]\w\[\033[00;90m\]]\n\[\033[00;36m\]\[\0
 ##  application-specific  ##
 ############################
 
+# integrate icons-in-terminal in bash
+source ~/.local/share/icons-in-terminal/icons_bash.sh
+
 # Enable Fuzzy finder in bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# Enable fzf to find hidden files
+
+# set fzf environment variables
 export FZF_DEFAULT_COMMAND='find .'
+export FZF_ALT_C_COMMAND='find . -type d'
+export FZF_CTRL_T_COMMAND='find . -type f'
 
 # set ytfzf config directory and config file
 YTFZF_CONFIG_DIR=$HOME/.config/ytfzf
@@ -219,4 +225,4 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
