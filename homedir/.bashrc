@@ -120,7 +120,7 @@ export EDITOR
 BROWSERCLI=w3m
 export BROWSERCLI
 
-BROWSER=brave-browser
+BROWSER=brave
 export BROWSER
 
 # set variable for gpg-agent
