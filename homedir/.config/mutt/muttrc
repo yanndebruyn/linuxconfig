@@ -8,33 +8,6 @@ folder-hook 'yann@yanndebruyn.com' 'source ~/.config/mutt/account.yann@yanndebru
 source ~/.config/mutt/account.public@yanndebruyn.com
 
 
-##########################
-##  custom keybindings  ##
-##########################
-
-macro index <F12> \
-'<sync-mailbox><enter-command>source ~/.config/mutt/\
-account.public@yanndebruyn.com<enter><change-folder>!<enter>'
-
-macro index <F11> \
-'<sync-mailbox><enter-command>source ~/.config/mutt/\
-account.yann@yanndebruyn.com<enter><change-folder>!<enter>'
-
-macro index <Return> '<enter-command>set pager_index_lines=0<enter><display-message>'
-
-macro index <Space> \
-'<enter-command>set pager_index_lines=14<enter><display-message>'
-
-macro index <Esc>j '<next-new-then-unread>'
-
-macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
-macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
-bind index,pager J sidebar-next
-bind index,pager K sidebar-prev
-bind index,pager L sidebar-open
-bind index,pager L sidebar-open
-
-
 ########################
 ##  general settings  ##
 ########################

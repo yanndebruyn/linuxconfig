@@ -1,0 +1,42 @@
+IMAPStore public@yanndebruyn.com-remote
+Host imap.dreamhost.com
+Port 993
+User public@yanndebruyn.com
+PassCmd "pass show email/public@yanndebruyn.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore public@yanndebruyn.com-local
+Path ~/mail/public@yanndebruyn.com/
+Inbox ~/mail/public@yanndebruyn.com/INBOX
+Subfolders Verbatim
+
+Channel public@yanndebruyn.com
+Far  :public@yanndebruyn.com-remote:
+Near  :public@yanndebruyn.com-local:
+Create both
+Expunge both
+Patterns *
+SyncState *
+
+
+IMAPStore yann@yanndebruyn.com-remote
+Host imap.dreamhost.com
+Port 993
+User yann@yanndebruyn.com
+PassCmd "pass show email/yann@yanndebruyn.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore yann@yanndebruyn.com-local
+Path ~/mail/yann@yanndebruyn.com/
+Inbox ~/mail/yann@yanndebruyn.com/INBOX
+Subfolders Verbatim
+
+Channel yann@yanndebruyn.com
+Far  :yann@yanndebruyn.com-remote:
+Near  :yann@yanndebruyn.com-local:
+Create both
+Expunge both
+Patterns *
+SyncState *
