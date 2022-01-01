@@ -29,33 +29,33 @@ alias gWW='cd /var/www'
 alias gS='cd /home/yann/Pictures/screenshots'
 alias gv='cd /home/yann/Videos'
 alias gs='cd /home/yann/bin/scripts'
-alias gP='cd /home/yann/bin/popup'
+alias gP='cd /home/yann/mnt'
 alias gG='cd /home/yann/git'
 alias gt='cd /home/yann/Teachings'
 alias gm='cd /home/yann/Music'
 alias gb='cd /home/yann/backup'
 alias gB='cd /home/yann/Books'
-alias gM='cd /media/yann'
+alias gM='cd /run/media/yann'
 alias gi='cd /home/yann/.config/i3'
 
 
 #############################
-##  edit with vim aliases  ##
+##  edit with nvim aliases  ##
 #############################
 
-alias ei='vim /home/yann/.config/i3/config'
-alias ev='vim /home/yann/.vimrc'
-alias eb='vim /home/yann/.bashrc'
-alias eba='vim /home/yann/.bash_aliases'
-alias ea='vim /home/yann/.config/alacritty/alacritty.yml'
-alias ex='vim /home/yann/.Xresources'
-alias ec='vim /home/yann/.compton.conf'
-alias en='vim /home/yann/Documents/notes'
-alias el='vim /home/yann/Documents/learninglinux'
-alias et='vim /home/yann/.tmux.conf'
-alias er='vim /home/yann/.config/ranger/rc.conf'
-alias eR='vim /home/yann/.config/ranger/rifle.conf'
-alias ey='vim /home/yann/.config/ytfzf/conf.sh'
+alias ei='nvim /home/yann/.config/i3/config'
+alias ev='nvim /home/yann/.config/vim/init.vim'
+alias eb='nvim /home/yann/.bashrc'
+alias el='nvim /home/yann/.bash_aliases'
+alias ea='nvim /home/yann/.config/alacritty/alacritty.yml'
+alias ex='nvim /home/yann/.Xresources'
+alias ec='nvim /home/yann/.config/picom/picom.conf'
+alias en='nvim /home/yann/Documents/notes'
+alias et='nvim /home/yann/.tmux.conf'
+alias er='nvim /home/yann/.config/ranger/rc.conf'
+alias eR='nvim /home/yann/.config/ranger/rifle.conf'
+alias ey='nvim /home/yann/.config/ytfzf/conf.sh'
+alias ep='nvim /home/yann/.config/polybar/config'
 
 alias o6='sudo compton-trans -c 60'
 alias o7='sudo compton-trans -c 70'
@@ -77,6 +77,10 @@ alias uphone='$HOME/bin/scripts/unmountphone.sh'
 ##  program aliases  ##
 #######################
 
+# download remote emails to local dir with isync package
+alias gmp='mbsync public@yanndebruyn.com'
+alias gmy='mbsync yann@yanndebruyn.com'
+
 alias mpv='mpv --no-osd-bar'
 
 alias fzf='fzf --multi --preview "bat --color=always --style=numbers --line-range=:500 {}"'
@@ -93,6 +97,18 @@ alias ysf='ytfzf -t -f --subs=20'
 
 alias sb='source $HOME/.bashrc'
 alias sa='source $HOME/.bash_aliases'
+
+alias cheat='function __cheat() { cat /home/yann/.cheat/$*; unset -f __cheat;}; __cheat'
+alias cheatvim='function __cheatvim() { nvim /home/yann/.cheat/$*; unset -f __cheatvim;}; __cheatvim'
+alias cheats='ls /home/yann/.cheat/'
+alias cheatbat='function __cheatbat() { bat /home/yann/.cheat/$*; unset -f __cheatbat;}; __cheatbat'
+alias cheatless='function __cheatless() { less /home/yann/.cheat/$*; unset -f __cheatless;}; __cheatless'
+
+alias note='function __note() { cat /home/yann/Documents/notes/$*; unset -f __note;}; __note'
+alias notevim='function __notevim() { nvim /home/yann/Documents/notes/$*; unset -f __notevim;}; __notevim'
+alias notes='ls /home/yann/Documents/notes'
+alias noteless='function __noteless() { less /home/yann/Documents/notes/$*; unset -f __noteless;}; __noteless'
+alias noterm='function __noterm() { rm /home/yann/Documents/notes/$*; unset -f __noterm;}; __noterm'
 
 
 # Custom variables
