@@ -123,7 +123,7 @@ autocmd InsertEnter * :let @/ = ""
 ".. and re-source init.vim to fix the lightline losing color bug
 :map <Leader>q :w<CR>:q<CR>
 :map <Leader>w :w<CR>:so ~/.config/nvim/init.vim<CR>:noh<CR>
-:map <Leader>x :q<CR>
+:map <C-x> :q<CR>
 :map <Leader>/ :noh<CR>
 :map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 :map <C-n> :NERDTreeToggle<CR>
@@ -179,7 +179,7 @@ nnoremap <Down> :resize +1<CR>
 "go to next buffer
 :map <C-j> :bn<CR>
 "close current buffer
-:map <C-x> :bd<CR>
+:map <Leader>x :bd<CR>
 ":map <Leader>q :bd<CR>
 
 " tabs
