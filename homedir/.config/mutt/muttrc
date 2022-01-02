@@ -22,7 +22,7 @@ unset mark_old # So messages marked as 'new' (N) will stick after reload
 set pager_index_lines = 14 # Size of horizontal split pane
 
 # set sidebar_visible = yes
-set sidebar_width = 20
+set sidebar_width = 31
 
 
 ###########################

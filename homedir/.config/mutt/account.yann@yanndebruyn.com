@@ -14,5 +14,14 @@ set record = "+INBOX.Sent"
 set trash = "+INBOX.Trash"
 set postponed = "+INBOX.Drafts"
 
-mailboxes =INBOX =Sent =Drafts =Trash =old-messages
+mailboxes ====yann@yanndebruyn.com=== =INBOX =Sent =Drafts =Trash =old-messages
 # mailboxes =INBOX =INBOX.Sent =INBOX.Drafts =INBOX.Trash =INBOX.old-messages
+
+# Set persistent names of mailboxes in the sidebar. The first one is a file in 
+# ~/mail/yann@yanndebruyn.com to be used as a divider.
+named-mailboxes "===yann@yanndebruyn.com===" ====yann@yanndebruyn.com===
+named-mailboxes "INBOX" =INBOX
+named-mailboxes "Sent" =Sent
+named-mailboxes "Drafts" =Drafts
+named-mailboxes "Trash" =Trash
+named-mailboxes "old-messages" =old-messages
