@@ -32,8 +32,8 @@ macro index gmy '<shell-escape>mbsync -V yann@yanndebruyn.com<enter><shell-escap
 # Ctrl-f find string in all local email files
 macro index s "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"
 
-# save email or attachment to inbox or file
-bind index S save-message
+# sync mailbox to eg. clear email marked for deletion
+bind index S sync-mailbox
 
 # open/close large and small pane to view email
 macro index <Return> '<enter-command>set pager_index_lines=3<enter><display-message>'

@@ -14,6 +14,9 @@ set record = "+INBOX.Sent"
 set trash = "+INBOX.Trash"
 set postponed = "+INBOX.Drafts"
 
+# set inbox to save copy of sent email 
+fcc-hook '.' '=Sent'
+
 mailboxes ====yann@yanndebruyn.com=== =INBOX =Sent =Drafts =Trash =old-messages
 # mailboxes =INBOX =INBOX.Sent =INBOX.Drafts =INBOX.Trash =INBOX.old-messages
 
