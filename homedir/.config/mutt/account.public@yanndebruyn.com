@@ -22,7 +22,7 @@ mailboxes ====public@yanndebruyn.com=== =INBOX =Sent =Drafts =Trash =old-message
 
 # Set persistent names of mailboxes in the sidebar. The first one is a file in 
 # ~/mail/public@yanndebruyn.com to be used as a divider.
-named-mailboxes "===public@yanndebruyn.com=== " ====public@yanndebruyn.com===
+named-mailboxes "===public@yanndebruyn.com===" ====public@yanndebruyn.com===
 named-mailboxes "INBOX" =INBOX
 named-mailboxes "Sent" =Sent
 named-mailboxes "Drafts" =Drafts

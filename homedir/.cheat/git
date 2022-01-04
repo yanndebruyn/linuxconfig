@@ -1,6 +1,24 @@
----
-tags: [ vcs ]
----
+
+
+####################################################################
+# CREATE
+####################################################################
+
+# create a new empty repository in your directory of choice:
+# (the repository data will be stored in de hidden directory .git)
+mkdir ~/gitrepo
+cd ~/gitrepo/
+git init
+
+# To pull in a remote repository locally:
+git remote add origin https://github.com/...
+git fetch --all
+git pull origin master
+
+
+####################################################################
+# CONFIG
+####################################################################
 
 # To set your identity:
 git config --global user.name <name>
@@ -12,23 +30,27 @@ git config --global core.editor <editor>
 # To enable color:
 git config --global color.ui true
 
-# Create repository or reinitialize an existing one:
-git init
 
-# To stage changed file for commit:
+
+
+
+####################################################################
+# ADD, STAGE, COMMIT, PUSH
+####################################################################
+
+# To check the status of the repository
+git status
+
+# To add a file to the repository, simply copy it into the directory
+cp <file> ~/gitrepo
+
+# To stage changed file(s) for commit:
 git add <filename>
+git add --all | .
 
-# To stage all changes for commit:
-git add --all  <OR>  git add .
-
-# To commit staged changes for a file:
+# To commit staged changes for file(s):
 git commit -m "<message>" <file>
-
-# To commit staged changes for all file:
 git commit -m "<message>" -a
-
-# Add remote repository address:
-git push -u origin master
 
 # For the first time push local commits to the remote repository:
 git push -u origin master
@@ -36,6 +58,19 @@ git push -u origin master
 # To push local commits to the remote repository:
 git push
 
+
+####################################################################
+# PULL
+####################################################################
+# To pull changes while overwriting any local commits:
+git fetch --all
+git reset --hard origin/master
+
+
+####################################################################
+# STASH
+####################################################################
+#
 # To stash changes locally, this will keep the changes in a separate changelist
 # called stash and the working directory is cleaned. You can apply changes
 # from the stash anytime
@@ -142,9 +177,6 @@ git rebase -i @~7
 # This can be used to diff files that are not in a git repo!
 git diff --no-index path/to/file/A path/to/file/B
 
-# To pull changes while overwriting any local commits:
-git fetch --all
-git reset --hard origin/master
 
 # To update all submodules:
 git submodule update --init --recursive

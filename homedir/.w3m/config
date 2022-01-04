@@ -1,4 +1,4 @@
-tabstop 8
+top 8
 indent_incr 4
 pixel_per_char 11
 pixel_per_line 64
@@ -80,8 +80,9 @@ urimethodmap ~/.w3m/urimethodmap, /etc/w3m/urimethodmap
 editor sensible-editor
 mailto_options 1
 mailer xdg-open mailto:%s
-extbrowser sensible-browser
-extbrowser2 bash -c 'echo -n "$0" | xclip -selection clipboard && notify-send -t 5000 -i edit-copy "W3M URL Yank To Clipboard" "$0"' 
+extbrowser brave
+extbrowser2 bash -c 'echo -n "$0" | xclip -selection clipboard && notify-send -t
+5000 -i edit-copy "W3M URL Yank To Clipboard" "$0"' 
 extbrowser3 chromium %s &
 extbrowser4 epiphany %s &
 extbrowser5 konqueror %s &
@@ -101,7 +102,8 @@ user_agent
 no_referer 0
 accept_language en;q=1.0
 accept_encoding gzip, compress, bzip, bzip2, deflate
-accept_media text/html, text/*;q=0.5, image/*, application/*, video/*, audio/*, x-scheme-handler/*, x-content/*, inode/*, font/*, */*
+accept_media text/html, text/*;q=0.5, image/*, application/*, video/*, audio/*,
+x-scheme-handler/*, x-content/*, inode/*, font/*, */*
 argv_is_url 1
 retry_http 1
 default_url 1

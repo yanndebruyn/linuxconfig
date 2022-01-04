@@ -121,9 +121,9 @@ inoremap jj <esc>
 autocmd InsertEnter * :let @/ = ""
 
 ".. and re-source init.vim to fix the lightline losing color bug
-:map <Leader>q :w<CR>:q<CR>
 :map <Leader>w :w<CR>:so ~/.config/nvim/init.vim<CR>:noh<CR>
-:map <C-x> :q<CR>
+:map <Leader>x :q<CR>
+:map <Leader>X :quitall<CR>
 :map <Leader>/ :noh<CR>
 :map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 :map <C-n> :NERDTreeToggle<CR>
@@ -173,17 +173,16 @@ nnoremap <Right> :vertical resize +1<CR>
 nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 
-"Buffers (windows)
+" buffers (windows)
 "go to previous buffer
 :map <C-k> :bp<CR>
 "go to next buffer
 :map <C-j> :bn<CR>
 "close current buffer
-:map <Leader>x :bd<CR>
-":map <Leader>q :bd<CR>
+:map <Leader>q :bd<CR>
 
 " tabs
-nnoremap <C-c> :tabnew %<CR>
+nnoremap <Leader>t :tabnew %<CR>
 nnoremap <C-h> :tabp<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-q> :tabclose<CR>
@@ -203,6 +202,11 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>ex :tabnew ~/.config/ytfzf/conf.sh<CR>
 :map <Leader>en :tabnew ~/Documents/notes<CR>
 :map <Leader>ec :tabnew ~/.config/picom/picom.conf<CR>
+
+" bindings for newbook in groff
+:map <Leader>eB :tabnew ~/Teachings/Newbook/newbook.ms<CR>
+:map <Leader>c :! groff -ms ~/Teachings/Newbook/newbook.ms -T pdf > ~/Teachings/Newbook/newbook.pdf<CR>
+:map <Leader>v :! zathura ~/Teachings/Newbook/newbook.pdf &disown<CR>
 
 
 "LaTeX bindings

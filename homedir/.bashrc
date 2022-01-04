@@ -137,7 +137,7 @@ PS1="\n\[\033[00;90m\]┌[\[\033[00;33m\]\w\[\033[00;90m\]]\n\[\033[00;36m\]\[\0
 ############################
 
 # integrate icons-in-terminal in bash
-source ~/.local/share/icons-in-terminal/icons_bash.sh
+# source ~/.local/share/icons-in-terminal/icons_bash.sh
 
 # Enable Fuzzy finder in bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -225,4 +225,3 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
-# . "$HOME/.cargo/env"

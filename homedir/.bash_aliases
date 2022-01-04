@@ -77,9 +77,10 @@ alias uphone='$HOME/bin/scripts/unmountphone.sh'
 ##  program aliases  ##
 #######################
 
-# download remote emails to local dir with isync package
-alias gmp='mbsync public@yanndebruyn.com'
-alias gmy='mbsync yann@yanndebruyn.com'
+# download remote emails to local dir with 'isync' package and index newly
+# downloaded emails to make them searchable with 'notmuch' package
+alias gmp='mbsync -V public@yanndebruyn.com; notmuch new 2>/dev/null'
+alias gmy='mbsync -V yann@yanndebruyn.com; notmuch new 2>/dev/null'
 
 alias mpv='mpv --no-osd-bar'
 

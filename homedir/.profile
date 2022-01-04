@@ -38,4 +38,4 @@ if [ -d "$HOME/bin/popup" ] ; then
     PATH="$HOME/bin/popup:$PATH"
 fi
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

@@ -1,0 +1,200 @@
+
+
+###############
+##  General  ##
+###############
+
+.RP [no] # Prints cover page on its own. Can be avoided with .RP no              
+.TL      # Title of the document
+.AU      # Author Name    
+.AI      # Author Institution                                 
+.AB [no] and .AE block # Abstract beginning and end blocks. .AB no ensures the abstract keyword is silenced 
+.DA [XXX] # Current date on title page and footers                       
+.ND [XXX] # Current date only on the title page                        
+.1C       # 1 columned layout                                 
+.2C       # 2 columned layout                                
+.MC [WIDTH[GUTTER]]  # Multiple column layout (by default 2 with no args)                 
+.XS page_num and .XE # Table of contents block              
+.XA page_num     # Entry in the table of contents block           
+.PX          # Print a manually-generated table of contents without resetting the page number.
+
+
+#####################
+## Text Formatting ##
+#####################
+
+┌───────┬────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│Command│                                           Functionality                                            │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .B   │                                                Bold                                                │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .I   │                                              Italics                                               │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .BI  │                                          Bold and Italics                                          │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .P1  │                Prints the header on page 1. The default is to suppress the header.                 │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .BX  │                                                Box                                                 │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .UL  │                                             Underline                                              │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .LG  │       Prints all text following in larger type (2 points larger than the current point size)       │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .SM  │      Prints all text following in smaller type (2 points smaller than the current point size)      │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .NL  │                         Prints all text following in the normal point size                         │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .R   │Sets its first argument in roman (or regular) type. It operates similarly to the B macro otherwise. │
+├───────┼────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .CW  │      Sets its first argument in italic type. It operates similarly to the B macro otherwise.       │
+└───────┴────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[123]Paragraph Formatting
+
+┌───────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  Command  │                                                                       Functionality                                                                        │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    .PP    │                                                                     Standard paragraph                                                                     │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    .QP    │                                                                      Quoted paragraph                                                                      │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    .XP    │ The XP macro produces an exdented paragraph. The first line of the paragraph begins at the left margin, and subsequent lines are indented (the opposite of │
+│           │                                                                            PP).                                                                            │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│.RS and .RE│                           Start and end a section of indented text, respectively. The PI register controls the amount of indent.                           │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    .IP    │                        List points. Use .IP \(bu [width] for bullet points with given width. Use .IP [number] for numbered points.                         │
+├───────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│    .TA    │                                                                          Tabbing                                                                           │
+└───────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[124]Headings
+
+┌───────┬───────────────────────────────────────────────────────┐
+│Command│                     Functionality                     │
+├───────┼───────────────────────────────────────────────────────┤
+│.NH xxx│Numbered heading where numbers specify levels of depth │
+├───────┼───────────────────────────────────────────────────────┤
+│.SH xxx│             Section heading (un-numbered)             │
+├───────┼───────────────────────────────────────────────────────┤
+│  .LH  │                      Left header                      │
+├───────┼───────────────────────────────────────────────────────┤
+│  .CH  │                     Center header                     │
+├───────┼───────────────────────────────────────────────────────┤
+│  .RH  │                     Right header                      │
+├───────┼───────────────────────────────────────────────────────┤
+│  .LF  │                      Left footer                      │
+├───────┼───────────────────────────────────────────────────────┤
+│  .CF  │                     Center footer                     │
+├───────┼───────────────────────────────────────────────────────┤
+│  .RF  │                     Right footer                      │
+├───────┼───────────────────────────────────────────────────────┤
+│  .OH  │  Headers for odd pages. eg: .OH 'left'center'right'   │
+├───────┼───────────────────────────────────────────────────────┤
+│  .EH  │                Headers for even pages.                │
+└───────┴───────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[125]Pre Processing
+
+┌───────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│    Command    │                                                                     Functionality                                                                      │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│.TS [H] and .TE│Denotes a table, to be processed by the tbl preprocessor. The optional H argument instructs groff to create a running header with the information up to │
+│               │                                                                     the TH macro.                                                                      │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│  .PS and .PE  │   Denotes a graphic, to be processed by the pic preprocessor. You can create a pic file by hand, using the AT&T pic manual available on the Web as a   │
+│               │                                                reference, or by using a graphics program such as xfig.                                                 │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│.EQ [align] and│ Denotes an equation, to be processed by the eqn preprocessor. The optional align argument can be C, L, or I to center (the default), left-justify, or  │
+│      .EN      │                                                                  indent the equation.                                                                  │
+├───────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│   .[ and .]   │                                       References and citations block, to be processed by the refer preprocessor.                                       │
+└───────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[126]Custom Macros
+
+┌────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  Command   │                                               Functionality                                               │
+├────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ .de and .. │You can define macros between this block. They can then be sourced by the same file as well as other files │
+├────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│.so filename│                                        Source macros from filename                                        │
+└────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[127]Graphics
+
+┌──────────────────────────────────────────────────┬──────────────────────────────────────┐
+│                     Command                      │            Functionality             │
+├──────────────────────────────────────────────────┼──────────────────────────────────────┤
+│ .PSPIC -[L/R/C/I n] [width[Height]] filename.eps │Insert a post script image into groff.│
+├──────────────────────────────────────────────────┼──────────────────────────────────────┤
+│.PDFPIC -[L/R/C/I n] [width[Height]] filename.eps │    Insert a PDF image into groff.    │
+└──────────────────────────────────────────────────┴──────────────────────────────────────┘
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[128]Configuring Paper Size
+
+You can configure your virtual paper size using groff postprocessor that is built in. -P is used to pass in arguments to the posst processor:
+
+groff -Tpdf -P-pa4 -P-l -ms file.ms > file.pdf
+
+The command above takes an A4 sized virtual paper in landscape mode. Other valid formats are A, B, D sized papers along with letters, statements, ledgers and tabloids.
+Full reference is available in the DESC section of the groff_font man page.
+
+About
+
+GNU typesetting runoff ms macro cheatsheet with examples
+
+Resources
+
+[129] Readme
+
+License
+
+[130] GPL-3.0 License
+
+Stars
+
+[131] 17 stars
+
+Watchers
+
+[132] 1 watching
+
+Forks
+
+[133] 2 forks
+
+[134] Releases
+
+No releases published
+
+[135] Packages 0
+
+No packages published
+
+  • [136] © 2022 GitHub, Inc.
+
+  • [137]Terms
+  • [138]Privacy
+  • [139]Security
+  • [140]Status
+  • [141]Docs
+  • [142]Contact GitHub
+  • [143]Pricing
+  • [144]API
+  • [145]Training
+  • [146]Blog
+  • [147]About
+
+You can’t perform that action at this time.
+You signed in with another tab or window. [149]Reload to refresh your session. You signed out in another tab or window. [150]Reload to refresh your session.

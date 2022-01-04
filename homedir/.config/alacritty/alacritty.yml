@@ -83,7 +83,7 @@ scrolling:
   # Specifying '0' will disable scrolling.
   history: 10000
 
-  # Scrolling distance multiplier.
+  # Scrolling <dis></dis>tance multiplier.
   multiplier: 3
 
 # Font configuration
@@ -97,6 +97,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+    # family: Dejavu Sans Mono
     family: Dejavu Sans Mono
 
     # The `style` can be specified to pick a specific face.
