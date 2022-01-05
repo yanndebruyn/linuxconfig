@@ -5,7 +5,7 @@ echo "Copying all relevant config files to backup dir..."
 # sudo cp /etc/sudoers /home/yann/backup/linuxconfig/etc/
 
 cp -r	/home/yann/.calcurse /home/yann/backup/linuxconfig/homedir/
-cp -r	/home/yann/.cheat /home/yann/backup/linuxconfig/homedir/
+rsync -az --delete /home/yann/.cheat /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.fzf/shell/key-bindings.bash /home/yann/backup/linuxconfig/homedir/.fzf/shell/
 cp /home/yann/.mpd/mpd.conf /home/yann/backup/linuxconfig/homedir/.mpd/
 cp -r /home/yann/.ncmpcpp /home/yann/backup/linuxconfig/homedir/
@@ -43,8 +43,8 @@ cp /home/yann/Pictures/wallpapers/matrix-dark.png /home/yann/backup/linuxconfig/
 cp /home/yann/Pictures/wallpapers/polyscape-triangle-centered-dark.png /home/yann/backup/linuxconfig/homedir/Pictures/wallpapers/
 cp /home/yann/Pictures/wallpapers/abstract-desert.jpg /home/yann/backup/linuxconfig/homedir/Pictures/wallpapers/
 
-cp -r /home/yann/bin/scripts /home/yann/backup/linuxconfig/homedir/bin/
-cp -r /home/yann/bin/popup /home/yann/backup/linuxconfig/homedir/bin/
+rsync -az --delete /home/yann/bin/scripts /home/yann/backup/linuxconfig/homedir/bin/
+rsync -az --delete /home/yann/bin/popup /home/yann/backup/linuxconfig/homedir/bin/
 cp /home/yann/bin/popup.sh /home/yann/backup/linuxconfig/homedir/bin/
 
 notify-send "All relevant config files copied to backup dir
