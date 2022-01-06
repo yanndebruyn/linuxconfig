@@ -9,18 +9,45 @@ filetype off                  " required
 "  GENERAL CONFIGURATIONS
 " =======================
 
-" Timeout length
-set timeoutlen=1000
-set ttimeoutlen=0
-
-" Colors
-syntax enable
-set background=dark
- 
+" =========
+" UI Config
+" =========
+set splitbelow splitright "new window split open to the right and below
+set number         "show line number 
+set relativenumber "show relative numbering
+set fillchars+=vert:# "set vertical split line character:
+" ======
+" Colors 
+" ======
 "set usage of 256color for correct colors
 if !has('gui_running')
   set t_Co=256
 endif
+syntax enable "enable colored syntax highlighting
+set background=dark 
+colorscheme peachpuff "set colorscheme
+set cursorline "enable cursos line
+"line numbers color
+hi LineNr  ctermfg=DarkGrey ctermbg=NONE
+"cursor line color
+hi CursorLine  cterm=bold ctermbg=Black  
+"vertical split line color
+hi VertSplit  ctermfg=Grey ctermbg=Black 
+"textwidth line color
+hi ColorColumn ctermbg=Black 
+"matching bracket color
+hi MatchParen cterm=bold ctermbg=DarkRed ctermfg=white 
+"comments color
+hi Comment ctermfg=Cyan
+" highlight colors
+hi Search ctermfg=White ctermbg=DarkMagenta
+hi IncSearch ctermfg=White ctermbg=Red
+hi Visual gui=NONE guibg=White guifg=Black
+"set tab colors 
+hi TabLineFill ctermfg=Black ctermbg=White "tabs bar
+hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
+hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
+
 
 
 
@@ -34,41 +61,7 @@ set shiftwidth=2   "number of visual spaces after enter after braces
 set noexpandtab
 
 
-" UI Config
 
-set splitbelow splitright "new window split open to the right and below
-set number         "show line number 
-set relativenumber "show relative numbering
-
-" colors
-colorscheme peachpuff
-
-" line numbers color
-hi LineNr  ctermfg=DarkGrey ctermbg=NONE 
-
-" cursor line color
-set cursorline
-hi CursorLine  cterm=bold ctermbg=Black
-
-" vertical split line color
-hi VertSplit  ctermfg=Grey ctermbg=Black
-
-" textwidth line color
-hi ColorColumn ctermbg=Black
-
-" matching bracket color
-hi MatchParen cterm=bold ctermbg=DarkRed ctermfg=white
-
-" comments color
-hi Comment ctermfg=Cyan
-
-" set vertical split line character:
-set fillchars+=vert:#
-
-" highlight color
-hi Search ctermfg=White ctermbg=DarkMagenta
-hi IncSearch ctermfg=White ctermbg=Red
-hi Visual gui=NONE guibg=White guifg=Black
 
 
 set wildmenu       "visual autocomplete for command menu
@@ -88,7 +81,7 @@ set rtp+=~/.fzf
 " remove default mapping of control-o
 map <C-o> <Nop>
 " map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
-map <C-o> :call fzf#run({'sink': 'tabedit'})<CR>
+map <C-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<CR>
 
 " Folding
 set foldenable     "enable folding of code
@@ -102,6 +95,10 @@ augroup myvimrc
 				au BufWritePost /home/yann/.config/nvim/init.vim so $MYVIMRC |
 				if has('gui_running') | so $MYGVIMRC | endif 
 augroup  END
+
+" Timeout length
+set timeoutlen=1000
+set ttimeoutlen=0
 
 " Disable some stuff in .tex files because it slows then down:
 "au FileType tex setlocal nocursorline
@@ -179,34 +176,34 @@ nnoremap <Down> :resize +1<CR>
 "go to next buffer
 :map <C-j> :bn<CR>
 "close current buffer
-:map <Leader>q :bd<CR>
+:map <C-q> :bd<CR>>
 
 " tabs
 nnoremap <Leader>t :tabnew %<CR>
 nnoremap <C-h> :tabp<CR>
 nnoremap <C-l> :tabn<CR>
-nnoremap <C-q> :tabclose<CR>
+nnoremap <Leader>q :tabclose<CR>
 
 " open files in tabs
-:map <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
-:map <Leader>ew :tabnew ~/.w3m/keymap<CR>
-:map <Leader>ei :tabnew ~/.config/i3/config<CR>
-:map <Leader>eb :tabnew ~/.bashrc<CR>
-:map <Leader>el :tabnew ~/.bash_aliases<CR>
-:map <Leader>ea :tabnew ~/.config/alacritty/alacritty.yml<CR>
-:map <Leader>et :tabnew ~/.tmux.conf<CR>
-:map <Leader>er :tabnew ~/.config/ranger/rc.conf<CR>
-:map <Leader>eR :tabnew ~/.config/ranger/rifle.conf<CR>
-:map <Leader>ep :tabnew ~/.config/polybar/config<CR>
-:map <Leader>ex :tabnew ~/.Xresources<CR>
-:map <Leader>ex :tabnew ~/.config/ytfzf/conf.sh<CR>
-:map <Leader>en :tabnew ~/Documents/notes<CR>
-:map <Leader>ec :tabnew ~/.config/picom/picom.conf<CR>
+:map <Leader>ev :e ~/.config/nvim/init.vim<CR>
+:map <Leader>ew :e ~/.w3m/keymap<CR>
+:map <Leader>ei :e ~/.config/i3/config<CR>
+:map <Leader>eb :e ~/.bashrc<CR>
+:map <Leader>el :e ~/.bash_aliases<CR>
+:map <Leader>ea :e ~/.config/alacritty/alacritty.yml<CR>
+:map <Leader>et :e ~/.tmux.conf<CR>
+:map <Leader>er :e ~/.config/ranger/rc.conf<CR>
+:map <Leader>eR :e ~/.config/ranger/rifle.conf<CR>
+:map <Leader>ep :e ~/.config/polybar/config<CR>
+:map <Leader>ex :e ~/.Xresources<CR>
+:map <Leader>ex :e ~/.config/ytfzf/conf.sh<CR>
+:map <Leader>en :e ~/Documents/notes<CR>
+:map <Leader>ec :e ~/.config/picom/picom.conf<CR>
 
-" bindings for newbook in groff
-:map <Leader>eB :tabnew ~/Teachings/Newbook/newbook.ms<CR>
-:map <Leader>c :! groff -ms ~/Teachings/Newbook/newbook.ms -T pdf > ~/Teachings/Newbook/newbook.pdf<CR>
-:map <Leader>v :! zathura ~/Teachings/Newbook/newbook.pdf &disown<CR>
+" bindings for new book in groff
+:map <Leader>eP :e ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.ms<CR>
+:map <Leader>c :! groff -ms ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.ms -T pdf > ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.pdf<CR>
+:map <Leader>v :! zathura ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.pdf &disown<CR>
 
 
 "LaTeX bindings
@@ -236,51 +233,63 @@ au FileType tex nnoremap  <C-x> :! zathura $(echo % \| sed 's/tex$/pdf/') & diso
 " Specify a directory for plugins
 call plug#begin('~/.config/nvim/plugged')
 
-" insatll fzf for vim
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }"
-" display color names in that color
+
+"fzf: fuzzy finder for vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+
+"vim-commentary: comment and uncomment with gcc
 Plug 'https://github.com/tpope/vim-commentary'
-"Plug 'https://github.com/preservim/nerdcommenter'
+
+"colorizer: display colornames in their color
 Plug 'https://github.com/chrisbra/Colorizer'
+
+"goyo: distraction-free reader mode
 Plug 'junegunn/goyo.vim'
-Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'https://github.com/vim-scripts/Toggle-NERDTree-width'
-Plug 'https://github.com/mattn/emmet-vim'
-"Plug 'https://github.com/Valloric/YouCompleteMe'
+
+"vim-surround: easily add and edit surrounding character with cs.. and ysiw..
 Plug 'https://github.com/tpope/vim-surround'
-"Automatically close html tags when typing '>'
-Plug 'https://github.com/alvan/vim-closetag'
-"Jump to matching html tag when typing '%'
-Plug 'https://github.com/adelarsq/vim-matchit'
-"Always highligh matching html tags when cursor is within tag
-Plug 'https://github.com/valloric/MatchTagAlways'
+
+"auto-pairs: 
 Plug 'https://github.com/vim-scripts/Auto-Pairs'
-"Plug 'https://github.com/vim-syntastic/syntastic'
-Plug 'https://github.com/flazz/vim-colorschemes'
-"enable pasting from system clipboard with <Leader>v
-"and copying to system clipboard with <Leader>y in visual mode:
-"Plug 'https://github.com/enricobacis/paste.vim'
+
+"lightline: stylized bottom line
 Plug 'https://github.com/itchyny/lightline.vim'
-"Line that shows which buffers are open
-Plug 'https://github.com/bling/vim-bufferline'
-"Asynchronous linter for for fast syntax checking while you type
+
+"lightline-bufferline: adds buffer functionality to lightline
+Plug 'mengelbrecht/lightline-bufferline'
+
+"ale: fast syntax checking while you type for various prog. languages and tools
 Plug 'w0rp/ale'
-"Fuzzy file finder:
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-"Live html, css and javascript editing
-Plug 'turbio/bracey.vim'
-"Eunuch - enables a set of bash commands from withing Vim
+
+"vim-eunuch: enables a set of bash commands from withing Vim
 Plug 'https://github.com/tpope/vim-eunuch.git'
 
-" Fuzzy Finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+"for webdev:
+"===========
+
+"vim-closetag: automatically close html tags when typing '>'
+Plug 'https://github.com/alvan/vim-closetag'
+
+"vim-matchit: jump to matching html tag when typing '%'
+Plug 'https://github.com/adelarsq/vim-matchit'
+
+"requires Python:
+"matchtagsalways: always highligh matching html tags when cursor is within tag
+" Plug 'https://github.com/valloric/MatchTagAlways'
+
+"emmet: expand abbreviations with a leader-key
+" Plug 'https://github.com/mattn/emmet-vim'
+"
+"Live html, css and javascript editing
+" Plug 'turbio/bracey.vim'
 
 
-"To do:
-" syntastic config
-" comment plugin
-" UltiSnip for custom snippets
-" code debug plugins	
+" Plug 'https://github.com/Valloric/YouCompleteMe'
+" Plug 'https://github.com/vim-syntastic/syntastic'
+" Plug 'https://github.com/scrooloose/nerdtree'
+" Plug 'https://github.com/vim-scripts/Toggle-NERDTree-width'
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 " Initialize the plugin system
 call plug#end()
@@ -291,36 +300,62 @@ call plug#end()
 "  PLUGINS SETTING
 " =================
 
+" lightline-bufferline settings
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#number_separator = ':'
+let g:lightline#bufferline#margin_left = 1
+let g:lightline#bufferline#margin_right = 1
+
+" make bufferline update immediately when there's a change in the buffer
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+
 " lightline settings
 set laststatus=2
 set noshowmode "dont display redundant 'normal' or 'insert' words
  
-"let g:lightline = {
-"      \ 'colorscheme': 'PaperColor',
-"      \ }
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'tabline': {
+      \   'right': []
+      \ },
+      \ 'component': {
+      \   'buffers-padding': "      "
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel'
+      \ }
+      \ }
 
 
-" bufferline settings
-let g:bufferline_modified = '*'
-let g:bufferline_active_buffer_left = '|>> '
-let g:bufferline_active_buffer_right = '<<|'
-
-
-" emmet leader key that has to precede ','
-let g:user_emmet_leader_key=','
-
-
-" ale linter
+"ale settings
 let g:ale_change_sign_column_color = 1
 
-"Vim-closetag settings:
+
+"vim-closetag settings:
 " These are the file extensions where this plugin is enabled:
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 " These are the file types where this plugin is enabled:
 let g:closetag_filetypes = 'html,xhtml,phtml'
 
 
-"Syntastic.vim
+"Goyo settings:
+let g:goyo_linenr = 1
+
+
+"emmet settings
+" emmet leader key that has to precede ','
+" let g:user_emmet_leader_key=','
+
+"syntastic settings
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -336,11 +371,8 @@ let g:closetag_filetypes = 'html,xhtml,phtml'
 
 "MatchTagAlways settings:
 "use different color for matching html tags than matching brackets
-let g:mta_use_matchparen_group = 0
-"do not use the default color for matching html tags
-let g:mta_set_default_matchtag_color = 0
-"set custom color for matching html tags
-highlight MatchTag ctermfg=DarkRed ctermbg=LightRed
-
-"Goyo settings:
-let g:goyo_linenr = 1
+"let g:mta_use_matchparen_group = 0
+""do not use the default color for matching html tags
+"let g:mta_set_default_matchtag_color = 0
+""set custom color for matching html tags
+"highlight MatchTag ctermfg=DarkRed ctermbg=LightRed

@@ -77,6 +77,8 @@ alias uphone='$HOME/bin/scripts/unmountphone.sh'
 ##  program aliases  ##
 #######################
 
+alias vim='nvim'
+
 # download remote emails to local dir with 'isync' package and index newly
 # downloaded emails to make them searchable with 'notmuch' package
 alias gmp='mbsync -V public@yanndebruyn.com; notmuch new 2>/dev/null'

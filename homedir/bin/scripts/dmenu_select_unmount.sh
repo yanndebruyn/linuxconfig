@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TARGET=$(lsblk | grep /media | awk '{print$NF}'| sort |\
- 	dmenu -i -fn 'monospace:bold:pixelsize=25' -l 27 -p "Unmount media:")
+ 	dmenu -i -nb "#1b2235" -sb "#874f5c" -fn 'monospace:bold:pixelsize=20' -l 41 -p "Unmount media:")
 
 if [ -n "$TARGET" ]; then
 	sudo umount "$TARGET"

@@ -7,8 +7,8 @@ keymap L NEXT
 keymap H PREV
 
 keymap gg BEGIN
-keymap J PREV_TAB
-keymap K NEXT_TAB
+keymap K PREV_TAB
+keymap J NEXT_TAB
 keymap C-f NEXT_PAGE
 keymap C-b PREV_PAGE
 keymap t TAB_LINK
@@ -31,6 +31,9 @@ keymap O COMMAND "TAB_GOTO https://duckduckgo.com; NEXT_LINK; GOTO_LINK"
 keymap < TAB_LEFT
 keymap > TAB_RIGHT
 keymap d CLOSE_TAB
+
+# reload w3m config file
+keymap C-r REINIT 
 
 keymap C-o OPTIONS
 keymap C-h HELP

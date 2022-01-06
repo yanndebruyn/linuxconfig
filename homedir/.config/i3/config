@@ -10,8 +10,17 @@ gaps outer -7
 gaps top -8
 gaps bottom -15
 smart_borders on
-bindsym $mod+g exec i3-msg "gaps outer all set -24"
-bindsym $mod+shift+g exec i3-msg "gaps outer all set -7"; exec i3-msg 'gaps top all set -8'; exec i3-msg 'gaps bottom all set -15'
+
+# set gaps keybindings
+bindsym $mod+g exec i3-msg "gaps inner all set 0"
+
+bindsym $mod+shift+g exec i3-msg "gaps inner all set 25"; \
+exec i3-msg "gaps outer all set -7"; exec i3-msg 'gaps top all set -8'; \
+exec i3-msg 'gaps bottom all set -15'
+
+bindsym $mod+shift+control+g exec i3-msg "gaps inner all set 25"; \
+exec i3-msg "gaps outer all set -24"
+
 
 #########################################################################
 ##  select specific windows types.																		 ##
@@ -34,15 +43,15 @@ for_window [class=".*"] border pixel 0
 # define usable workspaces
 set $workspace1 "1.Tmux"
 set $workspace2 "2.Work"
-set $workspace3 "3.Video"
+set $workspace3 "3.Other"
 set $workspace11 "11.Web"
-set $workspace12 "12."
-set $workspace13 "13."
+set $workspace12 "12.Video"
+set $workspace13 "13.Thunderbird"
 
 # Always open certain applications on a certain workspace
-assign [class="mpv"] $workspace3
+assign [class="mpv"] $workspace12
 assign [class="Firefox"] $workspace11
-assign [class="Thunderbird"] $workspace12
+assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
 for_window[title="Signal"] move container to workspace $workspace12
 assign [class="Gimp"] $workspace13
@@ -76,7 +85,7 @@ bindsym $mod+Control+Shift+y exec toggle_keyboard_layout.sh
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+Control+d exec dmenu_run -fn 'monospace:pixelsize=20' -l 40
+bindsym $mod+Control+d exec dmenu_run -i -nb "#1b2235" -sb "#874f5c" -fn 'monospace:pixelsize=20' -l 41 -p 'Run program'
 
 # change focus
 bindsym $mod+h focus left
@@ -133,9 +142,8 @@ bindsym $mod+q exec qpaeq
 bindsym $mod+Control+s exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal --file-forwarding org.signal.Signal @@u %U @@
 
 bindsym $mod+Control+c exec ~/bin/scripts/dmenu_select_configs.sh
-bindsym $mod+Control+b exec ~/bin/scripts/dmenu_select_i3blocks.sh
 bindsym $mod+Control+e exec ~/bin/scripts/dmenu_select_editscript.sh
-bindsym $mod+Control+Shift+s exec ~/bin/scripts/dmenu_select_runscript.sh
+bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
 
 bindsym $mod+u exec udiskie
 bindsym $mod+Control+u exec ~/bin/scripts/dmenu_select_unmount.sh
