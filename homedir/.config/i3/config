@@ -43,10 +43,10 @@ for_window [class=".*"] border pixel 0
 # define usable workspaces
 set $workspace1 "1.Tmux"
 set $workspace2 "2.Work"
-set $workspace3 "3.Other"
+set $workspace3 "3.Work"
 set $workspace11 "11.Web"
 set $workspace12 "12.Video"
-set $workspace13 "13.Thunderbird"
+set $workspace13 "13.Graphics"
 
 # Always open certain applications on a certain workspace
 assign [class="mpv"] $workspace12
@@ -271,9 +271,9 @@ exec picom -b --experimental
 exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
 
 # # start scratchpad
-# exec alacritty -sh 1.5 -title scratchpad -e tmux -2 & 
-# for_window [title="scratchpad"] floating enable, resize set 1923 1060, move scratchpad
-# Bindsym F1 [title="scratchpad"] scratchpad show, move position center
+exec alacritty --title scratchpad -e tmux -2 new -s scratchpad & 
+for_window [title="scratchpad"] floating enable, resize set 1900 1040, move scratchpad
+Bindsym $mod+grave [title="scratchpad"] scratchpad show, move position center
 
 # auto start udiskie for automatic disk mounting
 exec --no-startup-id udiskie
@@ -291,7 +291,7 @@ exec --no-startup-id xset r rate 200 30
 exec numlockx on
 
 # bind toggling of bluetooth service
-bindsym $mod+Shift+b exec --no-startup-id bluetooth toggle
+bindsym $mod+Shift+b exec --no-startup-id systemctl start bluetooth
 
 # auto start blueman for bluetooth tray applet
 exec --no-startup-id blueman-applet

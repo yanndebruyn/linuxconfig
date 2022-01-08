@@ -16,6 +16,7 @@ let s:p.replace.left = [ ['white', 'brightred', 'bold'], ['white', 'gray4'] ]
 let s:p.visual.left = [ ['darkred', 'brightorange', 'bold'], ['white', 'gray4'] ]
 let s:p.normal.middle = [ [ 'gray7', 'gray2' ] ]
 let s:p.insert.middle = [ [ 'mediumcyan', 'darkestblue' ] ]
+" let s:p.inactive.middle = [ [ 'gray7', 'grey2' ] ]
 let s:p.replace.middle = s:p.normal.middle
 let s:p.replace.right = s:p.normal.right
 let s:p.tabline.left = [ [ '#999999', '#404040' ] ]

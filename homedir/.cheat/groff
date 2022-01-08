@@ -1,8 +1,21 @@
 
+# Using mom marco's
 
 ###############
 ##  General  ##
 ###############
+
+.PAPER
+.NEWPAGE
+.FAMILY # font family
+.FT #font (R, I, B, BI)
+.BR    # break line
+.SPACE # break lines and add space between lines
+\c # prevent automatic linebreak by macro (use inline)
+
+
+
+
 
 .RP [no]  # Prints cover page on its own. Can be avoided with .RP no              
 .TL       # Title of the document
@@ -43,7 +56,7 @@
 .in [num] #indent text num spaces 
 .bp # break page (new page)
 
-	\fB ... \fP # inline bold
+\fB ... \fP # inline bold
 \fI ... \fP # inline italics
 \f[BI] ... \fP # inline bold and italics
 \f[CW] ... \fP # inline code block

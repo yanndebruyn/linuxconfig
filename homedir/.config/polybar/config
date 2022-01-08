@@ -150,9 +150,9 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555} |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}<icon-prev> <icon-stop> <toggle> <icon-next>%{F-}%{F#555555} |  %{F-}
-format-playing = ${self.format-online}
-format-paused = ${self.format-online}
+format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555} |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}   <icon-prev>  <toggle>  <icon-stop>  <icon-next>   %{F-}%{F#555555} |  %{F-}
+	format-playing = ${self.format-online}
+	format-paused = ${self.format-online}
 format-stopped = 
 
 ; label-song = %artist% - %title%
@@ -160,11 +160,11 @@ label-song = %title%
 label-time = %elapsed% / %total%
 label-offline = mpd is offline
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 玲
+icon-stop = 
+icon-play = 契
+icon-pause = 
+icon-next = 怜
 
 label-song-maxlen = 50
 label-song-ellipsis = true

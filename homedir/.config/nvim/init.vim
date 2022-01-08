@@ -16,6 +16,15 @@ set splitbelow splitright "new window split open to the right and below
 set number         "show line number 
 set relativenumber "show relative numbering
 set fillchars+=vert:# "set vertical split line character:
+set wildmenu       "visual autocomplete for command menu
+set lazyredraw     "redraw screen only when needed
+set showmatch      "highlight matching bracket when cursor is on it
+set mouse=a				 "enable mouse support
+set wrap					 "text wrapping
+set tw=80					 "text width
+set colorcolumn=81 "display column at textwidth
+
+
 " ======
 " Colors 
 " ======
@@ -49,10 +58,9 @@ hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
 hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
 
 
-
-
+" =============
 " Spaces & Tabs
-
+" =============
 syntax on
 filetype plugin indent on
 set tabstop=2      "number of visual spaces per tab
@@ -60,23 +68,17 @@ set softtabstop=2  "number of spaces in tab when editing
 set shiftwidth=2   "number of visual spaces after enter after braces
 set noexpandtab
 
-
-
-
-
-set wildmenu       "visual autocomplete for command menu
-set lazyredraw     "redraw screen only when needed
-set showmatch      "highlight matching bracket when cursor is on it
-set mouse=a				 "enable mouse support
-set wrap					 "text wrapping
-set tw=80					 "text width
-set colorcolumn=81 "display column at textwidth
+" =============
+" Functionality
+" =============
 
 " Searching
+" =========
 set incsearch  "Search as characters are entered
 set hlsearch   "highligh matches
 
 " Enable Fuzzy Finder in Vim
+" ==========================
 set rtp+=~/.fzf
 " remove default mapping of control-o
 map <C-o> <Nop>
@@ -84,6 +86,7 @@ map <C-o> <Nop>
 map <C-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<CR>
 
 " Folding
+" =======
 set foldenable     "enable folding of code
 set foldlevelstart=99 "open folds by default
 set foldmethod=indent "fold based on indent level
@@ -101,13 +104,13 @@ set timeoutlen=1000
 set ttimeoutlen=0
 
 " Disable some stuff in .tex files because it slows then down:
-"au FileType tex setlocal nocursorline
-"au FileType tex setlocal nornu
-au FileType tex :NoMatchParen
+au FileType groff setlocal nocursorline
+au FileType groff setlocal nornu
 
-" ===============
-"  KEY SHORTCUTS
-" ===============
+
+" ============================================================
+"  KEY SHORTCUTS  ============================================
+" ============================================================
  
 let mapleader = ","
  
@@ -117,25 +120,29 @@ inoremap jj <esc>
 "register:
 autocmd InsertEnter * :let @/ = ""
 
+" write, quit, clear
+" ==================
 ".. and re-source init.vim to fix the lightline losing color bug
 :map <Leader>w :w<CR>:so ~/.config/nvim/init.vim<CR>:noh<CR>
 :map <Leader>x :q<CR>
 :map <Leader>X :quitall<CR>
 :map <Leader>/ :noh<CR>
-:map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
-:map <C-n> :NERDTreeToggle<CR>
+:map <Leader>G :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 "move vertically by visual line
+" =============================
 nnoremap j gj
 nnoremap k gk
 
-"insert blank line without going into insert mode
+" insert blank line without going into insert mode
+" ================================================
 nnoremap oo o<Esc>k
 nnoremap OO O<Esc>j
 :map <Leader>o :+1d<CR>k
 :map <Leader>O :-1d<CR>
 
-"jump to beginning and end of line
+" jump to beginning and end of line
+" =================================
 nnoremap <C-i> ^
 nnoremap <C-a> $
 nnoremap d<C-i> d^
@@ -143,8 +150,9 @@ nnoremap d<C-a> d$
 nnoremap c<C-i> c^
 nnoremap c<C-a> c$
 
-" copy visually selected to clipboard (vim needs to be compiled with
-" +xterm_clipboard for this to work)
+" copy visually selected to clipboard 
+" ===================================
+" (vim needs to be compiled with +xterm_clipboard for this to work)
 vnoremap <Leader>y "+y 
 " paste clipboard
 nnoremap <Leader>p "+p
@@ -153,7 +161,8 @@ nnoremap <Leader>P "+P
 nnoremap <Leader>b "*p
 nnoremap <Leader>B "*P
 
-"Window splits
+" Window splits
+" =============
 nnoremap <S-h> :wincmd h<CR>
 nnoremap <S-j> :wincmd j<CR>
 nnoremap <S-k> :wincmd k<CR>
@@ -171,24 +180,28 @@ nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 
 " buffers (windows)
+" =================
 "go to previous buffer
 :map <C-k> :bp<CR>
 "go to next buffer
 :map <C-j> :bn<CR>
 "close current buffer
-:map <C-q> :bd<CR>>
+:map <Leader>q :bd<CR>>
 
 " tabs
+" ====
 nnoremap <Leader>t :tabnew %<CR>
 nnoremap <C-h> :tabp<CR>
 nnoremap <C-l> :tabn<CR>
-nnoremap <Leader>q :tabclose<CR>
+nnoremap <C-q> :tabclose<CR>
 
-" open files in tabs
+" open files
+" ==========
 :map <Leader>ev :e ~/.config/nvim/init.vim<CR>
 :map <Leader>ew :e ~/.w3m/keymap<CR>
 :map <Leader>ei :e ~/.config/i3/config<CR>
 :map <Leader>eb :e ~/.bashrc<CR>
+:map <Leader>eB :e ~/.w3m/bookmarks<CR>
 :map <Leader>el :e ~/.bash_aliases<CR>
 :map <Leader>ea :e ~/.config/alacritty/alacritty.yml<CR>
 :map <Leader>et :e ~/.tmux.conf<CR>
@@ -199,12 +212,48 @@ nnoremap <Leader>q :tabclose<CR>
 :map <Leader>ex :e ~/.config/ytfzf/conf.sh<CR>
 :map <Leader>en :e ~/Documents/notes<CR>
 :map <Leader>ec :e ~/.config/picom/picom.conf<CR>
+:map <Leader>eP :e ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.mom<CR>
 
-" bindings for new book in groff
-:map <Leader>eP :e ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.ms<CR>
-:map <Leader>c :! groff -ms ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.ms -T pdf > ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.pdf<CR>
-:map <Leader>v :! zathura ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.pdf &disown<CR>
 
+" snippets in insert mode (for groff editing)
+" ===========================================
+:imap <C-i> \f[I] 
+:imap <C-b> \f[B]
+:imap <C-p> \f[P]
+:imap <C-l> \[lq]
+:imap <C-r> \[rq]
+:imap <C-o> \[oq]
+:imap <C-c> \[cq]
+			
+
+" abbreviations
+" =============
+" :ab gfi \f[I]
+" :ab gfb \f[B]
+" :ab gfp \f[P]
+
+
+" groff mom bindings
+" ==================
+" compile current mom file to pdf, put pdf file in the same dir
+:map <Leader>c :! pdfmom % > $(echo %:p \| sed 's/mom/pdf/')<CR>
+" view pdf version of current .mom file with zathura
+:map <Leader>v :! zathura $(echo %:p \| sed 's/mom/pdf/') &disown<CR>
+" run shell command 'pdfinfo' on the word that the cursor is on (should the path
+" and name of a pdf image) to extract the page size and paste it in the buffer
+:map <Leader>ps :read ! pdfinfo /home/yann/Teachings/principes_van_bewustzijn/afbeeldingen/<cword>.pdf \| grep -a "Page size" \| awk -F' ' '{print $3$6" "$5$6}'<CR>
+
+" Register % contains the name of the current file.
+" The following commands could be entered to display the information shown:
+" :echo @%                |" directory/name of file
+" :echo expand('%:t')     |" name of file ('tail')
+" :echo expand('%:p')     |" full path
+" :echo expand('%:p:h')   |" directory containing file ('head')
+" If all that is wanted is to display the name of the current file, type :f/:ls or press Ctrl-g (for full path press 1 then Ctrl-g).
+" In insert mode, type Ctrl-r then % to insert the name of the current file.
+" The following commands insert lines consisting of the full path of the current and alternate files into the buffer:
+" :put =expand('%:p')
+" :put =expand('#:p')
 
 "LaTeX bindings
 "format current sentence
@@ -316,7 +365,7 @@ set noshowmode "dont display redundant 'normal' or 'insert' words
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
+      \   'left': [ [ 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -335,6 +384,8 @@ let g:lightline = {
       \ }
       \ }
 
+" previous line for the left side of lightline with 'mode' visible
+" \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
 
 "ale settings
 let g:ale_change_sign_column_color = 1
