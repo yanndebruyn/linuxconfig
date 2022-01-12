@@ -60,7 +60,7 @@ font-3 = Iosevka:size=12;2
 
 modules-left = i3 
 modules-center = 
-modules-right = mpd pulseaudio wlan eth updates check-updates temperature cpu memory filesystem battery xbacklight xkeyboard date 
+modules-right = mpd pulseaudio wlan eth updates-pacman updates-yay check-updates temperature cpu memory filesystem battery xbacklight xkeyboard date 
 
 tray-position = right
 tray-padding = 2
@@ -361,18 +361,27 @@ type = custom/script
 exec = sudo yay -Syy > /dev/null 2>&1
 interval = 3600
 
-[module/updates]
+[module/updates-pacman]
 type = custom/script
-exec = yay -Qu 2> /dev/null | wc -l
+exec = pacman -Qu 2> /dev/null | wc -l
 interval = 50
-label = %{F#888888}  %{F-}%{F#F43636}%output%%{F-}
+label = %{F#888888} P %{F-}%{F#F43636}%output%%{F-}
+; format-foreground = #F43636
+; format-prefix = " pac: " 
+; format-prefix-foreground = #555555 
+
+[module/updates-yay]
+type = custom/script
+exec = yay -YQu 2> /dev/null | wc -l
+interval = 50
+label = %{F#888888} Y %{F-}%{F#F43636}%output%%{F-}
 ; format-foreground = #F43636
 ; format-prefix = " pac: " 
 ; format-prefix-foreground = #555555 
 
 [module/temperature]
-type = internal/temperature
-thermal-zone = 0
+	type = internal/temperature
+	thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>

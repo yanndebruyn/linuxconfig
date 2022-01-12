@@ -66,8 +66,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec alacritty -e tmux -2
 bindsym $mod+Shift+Return exec alacritty
-bindsym $mod+Control+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml -e tmux -2
-bindsym $mod+Control+Shift+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml
+# bindsym $mod+Control+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml -e tmux -2
+# bindsym $mod+Control+Shift+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml
 
 # power off / reboot / logout 
 bindsym $mod+Shift+Control+p exec sudo poweroff
@@ -139,10 +139,10 @@ bindsym $mod+n exec nicotine
 # start system-wide pulseaudio equalizer tool
 bindsym $mod+q exec qpaeq
 # Signal:
-bindsym $mod+Control+s exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal --file-forwarding org.signal.Signal @@u %U @@
+# bindsym $mod+Control+s exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal --file-forwarding org.signal.Signal @@u %U @@
 
 bindsym $mod+Control+c exec ~/bin/scripts/dmenu_select_configs.sh
-bindsym $mod+Control+e exec ~/bin/scripts/dmenu_select_editscript.sh
+bindsym $mod+Control+s exec ~/bin/scripts/dmenu_select_editscript.sh
 bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
 
 bindsym $mod+u exec udiskie
@@ -161,14 +161,13 @@ bindsym $mod+p exec alacritty --class popup -e /home/yann/bin/popup.sh
 
 
 # change background image
-bindsym $mod+Control+1 exec feh --bg-fill ~/Pictures/wallpapers/polyscape-triangle-centered-dark.png
-bindsym $mod+Control+2 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
+bindsym $mod+Control+1 exec feh --bg-fill ~/Pictures/wallpapers/polyscape-triangle-centered-dark.png; exec alacritty-themes polyscape; exec alacritty_opacity_set_15.sh
+bindsym $mod+Control+2 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_85.sh
+bindsym $mod+Control+3 exec feh --bg-fill ~/Pictures/wallpapers/redarch.png; exec alacritty-themes redarch; exec alacritty_opacity_set_45.sh
 
 # Switch mono and dual monitor setup
 # bindsym $mod+F10 exec xrandr --output LVDS-1 --primary --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 # bindsym $mod+F11 exec xrandr --output VGA-1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output LVDS-1 --off
-# bindsym $mod+F12 exec xrandr --output LVDS-1 --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --primary --mode 1920x1080 --pos 1600x0 --rotate normal 
-
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1

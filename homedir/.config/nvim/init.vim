@@ -81,11 +81,11 @@ set hlsearch   "highligh matches
 " ==========================
 set rtp+=~/.fzf
 " remove default mapping of control-o
-map <C-o> <Nop>
+" map <C-o> <Nop>
 " map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
-map <C-o> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<CR>
+map <Leader>o :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
 
-" Folding
+	" Folding
 " =======
 set foldenable     "enable folding of code
 set foldlevelstart=99 "open folds by default
@@ -138,8 +138,8 @@ nnoremap k gk
 " ================================================
 nnoremap oo o<Esc>k
 nnoremap OO O<Esc>j
-:map <Leader>o :+1d<CR>k
-:map <Leader>O :-1d<CR>
+" :map <Leader>o :+1d<CR>k
+" :map <Leader>O :-1d<CR>
 
 " jump to beginning and end of line
 " =================================
@@ -212,63 +212,108 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>ex :e ~/.config/ytfzf/conf.sh<CR>
 :map <Leader>en :e ~/Documents/notes<CR>
 :map <Leader>ec :e ~/.config/picom/picom.conf<CR>
-:map <Leader>eP :e ~/Teachings/principes_van_bewustzijn/principes_van_bewustzijn.mom<CR>
+:map <Leader>eo :e ~/Teachings/op_weg_naar_eenheidsbewustzijn/op_weg_naar_eenheidsbewustzijn.mom<CR>
 
 
-" snippets in insert mode (for groff editing)
-" ===========================================
-:imap <C-i> \f[I] 
-:imap <C-b> \f[B]
-:imap <C-p> \f[P]
-:imap <C-l> \[lq]
-:imap <C-r> \[rq]
-:imap <C-o> \[oq]
-:imap <C-c> \[cq]
-			
+" formatting text
+"=============
+"format current sentence
+:map <Leader>ff gqas
+"format current paragraph 
+:map <Leader>fp gqip
 
-" abbreviations
-" =============
-" :ab gfi \f[I]
-" :ab gfb \f[B]
-" :ab gfp \f[P]
+"spelling checker
+"================
+"turn on Dutch spell checking and set dictionary file for adding words
+:map <Leader>sd :setlocal spell spelllang=nl<CR>:setlocal spellfile=~/.config/nvim/spell/dutch.utf-8.add<CR>
+"turn on English spell checking and set dictionary file for adding words
+:map <Leader>se :setlocal spell spelllang=en_us<CR>:setlocal spellfile=~/.config/nvim/spell/english.utf-8.add<CR>
+"turn off spell checking
+:map <Leader>ss :set nospell<CR> 
+"find next misspelled word
+:map <Leader>n ]s
+"find previous misspelled word
+:map <Leader>b [s
+"show suggestion list
+:map <Leader>_ z=
+"change word to first suggestion in suggestion list
+:map <Leader>= 1z=
+" mark highlighted word as 'good' and add to your dictionary file
+:map <Leader>+ zg
+" undo add word
+:map <Leader>u+ zug
+" mark highlighted word as 'wrong' and remove from your dictionary file
+:map <Leader>- zw
+" undo remove word
+:map <Leader>u- zuw
+
+
+" abbreviations for groff
+" =======================
+ " italic
+:iabbrev I@ \f[I]
+	 " bold
+:iabbrev B@ \f[B]
+ " end inline code
+:iabbrev P@ \f[P]
+ " open single quotes
+:iabbrev osq@ \[oq]
+ " close single quotes
+:iabbrev csq@ \[cq]
+ " open double quotes
+:iabbrev odq@ \[lq]
+ " close double quotes
+:iabbrev cdq@ \[rq]
+ " é
+:iabbrev e@ \[u0065_0301]
+ " è
+:iabbrev E@ \[u0065_0300]
+ " ë
+:iabbrev ee@ \[u0065_0308]
+ " ï
+:iabbrev ii@ \[u0069_0308]
+ " ö
+:iabbrev oo@ \[u006F_0308]
+ " ü
+:iabbrev uu@ \[u0075_0308]
+
+:iabbrev pdfi@ .PDF_IMAGE \
+\<CR>-C \
+\<CR>/home/yann/Teachings/op_weg_naar_eenheidsbewustzijn/afbeeldingen/\
+\<CR>image.pdf ...pts ...pts SCALE 70 \
+\<CR>CAPTION "caption"
+
+: iabbrev list@ .LIST DIGIT
+\<CR>.ITEM
+\<CR>.ITEM
+\<CR>.ITEM
+\<CR>.LIST OFF
+
+:iabbrev box@ .IB 4P 4P
+\<CR>.BOX OUTLINED black SHADED lightgrey INSET 2m
+\<CR>.QUAD CENTER
+\<CR>.FONT B 
+\<CR>text
+\<CR>.FONT R
+\<CR>.BOX END
+\<CR>.IQ
+\<CR>.QUAD LEFT
+\<CR>.SPACE 1
+
+
 
 
 " groff mom bindings
 " ==================
 " compile current mom file to pdf, put pdf file in the same dir
-:map <Leader>c :! pdfmom % > $(echo %:p \| sed 's/mom/pdf/')<CR>
+:map <Leader>c :w<CR> :! pdfmom % > $(echo %:p \| sed 's/mom/pdf/')<CR>
 " view pdf version of current .mom file with zathura
 :map <Leader>v :! zathura $(echo %:p \| sed 's/mom/pdf/') &disown<CR>
 " run shell command 'pdfinfo' on the word that the cursor is on (should the path
 " and name of a pdf image) to extract the page size and paste it in the buffer
-:map <Leader>ps :read ! pdfinfo /home/yann/Teachings/principes_van_bewustzijn/afbeeldingen/<cword>.pdf \| grep -a "Page size" \| awk -F' ' '{print $3$6" "$5$6}'<CR>
+:map <Leader>ii :read ! pdfinfo ~/Teachings/op_weg_naar_eenheidsbewustzijn/afbeeldingen/<cword>.pdf \| grep -a "Page size" \| awk -F' ' '{print $3$6" "$5$6}'<CR>
 
-" Register % contains the name of the current file.
-" The following commands could be entered to display the information shown:
-" :echo @%                |" directory/name of file
-" :echo expand('%:t')     |" name of file ('tail')
-" :echo expand('%:p')     |" full path
-" :echo expand('%:p:h')   |" directory containing file ('head')
-" If all that is wanted is to display the name of the current file, type :f/:ls or press Ctrl-g (for full path press 1 then Ctrl-g).
-" In insert mode, type Ctrl-r then % to insert the name of the current file.
-" The following commands insert lines consisting of the full path of the current and alternate files into the buffer:
-" :put =expand('%:p')
-" :put =expand('#:p')
 
-"LaTeX bindings
-"format current sentence
-:map <Leader>ff gqas
-"format current paragraph 
-:map <Leader>fp gqip
-"turn on Dutch spell checking
-:map <Leader>z :setlocal spell spelllang=nl<CR>
-"find next misspelled word
-:map <Leader>] ]s
-"find previous misspelled word
-:map <Leader>[ [s
-"turn off spell checking
-:map <Leader>n :set nospell<CR> "correct spelling of current word to first suggestion
-:map <Leader>= 1z=
 
 "bindings for .tex files only
 au FileType tex nnoremap  <C-c> :! pdflatex %<CR><CR>
@@ -365,7 +410,7 @@ set noshowmode "dont display redundant 'normal' or 'insert' words
 let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
-      \   'left': [ [ 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
+      \   'left': [ [], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]

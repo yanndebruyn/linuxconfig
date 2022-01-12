@@ -27,9 +27,23 @@ R          # enter insert mode but replace instead of inserting chars
 q1  # start recording macro named '1'
 q   # stop recording
 @1  # play macro named '1'
-@@  # play last recorded/used macro
+@@  # play last used macro
 5@@ # play last used macro 5 times
 5@a # play macro named 'a' 5 times
+
+
+# get current file information
+##############################
+%                     # path of current file starting in ~
+:echo @%              # print path of current file starting in ~
+:echo expand('%:p')   # print full path of current file starting in /
+:echo expand('%:t')   # print only name of current file ('tail')
+:echo expand('%:p:h') # print full directory of current file ('head')
+:put =expand('%:p')   # insert full path of current file into the buffer
+:put =expand('#:p')   # insert full path of other open files into the buffer
+Ctrl-g                # display path of current file starting in ~
+1 Ctrl-g              # display path of current file starting in ~
+Ctrl-r %              # (insert mode) insert the name of the current file.
 
 
 # Preceding with a number repeats it 'n' times

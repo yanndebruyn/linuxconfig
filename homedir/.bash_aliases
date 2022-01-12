@@ -37,6 +37,8 @@ alias gb='cd /home/yann/backup'
 alias gB='cd /home/yann/Books'
 alias gM='cd /run/media/yann'
 alias gi='cd /home/yann/.config/i3'
+alias gr='cd /'
+
 
 
 #############################
@@ -44,7 +46,7 @@ alias gi='cd /home/yann/.config/i3'
 #############################
 
 alias ei='nvim /home/yann/.config/i3/config'
-alias ev='nvim /home/yann/.config/vim/init.vim'
+alias ev='nvim /home/yann/.config/nvim/init.vim'
 alias eb='nvim /home/yann/.bashrc'
 alias eB='nvim /home/yann/.w3m/bookmarks'
 alias el='nvim /home/yann/.bash_aliases'
@@ -102,6 +104,11 @@ alias ysf='ytfzf -t -f --subs=20'
 alias sb='source $HOME/.bashrc'
 alias sa='source $HOME/.bash_aliases'
 
+
+######################
+##  cheat  aliases  ##
+######################
+
 alias cheat='function __cheat() { cat /home/yann/.cheat/$*; unset -f __cheat;}; __cheat'
 alias cheatvim='function __cheatvim() { nvim /home/yann/.cheat/$*; unset -f __cheatvim;}; __cheatvim'
 alias cheats='ls /home/yann/.cheat/'
@@ -113,6 +120,55 @@ alias notevim='function __notevim() { nvim /home/yann/Documents/notes/$*; unset 
 alias notes='ls /home/yann/Documents/notes'
 alias noteless='function __noteless() { less /home/yann/Documents/notes/$*; unset -f __noteless;}; __noteless'
 alias noterm='function __noterm() { rm /home/yann/Documents/notes/$*; unset -f __noterm;}; __noterm'
+
+
+######################
+##  fzf    aliases  ##
+######################
+
+alias grb='cd $(sudo find /boot/* -type d | fzf)'
+alias grd='cd $(sudo find /dev/* -type d | fzf)'
+alias gre='cd $(sudo find /etc/* -type d | fzf)'
+alias grh='cd $(sudo find /home/* -type d | fzf)'
+alias grm='cd $(sudo find /mnt/* -type d | fzf)'
+alias gro='cd $(sudo find /opt/* -type d | fzf)'
+alias grp='cd $(sudo find /proc/* -type d | fzf)'
+alias grr='cd $(sudo find /run/* -type d | fzf)'
+alias grsr='cd $(sudo find /srv/* -type d | fzf)'
+alias grsy='cd $(sudo find /sys/* -type d | fzf)'
+alias grt='cd $(sudo find /tmp/* -type d | fzf)'
+alias grt='cd $(sudo find /tmp/* -type d | fzf)'
+alias gru='cd $(sudo find /usr/* -type d | fzf)'
+alias grv='cd $(sudo find /var/* -type d | fzf)'
+
+alias ghh='cd $(sudo find /home/yann -type d | fzf)'
+
+alias frb='sudo find /boot/* -type f | fzf'
+alias frd='sudo find /dev/* -type f | fzf'
+alias fre='sudo find /etc/* -type f | fzf'
+alias frh='sudo find /home/* -type f | fzf'
+alias frm='sudo find /mnt/* -type f | fzf'
+alias fro='sudo find /opt/* -type f | fzf'
+alias frp='sudo find /proc/* -type f | fzf'
+alias frr='sudo find /run/* -type f | fzf'
+alias frsr='sudo find /srv/* -type f | fzf'
+alias frsy='sudo find /sys/* -type f | fzf'
+alias frt='sudo find /tmp/* -type f | fzf'
+alias frt='sudo find /tmp/* -type f | fzf'
+alias fru='sudo find /usr/* -type f | fzf'
+alias frv='sudo find /var/* -type f | fzf'
+
+alias fhb='sudo find ~/backup/* -type f | fzf'
+alias fhB='sudo find ~/Books/* -type f | fzf'
+alias fhs='sudo find ~/bin/scripts/* -type f | fzf'
+alias fhd='sudo find ~/Documents/* -type f | fzf'
+alias fhD='sudo find ~/Downloads/* -type f | fzf'
+alias fhg='sudo find ~/git/* -type f | fzf'
+alias fhm='sudo find ~/music/* -type f | fzf'
+alias fhM='sudo find ~/mnt/* -type f | fzf'
+alias fhp='sudo find ~/Pictures/* -type f | fzf'
+alias fht='sudo find ~/Teachings/* -type f | fzf'
+alias fhv='sudo find ~/Videos/* -type f | fzf'
 
 
 # Custom variables
