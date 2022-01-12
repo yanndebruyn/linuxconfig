@@ -254,7 +254,7 @@ draw_bold_text_with_bright_colors: true
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.45
+background_opacity: 0.15
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -535,39 +535,33 @@ key_bindings:
   # Print all received window events.
   #print_events: false
 colors:
-  # Default colors
+  name: polyscape
   primary:
-    # hard contrast: background = '#1d2021'
-    background: '#000000'
-    # soft contrast: background = '#32302f'
-    foreground: '#aaaaaa'
-
+    background: '0x000000'
+    # background: '0x1b2929' # darker
+    foreground: '0xcccccc'
   cursor:
     text: '0xe6a82d'
     cursor: '0x8a61d2'
-
-  # Normal colors
   normal:
-    black: '#191919'
-    red: '#b50000'
-    green: '#00aa00'
-    yellow: '#bbbb00'
-    blue: '#0066b2'
-    magenta: '#e200e2'
-    cyan: '#008692'
-    white: '#afafaf'
-
-  # Bright colors
+    black: '0x333333'
+    red: '0xd64f4f'
+    green: '0x488f25'
+    yellow: '0xbf8818'
+    blue: '0x3784ea'
+    magenta: '0xe64fd9'
+    cyan: '0x06989a'
+    white: '0xaaaaaa'
   bright:
-    black: '#555555'
-    red: '#d50000'
-    green: '#00bb00'
-    yellow: '#e5e500'
-    blue: '#5f9ebc'
-    magenta: '#ff00ff'
-    cyan: '#00c5c5'
-    white: '#d5d5d5'
-theme: redarch
+    black: '0x5b5b5b'
+    red: '0xec5252'
+    green: '0x6dbc20'
+    yellow: '0xc4a000'
+    blue: '0x5f9cdc'
+    magenta: '0xdf79d6'
+    cyan: '0x34e2e2'
+    white: '0xffffff'
+theme: polyscape
 
 # original colors:
 #   primary:

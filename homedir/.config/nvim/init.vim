@@ -54,7 +54,7 @@ hi IncSearch cterm=underline ctermfg=White ctermbg=Magenta
 hi Visual cterm=reverse ctermbg=Black
 " spell highlight colors
 hi clear SpellBad
-hi SpellBad cterm=underline ctermfg=DarkYellow ctermbg=DarkRed
+hi SpellBad cterm=underline ctermfg=White ctermbg=DarkRed
 "set tab colors 
 hi TabLineFill ctermfg=Black ctermbg=White "tabs bar
 hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
