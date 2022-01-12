@@ -49,9 +49,12 @@ hi MatchParen cterm=bold ctermbg=DarkRed ctermfg=white
 "comments color
 hi Comment ctermfg=Cyan
 " highlight colors
-hi Search ctermfg=White ctermbg=DarkMagenta
-hi IncSearch ctermfg=White ctermbg=Red
-hi Visual gui=NONE guibg=White guifg=Black
+hi Search ctermfg=White ctermbg=DarkBlue
+hi IncSearch cterm=underline ctermfg=White ctermbg=Magenta
+hi Visual cterm=reverse ctermbg=Black
+" spell highlight colors
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=DarkYellow ctermbg=DarkRed
 "set tab colors 
 hi TabLineFill ctermfg=Black ctermbg=White "tabs bar
 hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
@@ -250,9 +253,9 @@ nnoremap <C-q> :tabclose<CR>
 
 " abbreviations for groff
 " =======================
- " italic
+" italic
 :iabbrev I@ \f[I]
-	 " bold
+" bold
 :iabbrev B@ \f[B]
  " end inline code
 :iabbrev P@ \f[P]
