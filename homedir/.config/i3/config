@@ -1,4 +1,4 @@
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+	# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 
 # set mod key
@@ -159,13 +159,13 @@ bindsym $mod+Shift+y exec alacritty -e ytfzf -t -l
 
 bindsym $mod+p exec alacritty --class popup -e /home/yann/bin/popup.sh
 
-
-# change background image
+# change look&feel - alacritty themes in /usr/lib/node_modules/alacritty-themes/themes
 bindsym $mod+Control+1 exec feh --bg-fill ~/Pictures/wallpapers/polyscape-triangle-centered-dark.png; exec alacritty-themes polyscape; exec alacritty_opacity_set_15.sh
 bindsym $mod+Control+2 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_85.sh
 bindsym $mod+Control+3 exec feh --bg-fill ~/Pictures/wallpapers/redarch.png; exec alacritty-themes redarch; exec alacritty_opacity_set_45.sh
+bindsym $mod+Control+4 exec feh --bg-fill ~/Pictures/wallpapers/redarch.png; exec alacritty-themes redarch; exec alacritty_opacity_set_55.sh
 
-# Switch mono and dual monitor setup
+	# Switch mono and dual monitor setup
 # bindsym $mod+F10 exec xrandr --output LVDS-1 --primary --mode 1600x900 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 # bindsym $mod+F11 exec xrandr --output VGA-1 --primary --mode 1920x1080 --pos 0x180 --rotate normal --output DP-1 --off --output HDMI-1 --off --output LVDS-1 --off
 
@@ -266,9 +266,6 @@ bindsym $mod+Control+0 exec --no-startup-id /home/yann/bin/scripts/monitor-off-t
 # Start picom in the background for transparency
 exec picom -b --experimental
 
-# auto start feh
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
-
 # # start scratchpad
 exec alacritty --title scratchpad -e tmux -2 new -s scratchpad & 
 for_window [title="scratchpad"] floating enable, resize set 1900 1040, move scratchpad
@@ -339,4 +336,6 @@ exec --no-startup-id mpd
 # start i3 on workspace1
 exec_always --no-startup-id i3-msg workspace $workspace1 
 
+# start alacritty and set alacritty theme and backgound image
 exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e tmux -2
+exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_85.sh

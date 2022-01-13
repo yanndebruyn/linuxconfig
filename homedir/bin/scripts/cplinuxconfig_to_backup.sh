@@ -48,6 +48,11 @@ rsync -az --delete /home/yann/bin/scripts /home/yann/backup/linuxconfig/homedir/
 rsync -az --delete /home/yann/bin/popup /home/yann/backup/linuxconfig/homedir/bin/
 cp /home/yann/bin/popup.sh /home/yann/backup/linuxconfig/homedir/bin/
 
+cp /usr/lib/node_modules/alacritty-themes/themes/polyscape.yml /home/yann/backup/linuxconfig/usr/lib/node_modules/alacritty-themes/themes/
+cp /usr/lib/node_modules/alacritty-themes/themes/abstract-desert.yml /home/yann/backup/linuxconfig/usr/lib/node_modules/alacritty-themes/themes/
+cp /usr/lib/node_modules/alacritty-themes/themes/redarch.yml /home/yann/backup/linuxconfig/usr/lib/node_modules/alacritty-themes/themes/
+
+
 notify-send "All relevant config files copied to backup dir
 ~/backup/linuxconfigs/"
 echo "All done!"

@@ -80,7 +80,10 @@ alias uphone='$HOME/bin/scripts/unmountphone.sh'
 ##  program aliases  ##
 #######################
 
+# vim load neovim
 alias vim='nvim'
+# make xclip select the system clipboard by default
+alias xclip='xclip -selection c'
 
 # download remote emails to local dir with 'isync' package and index newly
 # downloaded emails to make them searchable with 'notmuch' package
