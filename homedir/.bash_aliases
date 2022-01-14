@@ -143,7 +143,7 @@ alias grt='cd $(sudo find /tmp/* -type d | fzf)'
 alias grt='cd $(sudo find /tmp/* -type d | fzf)'
 alias gru='cd $(sudo find /usr/* -type d | fzf)'
 alias grv='cd $(sudo find /var/* -type d | fzf)'
-
+alias grR='cd $(sudo find /* -type d | fzf)'
 alias ghh='cd $(sudo find /home/yann -type d | fzf)'
 
 alias frb='sudo find /boot/* -type f | fzf'
@@ -160,6 +160,7 @@ alias frt='sudo find /tmp/* -type f | fzf'
 alias frt='sudo find /tmp/* -type f | fzf'
 alias fru='sudo find /usr/* -type f | fzf'
 alias frv='sudo find /var/* -type f | fzf'
+alias frR='sudo find /* -type f | fzf'
 
 alias fhb='sudo find ~/backup/* -type f | fzf'
 alias fhB='sudo find ~/Books/* -type f | fzf'
@@ -172,6 +173,8 @@ alias fhM='sudo find ~/mnt/* -type f | fzf'
 alias fhp='sudo find ~/Pictures/* -type f | fzf'
 alias fht='sudo find ~/Teachings/* -type f | fzf'
 alias fhv='sudo find ~/Videos/* -type f | fzf'
+alias fhh='sudo find ~/* -type f | fzf'
+
 
 
 # Custom variables

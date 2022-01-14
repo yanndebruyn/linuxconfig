@@ -55,6 +55,8 @@ hi Visual cterm=reverse ctermbg=Black
 " spell highlight colors
 hi clear SpellBad
 hi SpellBad cterm=underline ctermfg=White ctermbg=DarkRed
+" autocomplete popup menu colors
+hi Pmenu ctermbg=Black ctermfg=Grey
 "set tab colors 
 hi TabLineFill ctermfg=Black ctermbg=White "tabs bar
 hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
@@ -130,7 +132,7 @@ autocmd InsertEnter * :let @/ = ""
 :map <Leader>x :q<CR>
 :map <Leader>X :quitall<CR>
 :map <Leader>/ :noh<CR>
-:map <Leader>G :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
+:map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 "move vertically by visual line
 " =============================
@@ -228,9 +230,9 @@ nnoremap <C-q> :tabclose<CR>
 "spelling checker
 "================
 "turn on Dutch spell checking and set dictionary file for adding words
-:map <Leader>sd :setlocal spell spelllang=nl<CR>:setlocal spellfile=~/.config/nvim/spell/dutch.utf-8.add<CR>
+:map <Leader>sd :setlocal spell spelllang=nl<CR>:setlocal spellfile=~/.config/nvim/spell/dutch.utf-8.add<CR>:set dictionary-=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>:set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>
 "turn on English spell checking and set dictionary file for adding words
-:map <Leader>se :setlocal spell spelllang=en_us<CR>:setlocal spellfile=~/.config/nvim/spell/english.utf-8.add<CR>
+:map <Leader>se :setlocal spell spelllang=en_us<CR>:setlocal spellfile=~/.config/nvim/spell/english.utf-8.add<CR>:set dictionary-=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>:set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>
 "turn off spell checking
 :map <Leader>ss :set nospell<CR> 
 "find next misspelled word
@@ -249,6 +251,16 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>- zw
 " undo remove word
 :map <Leader>u- zuw
+" ignore word for now
+:map <Leader>0 zG
+
+:map <Leader>a :MUcompleteAutoToggle<CR>
+" add dictionary files for english and dutch
+" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt
+" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt
+" set autocomplete to also search dictionary
+:set complete+=k
+
 
 
 " abbreviations for groff
@@ -283,7 +295,7 @@ nnoremap <C-q> :tabclose<CR>
 :iabbrev pdfi@ .PDF_IMAGE \
 \<CR>-C \
 \<CR>/home/yann/Teachings/op_weg_naar_eenheidsbewustzijn/afbeeldingen/\
-\<CR>image.pdf ...pts ...pts SCALE 70 \
+\<CR>image.pdf pts SCALE 90 \
 \<CR>CAPTION "caption"
 
 : iabbrev list@ .LIST DIGIT
@@ -304,8 +316,6 @@ nnoremap <C-q> :tabclose<CR>
 \<CR>.SPACE 1
 
 
-
-
 " groff mom bindings
 " ==================
 " compile current mom file to pdf, put pdf file in the same dir
@@ -317,14 +327,14 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>ii :read ! pdfinfo ~/Teachings/op_weg_naar_eenheidsbewustzijn/afbeeldingen/<cword>.pdf \| grep -a "Page size" \| awk -F' ' '{print $3$6" "$5$6}'<CR>
 
 
-
 "bindings for .tex files only
-au FileType tex nnoremap  <C-c> :! pdflatex %<CR><CR>
-au FileType tex nnoremap  <C-x> :! zathura $(echo % \| sed 's/tex$/pdf/') & disown<CR>
+" au FileType tex nnoremap  <C-c> :! pdflatex %<CR><CR>
+" au FileType tex nnoremap  <C-x> :! zathura $(echo % \| sed 's/tex$/pdf/') & disown<CR>
 
 
-" =========================
-"  VIM-PLUG PLUGINS
+
+	" =========================
+	"  VIM-PLUG PLUGINS
 " =========================
   
 " Specify a directory for plugins
@@ -333,6 +343,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 "fzf: fuzzy finder for vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+
+"vim-mucomplete: minimalist but powerful autocomplete
+Plug 'lifepillar/vim-mucomplete'
 
 "vim-commentary: comment and uncomment with gcc
 Plug 'https://github.com/tpope/vim-commentary'
@@ -396,6 +409,14 @@ call plug#end()
 " =================
 "  PLUGINS SETTING
 " =================
+
+"vim-mucomplete settings
+" let g:mucomplete#enable_auto_at_startup = 1 " enable autocomplete at startup
+" let g:mucomplete#completion_delay = 1 " pop up autocomplete after n seconds
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " Add only if Vim beeps during completion
 
 " lightline-bufferline settings
 let g:lightline#bufferline#show_number = 1

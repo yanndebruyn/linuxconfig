@@ -254,7 +254,7 @@ draw_bold_text_with_bright_colors: true
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.85
+background_opacity: 0.15
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -535,9 +535,9 @@ key_bindings:
   # Print all received window events.
   #print_events: false
 colors:
-  name: abstract-desert
+  name: polyscape
   primary:
-    background: '0x073742'
+    background: '0x000000'
     foreground: '0xcccccc'
 
   cursor:
@@ -563,7 +563,7 @@ colors:
     magenta: '0xdf79d6'
     cyan: '0x34e2e2'
     white: '0xffffff'
-theme: abstract-desert
+theme: polyscape
 
 # original colors:
 #   primary:
