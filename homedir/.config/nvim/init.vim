@@ -54,7 +54,12 @@ hi IncSearch cterm=underline ctermfg=White ctermbg=Magenta
 hi Visual cterm=reverse ctermbg=Black
 " spell highlight colors
 hi clear SpellBad
+" badly spelled words
 hi SpellBad cterm=underline ctermfg=White ctermbg=DarkRed
+" words that should be capitalized
+hi SpellCap cterm=underline ctermfg=White ctermbg=DarkCyan
+" words used in another language dictionary
+hi SpellLocal cterm=underline ctermfg=White ctermbg=DarkGreen
 " autocomplete popup menu colors
 hi Pmenu ctermbg=Black ctermfg=Grey
 "set tab colors 
@@ -227,12 +232,21 @@ nnoremap <C-q> :tabclose<CR>
 "format current paragraph 
 :map <Leader>fp gqip
 
+
 "spelling checker
 "================
-"turn on Dutch spell checking and set dictionary file for adding words
-:map <Leader>sd :setlocal spell spelllang=nl<CR>:setlocal spellfile=~/.config/nvim/spell/dutch.utf-8.add<CR>:set dictionary-=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>:set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>
-"turn on English spell checking and set dictionary file for adding words
-:map <Leader>se :setlocal spell spelllang=en_us<CR>:setlocal spellfile=~/.config/nvim/spell/english.utf-8.add<CR>:set dictionary-=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>:set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>
+"turn on Dutch spell checking, set added words file and set dictionary files
+:map <Leader>sd :setlocal spell spelllang=nl<CR>
+			\:setlocal spellfile=~/.config/nvim/spell/dutch.utf-8.add<CR>
+			\:set dictionary-=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>
+			\:set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>
+			\:set dictionary+=/home/yann/.config/nvim/spell/dutch.utf-8.add<CR>
+"turn on English spell checking, set added words file and set  dictionary files
+:map <Leader>se :setlocal spell spelllang=en_us<CR>
+			\:setlocal spellfile=~/.config/nvim/spell/english.utf-8.add<CR>
+			\:set dictionary-=/home/yann/.config/nvim/spell/wordlist-nl.txt<CR>
+			\:set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt<CR>
+			\:set dictionary+=/home/yann/.config/nvim/spell/english.utf-8.add<CR>
 "turn off spell checking
 :map <Leader>ss :set nospell<CR> 
 "find next misspelled word
@@ -253,13 +267,30 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>u- zuw
 " ignore word for now
 :map <Leader>0 zG
-
+" turn automatic MUcomplete trigger on or off
 :map <Leader>a :MUcompleteAutoToggle<CR>
+
+
+" autocomplete
+"==============
 " add dictionary files for english and dutch
 " :set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt
 " :set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt
+
 " set autocomplete to also search dictionary
-:set complete+=k
+:set complete+=k 
+
+" set height of popup menu  
+:set pumheight=2
+
+" set autocomplete options
+:set completeopt=menu,menuone,noselect
+
+" when autocomplete popup menu is visisble, 
+" '/' selects te first entry and closes the menu
+" 'enter' (<CR>) selects the first entry, closes menu and goes to newline
+:inoremap <expr> / pumvisible() ? "\<C-N>\<C-Y>" : "\/"
+:inoremap <expr> <CR> pumvisible() ? "\<C-N>\<C-Y>\<CR>" : "\<CR>"
 
 
 
@@ -411,12 +442,17 @@ call plug#end()
 " =================
 
 "vim-mucomplete settings
-" let g:mucomplete#enable_auto_at_startup = 1 " enable autocomplete at startup
+let g:mucomplete#enable_auto_at_startup = 1 " enable autocomplete at startup
 " let g:mucomplete#completion_delay = 1 " pop up autocomplete after n seconds
-set completeopt+=menuone
-set completeopt+=noselect
 set shortmess+=c   " Shut off completion messages
-set belloff+=ctrlg " Add only if Vim beeps during completion
+"
+" change the order of mucomplete popup menu's: first path, then dictionary, then spelling correction, then current open files
+" scrollable with ctrl-j and ctrl-k
+let g:mucomplete#chains = {
+		\ 'default' : ['path', 'dict', 'uspl', 'omni', 'keyn'],
+		\ }
+
+
 
 " lightline-bufferline settings
 let g:lightline#bufferline#show_number = 1

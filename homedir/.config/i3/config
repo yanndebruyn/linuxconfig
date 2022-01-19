@@ -1,4 +1,4 @@
-		# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+			# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 
 # set mod key
@@ -144,7 +144,10 @@ bindsym $mod+q exec qpaeq
 bindsym $mod+Control+c exec ~/bin/scripts/dmenu_select_configs.sh
 bindsym $mod+Control+s exec ~/bin/scripts/dmenu_select_editscript.sh
 bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
+# edit bookmarks file
 bindsym $mod+Control+b exec alacritty -e vim ~/.w3m/bookmarks
+# open bookmark in brave
+bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/popup/bookmark_brave
 
 bindsym $mod+u exec udiskie
 bindsym $mod+Control+u exec ~/bin/scripts/dmenu_select_unmount.sh
@@ -250,8 +253,8 @@ bindsym Print exec --no-startup-id scrot ~/Pictures/screenshots/'screenshot_%d-%
  bindsym $mod+apostrophe exec --no-startup-id mpc next
 
 # Volume controls
-bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym $mod+equal exec --no-startup-id pactl set-sink-volume 0 +5%; exec notify-send -t 800 $(pactl get-sink-volume 0 | awk -F "/" '{print $2}')
+bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 0 -5%; exec notify-send -t 800 $(pactl get-sink-volume 0 | awk -F "/" '{print $2}')
 bindsym $mod+0 exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Sreen brightness controls
@@ -292,7 +295,7 @@ exec --no-startup-id xset r rate 200 30
 exec numlockx on
 
 # bind toggling of bluetooth service
-bindsym $mod+Shift+b exec --no-startup-id systemctl start bluetooth
+bindsym $mod+Control+Shift+b exec --no-startup-id systemctl start bluetooth
 
 # auto start blueman for bluetooth tray applet
 exec --no-startup-id blueman-applet
@@ -343,4 +346,7 @@ exec_always --no-startup-id i3-msg workspace $workspace1
 
 # start alacritty and set alacritty theme and backgound image
 exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e tmux -2
-exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_85.sh
+exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
+exec alacritty_opacity_set_85.sh
+exec alacritty-themes abstract-desert 
+

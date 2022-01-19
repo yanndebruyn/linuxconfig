@@ -156,7 +156,7 @@ format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555} |%{F-}%{
 format-stopped = 
 
 ; label-song = %artist% - %title%
-label-song = %title%
+label-song = %artist% - %title%
 label-time = %elapsed% / %total%
 label-offline = mpd is offline
 

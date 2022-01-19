@@ -1,4 +1,5 @@
 #!/bin/bash
 
-[ -d /media/$USER/mtp ] || mkdir /media/$USER/mtp
-sudo go-mtpfs -allow-other /media/$USER/mtp > /dev/null 2>&1 &
+[ -d ~/mnt/Phone ] || mkdir ~/mnt/Phone
+jmtpfs ~/mnt/Phone
+# sudo go-mtpfs -allow-other ~mnt/mtp > /dev/null 2>&1 &
