@@ -12,7 +12,7 @@ source ~/.config/mutt/account.public@yanndebruyn.com
 ##  general settings  ##
 ########################
 
-set editor = vim
+set editor = nvim
 set sort = 'reverse-date'
 set date_format="%d/%m %H:%M"
 auto_view text/html # view html automatically
