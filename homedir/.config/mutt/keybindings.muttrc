@@ -78,6 +78,6 @@ bind pager \Cl sidebar-open
 # unbind e key
 bind index,pager e  noop    
 # bind E key to editing mail in vim
-bind index,pager E edit-or-view-raw-message 
+bind index,pager E resend-message
 # bind e key to view html macro
 macro index,pager e "<view-attachments><search>html<enter><view-mailcap><exit>"
