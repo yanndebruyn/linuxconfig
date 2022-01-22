@@ -52,7 +52,7 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 3
 
-font-0 = terminus:pixelsize=11;2
+font-0 = terminus:pixelsize=8.5;2
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = Siji:pixelsize=10;1font-1 = pango:monospace:pixelsize=9;1
 font-3 = Iosevka:size=12;2   
