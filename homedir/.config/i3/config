@@ -138,7 +138,8 @@ title_align center
 font pango:monospace 6
 
 # title bar colors			BORDER	BACKGR.	TEXT		INDICATOR	CHILD_BORDER
-client.focused          #000000 #593942 #ffbf00 #000000   #593942
+client.focused          #000000 #805c5c #ffffff #000000   #593942
+# client.focused          #000000 #593942 #ffbf00 #000000   #593942
 client.focused_inactive #000000 #896112 #000000 #000000   #000000
 client.unfocused        #000000 #404040 #888888 #000000   #333333
 client.urgent           #000000 #000000 #ffffff #000000   #000000

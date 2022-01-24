@@ -91,11 +91,12 @@ set hlsearch   "highligh matches
 " ==========================
 set rtp+=~/.fzf
 " remove default mapping of control-o
-" map <C-o> <Nop>
+map <C-o> <Nop>
+" map <Leader>o <Nop>
 " map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
-map <Leader>o :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
+map <C-o> :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
 
-	" Folding
+" Folding
 " =======
 set foldenable     "enable folding of code
 set foldlevelstart=99 "open folds by default

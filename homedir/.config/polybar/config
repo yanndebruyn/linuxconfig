@@ -30,7 +30,7 @@ alert = #bd2c40
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 24
+height = 23
 bottom = true
 ;offset-x = 1%
 ;offset-y = 1%
@@ -150,7 +150,7 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555} |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}   <icon-prev>  <toggle>  <icon-stop>  <icon-next>   %{F-}%{F#555555} |  %{F-}
+format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555}  |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}  <icon-prev>  <toggle>  <icon-stop>  <icon-next>   %{F-}%{F#555555}|%{F-}
 	format-playing = ${self.format-online}
 	format-paused = ${self.format-online}
 format-stopped = 

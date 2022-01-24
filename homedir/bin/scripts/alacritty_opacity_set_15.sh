@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## Fetch background_opacity from alacritty.yml
-opacity=$(awk '$1 == "background_opacity:" {print $2; exit}' \
+opacity=$(awk '$1 == "opacity:" {print $2; exit}' \
     ~/.config/alacritty/alacritty.yml)
 
 ## Assign toggle opacity value
@@ -15,5 +15,5 @@ opacity=$(awk '$1 == "background_opacity:" {print $2; exit}' \
 # esac
 
 ## Replace opacity value in alacritty.yml
-sed -i -- "s/background_opacity: $opacity/background_opacity: 0.15/" \
-    ~/.config/alacritty/alacritty.yml
+sed -i -- "s/opacity: $opacity/opacity: 0.15/" \
+	~/.config/alacritty/alacritty.yml
