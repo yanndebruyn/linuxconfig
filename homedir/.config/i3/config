@@ -1,4 +1,4 @@
-			# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+				# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 
 
@@ -28,6 +28,7 @@ assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
 for_window[title="Signal"] move container to workspace $workspace14
 assign [class="Gimp"] $workspace13
+for_window[class="MPlayer"] sticky enable
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -76,12 +77,27 @@ bindsym $mod+Shift+h move left 30px
 bindsym $mod+Shift+j move down 30px
 bindsym $mod+Shift+k move up 30px
 bindsym $mod+Shift+l move right 30px
+bindsym $mod+Shift+Left move left 5px
+bindsym $mod+Shift+Down move down 5px
+bindsym $mod+Shift+Up move up 5px
+bindsym $mod+Shift+Right move right 5px
 
 # resize focused window
 bindsym $mod+Shift+Control+h resize shrink width 20px
 bindsym $mod+Shift+Control+j resize shrink height 20px
 bindsym $mod+Shift+Control+k resize grow height 20px
 bindsym $mod+Shift+Control+l resize grow width 20px
+bindsym $mod+Control+Shift+Left resize shrink width 5px or 5ppt
+bindsym $mod+Control+Shift+Up resize grow height 5px or 5ppt
+bindsym $mod+Control+Shift+Down resize shrink height 5px or 5ppt
+bindsym $mod+Control+Shift+Right resize grow width 5px or 5ppt
+
+# webcam window control
+# bindsym $mod+c [class="MPlayer"] resize set width 1600px 1500px, move position center
+bindsym $mod+c [class="MPlayer"] resize set 700px 600px, move position 1220px 662px
+bindsym $mod+shift+c [class="MPlayer"] resize set 1920px 1800px, move position 0px 0px
+bindsym $mod+shift+control+c [class="MPlayer"] resize set 1px 1px, move position 1919px 1069px
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -119,12 +135,6 @@ for_window [class=".*"] border pixel 0
 # for_window [class="vlc"] border 1px
 # for_window [class="mpv"] border 1px
 # reload the configuration file
-
-# resize window (you can also use the mouse for that)
-bindsym $mod+Control+Shift+Left resize shrink width 5px or 5ppt
-bindsym $mod+Control+Shift+Up resize grow height 5px or 5ppt
-bindsym $mod+Control+Shift+Down resize shrink height 5px or 5ppt
-bindsym $mod+Control+Shift+Right resize grow width 5px or 5ppt
 
 # Window borders are 1 pixel and no title bar when split
 default_border pixel 1
@@ -182,7 +192,7 @@ exec i3-msg "gaps outer all set -24"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # reload i3 config file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 
 # power off / reboot / logout 
 bindsym $mod+Shift+Control+p exec sudo poweroff
@@ -381,5 +391,5 @@ exec_always --no-startup-id i3-msg workspace $workspace1
 exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e tmux -2
 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
 exec alacritty-themes abstract-desert;
-exec alacritty_opacity_set_85.sh
+# exec alacritty_opacity_set_85.sh
 
