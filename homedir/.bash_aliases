@@ -75,6 +75,9 @@ alias o0='sudo compton-trans -c 100'
 alias mphone='$HOME/bin/scripts/mountphone.sh'
 alias uphone='$HOME/bin/scripts/unmountphone.sh'
 
+alias mountdellvostro='sudo sshfs -o allow_other yann@dellvostro:/home/yann/ ~/mnt/dellvostro/'
+alias umountdellvostro='sudo umount ~/mnt/dellvostro'
+
 
 #######################
 ##  program aliases  ##

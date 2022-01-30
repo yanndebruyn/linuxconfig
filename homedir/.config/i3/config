@@ -1,4 +1,4 @@
-				# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+						# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 
 
@@ -26,6 +26,7 @@ assign [class="mpv"] $workspace12
 assign [class="Firefox"] $workspace11
 assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
+assign [class="LibreWolf"] $workspace11
 for_window[title="Signal"] move container to workspace $workspace14
 assign [class="Gimp"] $workspace13
 for_window[class="MPlayer"] sticky enable
@@ -93,6 +94,7 @@ bindsym $mod+Control+Shift+Down resize shrink height 5px or 5ppt
 bindsym $mod+Control+Shift+Right resize grow width 5px or 5ppt
 
 # webcam window control
+for_window [class="MPlayer"] floating enable
 # bindsym $mod+c [class="MPlayer"] resize set width 1600px 1500px, move position center
 bindsym $mod+c [class="MPlayer"] resize set 700px 600px, move position 1220px 662px
 bindsym $mod+shift+c [class="MPlayer"] resize set 1920px 1800px, move position 0px 0px
@@ -213,8 +215,8 @@ bindsym $mod+Control+d exec dmenu_run -i -nb "#1b2235" -sb "#874f5c" -fn 'monosp
 bindsym $mod+KP_Add exec --no-startup-id dunstctl action
 bindsym $mod+KP_Subtract exec --no-startup-id dunstctl close
 
-# bind toggling of bluetooth service
-bindsym $mod+Control+Shift+b exec --no-startup-id systemctl start bluetooth
+# bind toggling of bluetooth
+bindsym $mod+Control+Shift+b exec bluetooth toggle
 
 # screenshot
 bindsym Print exec --no-startup-id scrot ~/Pictures/screenshots/'screenshot_%d-%m-%Y_%H:%m:%S.jpg'
@@ -246,8 +248,8 @@ bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
 
 # edit bookmarks file
 bindsym $mod+Control+b exec alacritty -e vim ~/.w3m/bookmarks
-# open bookmark in brave
-bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/popup/bookmark_brave
+# open bookmark in browser
+bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/popup/bookmark_browser
 
 # Mounting and unmounting
 bindsym $mod+u exec udiskie
@@ -284,7 +286,7 @@ bindsym $mod+Shift+Return exec alacritty
 # bindsym $mod+Control+Shift+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml
 
 # start applications
-bindsym $mod+b exec brave
+bindsym $mod+b exec librewolf
 bindsym $mod+t exec thunderbird
 bindsym $mod+n exec nicotine
 # start system-wide pulseaudio equalizer tool
@@ -294,8 +296,8 @@ bindsym $mod+shift+s exec signal-desktop
 
 # Start music
 bindsym $mod+m exec ~/bin/scripts/classicalmusic.sh
-bindsym $mod+Shift+m exec brave http://www.radio.net/popupplayer/index.html?station=klara&tenant=www.radio.net
-bindsym $mod+Shift+Control+m exec brave https://www.radio.net/s/radiominerva
+bindsym $mod+Shift+m exec $BROWSER http://www.radio.net/popupplayer/index.html?station=klara&tenant=www.radio.net
+bindsym $mod+Shift+Control+m exec $BROWSER https://www.radio.net/s/radiominerva
 
 
 
@@ -344,7 +346,8 @@ exec --no-startup-id xset r rate 200 30
 # Turn numlock on
 exec numlockx on
 
-# Auto start blueman for bluetooth tray applet
+# Auto start bluetooth service and bluetooth tray applet
+exec --no-startup-id systemctl start bluetooth
 exec --no-startup-id blueman-applet
 
 # Auto start pasystray audio tray applet
@@ -357,11 +360,15 @@ exec --no-startup-id nm-applet
 exec pactl load-module module-equalizer-sink
 exec pactl load-module module-dbus-protocol
 
-# Disable bluetooth
-# exec sudo rfkill block bluetooth
+
+# turn bluetooth off
+exec bluetooth off
 
 # Disable wifi
 # exec sudo nmcli radio wifi off
+
+# set cpu to powersave to lower power consumption and heat generation
+exec sudo cpupower frequency-set -g powersave
 
 # Start laptop power saving settings
 exec sudo tlp start
