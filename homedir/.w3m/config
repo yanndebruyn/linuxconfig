@@ -80,7 +80,7 @@ urimethodmap ~/.w3m/urimethodmap, /etc/w3m/urimethodmap
 editor sensible-editor
 mailto_options 1
 mailer xdg-open mailto:%s
-extbrowser librewolf
+extbrowser qutebrowser
 extbrowser2 bash -c 'echo -n "$0" | xclip -selection clipboard && notify-send -t
 5000 -i edit-copy "W3M URL Yank To Clipboard" "$0"' 
 extbrowser3 chromium %s &

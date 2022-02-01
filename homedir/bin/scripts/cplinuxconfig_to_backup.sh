@@ -36,6 +36,7 @@ cp /home/yann/.config/nvim/plugged/lightline.vim/autoload/lightline/colorscheme/
 cp /home/yann/.config/nvim/init.vim /home/yann/backup/linuxconfig/homedir/.config/nvim/
 cp -r /home/yann/.config/picom /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/polybar /home/yann/backup/linuxconfig/homedir/.config/
+cp -r /home/yann/.config/qutebrowser /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/ranger /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/ytfzf /home/yann/backup/linuxconfig/homedir/.config/
 cp -r /home/yann/.config/zathura /home/yann/backup/linuxconfig/homedir/.config/

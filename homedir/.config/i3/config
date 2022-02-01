@@ -27,6 +27,7 @@ assign [class="Firefox"] $workspace11
 assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
 assign [class="LibreWolf"] $workspace11
+assign [class="qutebrowser"] $workspace11
 for_window[title="Signal"] move container to workspace $workspace14
 assign [class="Gimp"] $workspace13
 for_window[class="MPlayer"] sticky enable
@@ -286,7 +287,7 @@ bindsym $mod+Shift+Return exec alacritty
 # bindsym $mod+Control+Shift+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml
 
 # start applications
-bindsym $mod+b exec librewolf
+bindsym $mod+b exec qutebrowser -r lastsession
 bindsym $mod+t exec thunderbird
 bindsym $mod+n exec nicotine
 # start system-wide pulseaudio equalizer tool
@@ -343,8 +344,8 @@ exec --no-startup-id ~/bin/scripts/xmodmap.sh
 # Change keyboard repeat rate
 exec --no-startup-id xset r rate 200 30
 
-# Turn numlock on
-exec numlockx on
+# Turn numlock off
+exec numlockx off
 
 # Auto start bluetooth service and bluetooth tray applet
 exec --no-startup-id systemctl start bluetooth
@@ -361,8 +362,6 @@ exec pactl load-module module-equalizer-sink
 exec pactl load-module module-dbus-protocol
 
 
-# turn bluetooth off
-exec bluetooth off
 
 # Disable wifi
 # exec sudo nmcli radio wifi off
@@ -399,4 +398,3 @@ exec alacritty --config-file ~/.config/alacritty/alacritty.yml -e tmux -2
 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg
 exec alacritty-themes abstract-desert;
 # exec alacritty_opacity_set_85.sh
-

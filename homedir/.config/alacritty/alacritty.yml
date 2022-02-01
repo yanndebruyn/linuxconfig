@@ -13,7 +13,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 0.85
+  opacity: 0.15
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -530,9 +530,9 @@ key_bindings:
   # Print all received window events.
   #print_events: false
 colors:
-  name: abstract-desert
+  name: polyscape
   primary:
-    background: '0x073742'
+    background: '0x000000'
     foreground: '0xcccccc'
 
   cursor:
@@ -559,7 +559,7 @@ colors:
     magenta: '0xdf79d6'
     cyan: '0x34e2e2'
     white: '0xffffff'
-theme: abstract-desert
+theme: polyscape
 
 # original colors:
 #   primary:

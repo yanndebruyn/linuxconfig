@@ -359,7 +359,7 @@ animation-discharging-framerate = 750
 
 [module/check-updates]
 type = custom/script
-exec = sudo yay -Syy > /dev/null 2>&1
+exec = yay -Syy > /dev/null 2>&1
 interval = 3600
 
 [module/updates-pacman]
@@ -373,7 +373,7 @@ label = %{F#888888} P %{F-}%{F#F43636}%output%%{F-}
 
 [module/updates-yay]
 type = custom/script
-exec = yay -YQu 2> /dev/null | wc -l
+exec = yay -Pu 2> /dev/null | wc -l
 interval = 50
 label = %{F#888888} Y %{F-}%{F#F43636}%output%%{F-}
 ; format-foreground = #F43636

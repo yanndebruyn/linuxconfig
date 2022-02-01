@@ -1,0 +1,10 @@
+# set interface look
+script-opts=osc-visibility=never
+no-osd-bar
+osd-font-size=20
+sub-font-size=35
+
+# turn on caching and set max caching size
+cache=yes
+demuxer-max-bytes=200MiB
+demuxer-max-back-bytes=200MiB
