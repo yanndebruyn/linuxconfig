@@ -57,7 +57,7 @@ c.input.insert_mode.leave_on_load = True
 c.statusbar.show = "never"
 
 # Set dark mode settings
-c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
+c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
 c.colors.webpage.darkmode.contrast = -.022
 c.colors.webpage.darkmode.threshold.text = 150
 c.colors.webpage.darkmode.threshold.background = 100

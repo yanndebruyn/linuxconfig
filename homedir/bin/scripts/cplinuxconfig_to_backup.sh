@@ -11,6 +11,7 @@ cp /home/yann/.mpd/mpd.conf /home/yann/backup/linuxconfig/homedir/.mpd/
 cp -r /home/yann/.ncmpcpp /home/yann/backup/linuxconfig/homedir/
 cp -r /home/yann/.ssh /home/yann/backup/linuxconfig/homedir/
 cp -r /home/yann/.w3m /home/yann/backup/linuxconfig/homedir/
+cp -r /home/yann/.local/share/qutebrowser/greasemonkey /home/yann/backup/linuxconfig/homedir/.local/share/qutebrowser/
 
 cp /home/yann/.bash_aliases /home/yann/backup/linuxconfig/homedir/
 cp /home/yann/.bashrc /home/yann/backup/linuxconfig/homedir/
