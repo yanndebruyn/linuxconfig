@@ -151,9 +151,10 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555}  |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}  <icon-prev>  <toggle>  <icon-stop>  <icon-next>   %{F-}%{F#555555}|%{F-}
-	format-playing = ${self.format-online}
-	format-paused = ${self.format-online}
+; format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555}  |%{F-}%{F#cccccc} <label-time> %{F-}%{F#555555}|%{F-} %{F#888888}  <icon-prev>  <toggle>  <icon-stop>  <icon-next>   %{F-}%{F#555555}|%{F-}
+format-online = %{F#B1b704}ﱘ  %{F-}%{F#1F8C99}<label-song>%{F#555555}  %{F-}%{F#cccccc} <label-time> %{F-}
+format-playing = ${self.format-online}
+format-paused = ${self.format-online}
 format-stopped = 
 
 ; label-song = %artist% - %title%
@@ -373,7 +374,7 @@ label = %{F#888888} P %{F-}%{F#F43636}%output%%{F-}
 
 [module/updates-yay]
 type = custom/script
-exec = yay -Pu 2> /dev/null | wc -l
+exec = yay -Qau 2> /dev/null | wc -l
 interval = 50
 label = %{F#888888} Y %{F-}%{F#F43636}%output%%{F-}
 ; format-foreground = #F43636

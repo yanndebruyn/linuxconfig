@@ -1,9 +1,6 @@
 
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
-  
-
 
 " =======================
 "  GENERAL CONFIGURATIONS
@@ -15,11 +12,11 @@ filetype off                  " required
 set splitbelow splitright "new window split open to the right and below
 set number         "show line number 
 set relativenumber "show relative numbering
-set fillchars+=vert:# "set vertical split line character:
+" set fillchars+=vert:# "set vertical split line character:
 set wildmenu       "visual autocomplete for command menu
 set lazyredraw     "redraw screen only when needed
 set showmatch      "highlight matching bracket when cursor is on it
-set mouse=a				 "enable mouse support
+" set mouse=a				 "enable mouse support
 set wrap					 "text wrapping
 set tw=80					 "text width
 set colorcolumn=81 "display column at textwidth
@@ -32,10 +29,19 @@ set colorcolumn=81 "display column at textwidth
 if !has('gui_running')
   set t_Co=256
 endif
+
 syntax enable "enable colored syntax highlighting
+set synmaxcol=100 " max columns to syntax highlight. Helps with speed
+
 set background=dark 
 colorscheme peachpuff "set colorscheme
 set cursorline "enable cursos line
+" bottom statusline color of active window
+hi StatusLineNC  ctermfg=238 ctermbg=Grey
+" bottom statusline color of inactive window
+hi StatusLine  ctermfg=DarkGrey ctermbg=232
+" text 'INSERT' when in insert mode
+hi ModeMsg  ctermfg=235 ctermbg=143
 "line numbers color
 hi LineNr  ctermfg=DarkGrey ctermbg=NONE
 "cursor line color
@@ -71,12 +77,13 @@ hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
 " =============
 " Spaces & Tabs
 " =============
-syntax on
-filetype plugin indent on
+" syntax on
+" filetype plugin indent on
 set tabstop=2      "number of visual spaces per tab
 set softtabstop=2  "number of spaces in tab when editing
 set shiftwidth=2   "number of visual spaces after enter after braces
 set noexpandtab
+
 
 " =============
 " Functionality
@@ -99,26 +106,27 @@ map <C-o> :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
 " Folding
 " =======
 set foldenable     "enable folding of code
-set foldlevelstart=99 "open folds by default
-set foldmethod=indent "fold based on indent level
+" set foldlevelstart=99 "open folds by default
+set foldmethod=manual "fold based on indent level
 
 
 " Immediately detect and apply changes saved to init.vim No more typing :so %
-augroup myvimrc
-    au!
-				au BufWritePost /home/yann/.config/nvim/init.vim so $MYVIMRC |
-				if has('gui_running') | so $MYGVIMRC | endif 
-augroup  END
+" augroup myvimrc
+"     au!
+" 				au BufWritePost /home/yann/.config/nvim/init.vim so $MYVIMRC |
+" 				if has('gui_running') | so $MYGVIMRC | endif 
+" augroup  END
 
 " Timeout length
 set timeoutlen=1000
 set ttimeoutlen=0
 
-" Disable some stuff in .tex files because it slows then down:
-au FileType groff setlocal nocursorline
-au FileType groff setlocal nornu
+" Disable some stuff in groff files because it slows then down:
+" au FileType groff setlocal nocursorline
+" au FileType groff setlocal nornu
 
 
+"
 " ============================================================
 "  KEY SHORTCUTS  ============================================
 " ============================================================
@@ -134,10 +142,11 @@ autocmd InsertEnter * :let @/ = ""
 " write, quit, clear
 " ==================
 ".. and re-source init.vim to fix the lightline losing color bug
-:map <Leader>w :w<CR>:so ~/.config/nvim/init.vim<CR>:noh<CR>
+:map <Leader>w :w<CR> " :so ~/.config/nvim/init.vim<CR>:noh<CR>
 :map <Leader>x :q<CR>
 :map <Leader>X :quitall<CR>
 :map <Leader>/ :noh<CR>
+:map <Leader>r :so ~/.config/nvim/init.vim<CR> " reload init.vim
 :map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 "move vertically by visual line
@@ -194,17 +203,20 @@ nnoremap <Down> :resize +1<CR>
 " =================
 "go to previous buffer
 :map <C-k> :bp<CR>
+:map <C-h> :bp<CR>
 "go to next buffer
 :map <C-j> :bn<CR>
+:map <C-l> :bn<CR>
 "close current buffer
-:map <Leader>q :bd<CR>>
+:map <Leader>q :bd<CR>
+:map <C-q> :bd<CR>
 
 " tabs
 " ====
-nnoremap <Leader>t :tabnew %<CR>
-nnoremap <C-h> :tabp<CR>
-nnoremap <C-l> :tabn<CR>
-nnoremap <C-q> :tabclose<CR>
+" nnoremap <Leader>t :tabnew %<CR>
+" nnoremap <C-h> :tabp<CR>
+" nnoremap <C-l> :tabn<CR>
+" nnoremap <C-q> :tabclose<CR>
 
 " open files
 " ==========
@@ -223,6 +235,7 @@ nnoremap <C-q> :tabclose<CR>
 :map <Leader>ex :e ~/.config/ytfzf/conf.sh<CR>
 :map <Leader>en :e ~/Documents/notes<CR>
 :map <Leader>ec :e ~/.config/picom/picom.conf<CR>
+:map <Leader>eq :e ~/.config/qutebrowser/config.py<CR>
 :map <Leader>eo :e ~/Teachings/op_weg_naar_eenheidsbewustzijn/op_weg_naar_eenheidsbewustzijn.mom<CR>
 
 
@@ -303,14 +316,6 @@ nnoremap <C-q> :tabclose<CR>
 :iabbrev B@ \f[B]
  " end inline code
 :iabbrev P@ \f[P]
- " open single quotes
-:iabbrev osq@ \[oq]
- " close single quotes
-:iabbrev csq@ \[cq]
- " open double quotes
-:iabbrev odq@ \[lq]
- " close double quotes
-:iabbrev cdq@ \[rq]
  " é
 :iabbrev e@ \[u0065_0301]
  " è
@@ -376,6 +381,9 @@ call plug#begin('~/.config/nvim/plugged')
 "fzf: fuzzy finder for vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 
+"vim-bugtabline: buffer list that lives in the tabline
+Plug 'ap/vim-buftabline'
+
 "vim-mucomplete: minimalist but powerful autocomplete
 Plug 'lifepillar/vim-mucomplete'
 
@@ -383,25 +391,25 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'https://github.com/tpope/vim-commentary'
 
 "colorizer: display colornames in their color
-Plug 'https://github.com/chrisbra/Colorizer'
+" Plug 'https://github.com/chrisbra/Colorizer'
 
 "goyo: distraction-free reader mode
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 
 "vim-surround: easily add and edit surrounding character with cs.. and ysiw..
 Plug 'https://github.com/tpope/vim-surround'
 
 "auto-pairs: 
-Plug 'https://github.com/vim-scripts/Auto-Pairs'
+" Plug 'https://github.com/vim-scripts/Auto-Pairs'
 
 "lightline: stylized bottom line
-Plug 'https://github.com/itchyny/lightline.vim'
+" Plug 'https://github.com/itchyny/lightline.vim'
 
 "lightline-bufferline: adds buffer functionality to lightline
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'mengelbrecht/lightline-bufferline'
 
 "ale: fast syntax checking while you type for various prog. languages and tools
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 "vim-eunuch: enables a set of bash commands from withing Vim
 Plug 'https://github.com/tpope/vim-eunuch.git'
@@ -411,10 +419,10 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 "===========
 
 "vim-closetag: automatically close html tags when typing '>'
-Plug 'https://github.com/alvan/vim-closetag'
+" Plug 'https://github.com/alvan/vim-closetag'
 
 "vim-matchit: jump to matching html tag when typing '%'
-Plug 'https://github.com/adelarsq/vim-matchit'
+" Plug 'https://github.com/adelarsq/vim-matchit'
 
 "requires Python:
 "matchtagsalways: always highligh matching html tags when cursor is within tag
@@ -422,7 +430,7 @@ Plug 'https://github.com/adelarsq/vim-matchit'
 
 "emmet: expand abbreviations with a leader-key
 " Plug 'https://github.com/mattn/emmet-vim'
-"
+
 "Live html, css and javascript editing
 " Plug 'turbio/bracey.vim'
 
@@ -455,57 +463,57 @@ let g:mucomplete#chains = {
 
 
 
-" lightline-bufferline settings
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#number_separator = ':'
-let g:lightline#bufferline#margin_left = 1
-let g:lightline#bufferline#margin_right = 1
+" " lightline-bufferline settings
+" let g:lightline#bufferline#show_number = 1
+" let g:lightline#bufferline#number_separator = ':'
+" let g:lightline#bufferline#margin_left = 1
+" let g:lightline#bufferline#margin_right = 1
 
-" make bufferline update immediately when there's a change in the buffer
-autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+" " make bufferline update immediately when there's a change in the buffer
+" autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
-" lightline settings
-set laststatus=2
-set noshowmode "dont display redundant 'normal' or 'insert' words
+" " lightline settings
+" set laststatus=2
+" set noshowmode "dont display redundant 'normal' or 'insert' words
  
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'tabline': {
-      \   'right': []
-      \ },
-      \ 'component': {
-      \   'buffers-padding': "      "
-      \ },
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers'
-      \ },
-      \ 'component_type': {
-      \   'buffers': 'tabsel'
-      \ }
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'powerline',
+"       \ 'active': {
+"       \   'left': [ [], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
+"       \   'right': [ [ 'lineinfo' ],
+"       \              [ 'percent' ],
+"       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+"       \ },
+"       \ 'tabline': {
+"       \   'right': []
+"       \ },
+"       \ 'component': {
+"       \   'buffers-padding': "      "
+"       \ },
+"       \ 'component_expand': {
+"       \   'buffers': 'lightline#bufferline#buffers'
+"       \ },
+"       \ 'component_type': {
+"       \   'buffers': 'tabsel'
+"       \ }
+"       \ }
 
-" previous line for the left side of lightline with 'mode' visible
-" \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
+""previous line for the left side of lightline with 'mode' visible
+"" \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
 
 "ale settings
-let g:ale_change_sign_column_color = 1
+" let g:ale_change_sign_column_color = 1
 
 
 "vim-closetag settings:
 " These are the file extensions where this plugin is enabled:
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+" let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 " These are the file types where this plugin is enabled:
-let g:closetag_filetypes = 'html,xhtml,phtml'
+" let g:closetag_filetypes = 'html,xhtml,phtml'
 
 
 "Goyo settings:
-let g:goyo_linenr = 1
+" let g:goyo_linenr = 1
 
 
 "emmet settings

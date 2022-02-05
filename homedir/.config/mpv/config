@@ -1,5 +1,5 @@
 # set interface look
-script-opts=osc-visibility=never
+script-opts=osc-visibility=never,osc-scalewindowed=0.4,osc-scalefullscreen=0.4
 no-osd-bar
 osd-font-size=20
 sub-font-size=35

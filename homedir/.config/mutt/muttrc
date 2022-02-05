@@ -2,6 +2,7 @@
 # set folder hooks
 folder-hook 'public@yanndebruyn.com' 'source ~/.config/mutt/account.public@yanndebruyn.com'
 folder-hook 'yann@yanndebruyn.com' 'source ~/.config/mutt/account.yann@yanndebruyn.com'
+folder-hook 'cloaked@yanndebruyn.com' 'source ~/.config/mutt/account.cloaked@yanndebruyn.com'
 
 
 # set default account

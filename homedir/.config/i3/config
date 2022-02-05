@@ -23,6 +23,7 @@ set $workspace14 "14.Signal"
 
 # Always open certain applications on a certain workspace
 assign [class="mpv"] $workspace12
+assign [class="mpv_audio"] $workspace12
 assign [class="Firefox"] $workspace11
 assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
@@ -248,7 +249,7 @@ bindsym $mod+Control+s exec ~/bin/scripts/dmenu_select_editscript.sh
 bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
 
 # edit bookmarks file
-bindsym $mod+Control+b exec alacritty -e vim ~/.w3m/bookmarks
+bindsym $mod+Control+b exec alacritty -e nvim ~/.w3m/bookmarks
 # open bookmark in browser
 bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/popup/bookmark_browser
 

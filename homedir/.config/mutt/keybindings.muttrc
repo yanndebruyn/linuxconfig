@@ -23,11 +23,17 @@ macro index gy \
 '<sync-mailbox><enter-command>source ~/.config/mutt/\
 account.yann@yanndebruyn.com<enter><change-folder>!<enter>'
 
+# open cloaked@yanndebruyn.com account
+macro index gc \
+'<sync-mailbox><enter-command>source ~/.config/mutt/\
+account.cloaked@yanndebruyn.com<enter><change-folder>!<enter>'
+
 # run mbsync to download new emails from remote to local inbox and then run
 # 'notmuch new' to index newly downloaded emails to make them searchable.
 # requires packages 'isync' and 'notmuch'
 macro index gmp '<shell-escape>mbsync -V public@yanndebruyn.com<enter><shell-escape>notmuch new 2>/dev/null<enter>'
 macro index gmy '<shell-escape>mbsync -V yann@yanndebruyn.com<enter><shell-escape>notmuch new 2>/dev/null<enter>'
+macro index gmc '<shell-escape>mbsync -V cloaked@yanndebruyn.com<enter><shell-escape>notmuch new 2>/dev/null<enter>'
 
 # Ctrl-f find string in all local email files
 macro index s "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"

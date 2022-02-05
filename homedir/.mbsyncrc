@@ -40,3 +40,25 @@ Create both
 Expunge both
 Patterns *
 SyncState *
+
+
+IMAPStore cloaked@yanndebruyn.com-remote
+Host imap.dreamhost.com
+Port 993
+User cloaked@yanndebruyn.com
+PassCmd "pass show email/cloaked@yanndebruyn.com"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore cloaked@yanndebruyn.com-local
+Path ~/mail/cloaked@yanndebruyn.com/
+Inbox ~/mail/cloaked@yanndebruyn.com/INBOX
+Subfolders Verbatim
+
+Channel cloaked@yanndebruyn.com
+Far  :cloaked@yanndebruyn.com-remote:
+Near  :cloaked@yanndebruyn.com-local:
+Create both
+Expunge both
+Patterns *
+SyncState *

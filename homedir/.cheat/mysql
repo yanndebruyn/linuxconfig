@@ -1,3 +1,21 @@
+
+# Apache commands
+#################
+
+# restart apache server
+sudo systemctl restart httpd.service
+
+# edit apache config file
+sudo vim /etc/httpd/conf/httpd.conf
+
+# localhost website location
+/srv/http/index.html
+/srv/http/index.php
+
+
+# Databse commands
+##################
+
 ---
 tags: [ database ]
 ---
@@ -38,3 +56,5 @@ SHOW PROCEDURE STATUS;
 
 # To check stored function:
 SHOW FUNCTION STATUS;
+
+
