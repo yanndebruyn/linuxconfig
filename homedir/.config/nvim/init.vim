@@ -41,7 +41,7 @@ hi StatusLineNC  ctermfg=238 ctermbg=Grey
 " bottom statusline color of inactive window
 hi StatusLine  ctermfg=DarkGrey ctermbg=232
 " text 'INSERT' when in insert mode
-hi ModeMsg  ctermfg=235 ctermbg=143
+hi ModeMsg  ctermfg=White ctermbg=Red
 "line numbers color
 hi LineNr  ctermfg=DarkGrey ctermbg=NONE
 "cursor line color

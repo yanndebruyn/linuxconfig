@@ -51,6 +51,7 @@ c.tabs.background = True
 c.downloads.location.directory = "/home/yann/Downloads"
 
 c.input.insert_mode.leave_on_load = True
+c.auto_save.session = True
 
 
 # Hide statusbar
@@ -58,7 +59,8 @@ c.statusbar.show = "never"
 
 # Set dark mode settings
 c.colors.webpage.darkmode.algorithm = 'brightness-rgb'
-c.colors.webpage.darkmode.contrast = -.022
+c.colors.webpage.darkmode.grayscale.all = True
+c.colors.webpage.darkmode.contrast = -.05
 c.colors.webpage.darkmode.threshold.text = 150
 c.colors.webpage.darkmode.threshold.background = 100
 c.colors.webpage.darkmode.policy.images = 'never'

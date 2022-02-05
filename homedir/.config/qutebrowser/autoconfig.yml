@@ -16,7 +16,9 @@ settings:
   auto_save.interval:
     global: 15000
   auto_save.session:
-    global: false
+    global: true
+  backend:
+    global: webengine
   bindings.commands:
     global:
       normal:
@@ -30,6 +32,9 @@ settings:
           ""
         ',5': config-cycle content.user_stylesheets ~/.config/qutebrowser/css/solarized-light/solarized-light-all-sites.css
           ""
+        ',d': config-cycle colors.webpage.darkmode.enabled True False;;        config-cycle
+          colors.webpage.bg black white;;        config-cycle colors.webpage.preferred_color_scheme
+          dark auto;; restart
         ',h': home
         <Ctrl+h>: tab-move -
         <Ctrl+l>: tab-move +

@@ -288,7 +288,7 @@ bindsym $mod+Shift+Return exec alacritty
 # bindsym $mod+Control+Shift+Return exec alacritty --config-file ~/.config/alacritty/alacritty-35opac.yml
 
 # start applications
-bindsym $mod+b exec qutebrowser -r lastsession
+bindsym $mod+b exec qutebrowser
 bindsym $mod+t exec thunderbird
 bindsym $mod+n exec nicotine
 # start system-wide pulseaudio equalizer tool
