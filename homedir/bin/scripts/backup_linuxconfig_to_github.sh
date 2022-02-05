@@ -5,7 +5,7 @@ cpbackuplinuxconfig_to_gitrepo.sh
 
 cd ~/git/linuxconfig
 git add .
-git commit -m '$(date)'
+git commit -m "$(date)"
 git push
 
 
