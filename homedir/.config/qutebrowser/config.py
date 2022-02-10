@@ -53,9 +53,18 @@ c.downloads.location.directory = "/home/yann/Downloads"
 c.input.insert_mode.leave_on_load = True
 c.auto_save.session = True
 
-
 # Hide statusbar
 c.statusbar.show = "never"
+
+# user ranger as filepicker
+config.set("fileselect.handler", "external")
+config.set("fileselect.single_file.command", ['alacritty', '--class', 'filepicker', '-e', 'ranger', '--choosefile', '{}'])
+config.set("fileselect.multiple_files.command", ['alacritty', '--class', 'filepicker', '-e', 'ranger', '--choosefile', '{}'])
+
+
+#############
+## COLORS  ##
+#############
 
 # Set dark mode settings
 c.colors.webpage.darkmode.algorithm = 'brightness-rgb'

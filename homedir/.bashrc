@@ -114,6 +114,9 @@ stty -ixon
 ## Set some environment variables  ##
 #####################################
 
+TERMINAL=alacritty
+export TERMINAL
+
 EDITOR=nvim
 export EDITOR
 

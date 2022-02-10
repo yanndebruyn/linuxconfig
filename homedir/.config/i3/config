@@ -12,26 +12,28 @@ set $mod Mod4
 ##################
 
 # define usable workspaces
-set $workspace1 "1.Tmux"
-set $workspace2 "2.Work"
-set $workspace3 "3.Work"
-set $workspace4 "4.Bash"
+set $workspace1 "1.Main"
+set $workspace2 "2.Term"
+set $workspace3 "3.Term"
+set $workspace4 "4.Term"
 set $workspace11 "11.Web"
-set $workspace12 "12.Video"
-set $workspace13 "13.Graphics"
-set $workspace14 "14.Signal"
+set $workspace12 "12.Graph"
+set $workspace13 "13.Graph"
+set $workspace14 "14.Graph"
 
 # Always open certain applications on a certain workspace
-assign [class="mpv"] $workspace12
-assign [class="mpv_audio"] $workspace12
+# assign [class="mpv"] $workspace12
+# assign [class="mpv_audio"] $workspace12
 assign [class="Firefox"] $workspace11
 assign [class="Thunderbird"] $workspace13
 assign [class="Brave-browser"] $workspace11
-assign [class="LibreWolf"] $workspace11
+assign [class="LibreWolf"] $workspace12
 assign [class="qutebrowser"] $workspace11
 for_window[title="Signal"] move container to workspace $workspace14
 assign [class="Gimp"] $workspace13
-for_window[class="MPlayer"] sticky enable
+for_window[class="MPlayer"] floating enable, sticky enable
+for_window [class="mpv"] floating enable, resize set 700px 600px, move position 1206px 655px 
+for_window[class="filepicker"] floating enable
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -96,7 +98,6 @@ bindsym $mod+Control+Shift+Down resize shrink height 5px or 5ppt
 bindsym $mod+Control+Shift+Right resize grow width 5px or 5ppt
 
 # webcam window control
-for_window [class="MPlayer"] floating enable
 # bindsym $mod+c [class="MPlayer"] resize set width 1600px 1500px, move position center
 bindsym $mod+c [class="MPlayer"] resize set 700px 600px, move position 1220px 662px
 bindsym $mod+shift+c [class="MPlayer"] resize set 1920px 1800px, move position 0px 0px
@@ -129,6 +130,7 @@ bindsym $mod+space focus mode_toggle
 
 # make a 'pop-up' window type
 for_window [instance="popup"] floating enable, resize set 1300px 800px, move left 250px, move up 100px
+for_window [instance="largepopup"] floating enable, resize set 1790px 1000px, move left 250px, move up 100px
 
 # remove borders from all windows
 for_window [class=".*"] border pixel 0
@@ -221,7 +223,7 @@ bindsym $mod+KP_Subtract exec --no-startup-id dunstctl close
 bindsym $mod+Control+Shift+b exec bluetooth toggle
 
 # screenshot
-bindsym Print exec --no-startup-id scrot ~/Pictures/screenshots/'screenshot_%d-%m-%Y_%H:%m:%S.jpg'
+bindsym Print exec --no-startup-id scrot ~/Pictures/screenshots/'screenshot_%d-%m-%Y_%H:%m:%S.jpg'; exec notify-send "Screenshot saved in ~/Pictures/screenshots"
 
 # mpc controls
 bindsym $mod+backslash  exec --no-startup-id mpc toggle
@@ -245,18 +247,19 @@ bindsym $mod+Control+0 exec --no-startup-id /home/yann/bin/scripts/monitor-off-t
 
 # Config files
 bindsym $mod+Control+c exec ~/bin/scripts/dmenu_select_configs.sh
-bindsym $mod+Control+s exec ~/bin/scripts/dmenu_select_editscript.sh
-bindsym $mod+Control+r exec ~/bin/scripts/dmenu_select_runscript.sh
+bindsym $mod+Control+s exec alacritty --class popup -e ~/bin/scripts/select_editscript.sh
+bindsym $mod+Control+r exec alacritty --class popup -e ~/bin/scripts/select_runscript.sh
 
 # edit bookmarks file
-bindsym $mod+Control+b exec alacritty -e nvim ~/.w3m/bookmarks
+bindsym $mod+Control+b exec alacritty --class largepopup -e ~/bin/scripts/edit_bookmarks.sh
 # open bookmark in browser
-bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/popup/bookmark_browser
+bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/scripts/open_bookmark_qutebrowser.sh
+bindsym $mod+Shift+w exec alacritty --class largepopup -e ~/bin/scripts/open_bookmark_w3m.sh
 
 # Mounting and unmounting
 bindsym $mod+u exec udiskie
 bindsym $mod+Control+u exec ~/bin/scripts/dmenu_select_unmount.sh
-bindsym $mod+Control+m exec ~/bin/scripts/dmenu_select_mounted.sh
+bindsym $mod+Control+m exec alacritty --class largepopup -e ~/bin/scripts/select_mounted.sh
 bindsym $mod+Control+p exec ~/bin/scripts/passmenu.sh
 
 bindsym $mod+y exec alacritty -e ytfzf -t -f
@@ -268,7 +271,7 @@ bindsym $mod+p exec alacritty --class popup -e /home/yann/bin/popup.sh
 # change look&feel - alacritty themes in /usr/lib/node_modules/alacritty-themes/themes
 bindsym $mod+Control+1 exec feh --bg-fill ~/Pictures/wallpapers/polyscape-triangle-centered-dark.png; exec alacritty-themes polyscape; exec alacritty_opacity_set_15.sh
 bindsym $mod+Control+2 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_85.sh
-bindsym $mod+Control+3 exec feh --bg-fill ~/Pictures/wallpapers/magic-forest-yellowdark.jpg; exec alacritty-themes polyscape; exec alacritty_opacity_set_55.sh
+bindsym $mod+Control+3 exec feh --bg-fill ~/Pictures/wallpapers/abstract-desert.jpg; exec alacritty-themes abstract-desert; exec alacritty_opacity_set_95.sh
 bindsym $mod+Control+4 exec feh --bg-fill ~/Pictures/wallpapers/redarch.png; exec alacritty-themes redarch; exec alacritty_opacity_set_45.sh
 bindsym $mod+Control+5 exec feh --bg-fill ~/Pictures/wallpapers/redarch.png; exec alacritty-themes redarch; exec alacritty_opacity_set_55.sh
 bindsym $mod+Control+6 exec feh --bg-fill ~/Pictures/wallpapers/magic-forest-2.jpg; exec alacritty-themes polyscape; exec alacritty_opacity_set_65.sh
@@ -289,6 +292,7 @@ bindsym $mod+Shift+Return exec alacritty
 
 # start applications
 bindsym $mod+b exec qutebrowser
+bindsym $mod+w exec librewolf
 bindsym $mod+t exec thunderbird
 bindsym $mod+n exec nicotine
 # start system-wide pulseaudio equalizer tool

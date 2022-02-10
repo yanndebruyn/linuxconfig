@@ -28,10 +28,10 @@
 # VT: Launch in the same terminal
 
 # The lists of programs to be executed are
-https_prgs="/usr/X11R6/bin/brave:XW /usr/bin/brave:XT"
-http_prgs="/usr/bin/brave:XT /usr/X11R6/bin/netsbrave:XW"
+https_prgs="/usr/bin/qutebrowser:XW"
+http_prgs="/usr/bin/qutebrowser:XW"
 mailto_prgs="/usr/bin/neomutt:VT"
-gopher_prgs="/usr/bin/w3m:XT /usr/bin/w3m:XT"
+gopher_prgs="/usr/bin/w3m:XT /usr/bin/w3m:VT"
 # ftp_prgs="/usr/bin/lynx:XT /usr/bin/ncftp:XT"
 
 # Program used as an xterm (if it doesn't support -T you'll need to change

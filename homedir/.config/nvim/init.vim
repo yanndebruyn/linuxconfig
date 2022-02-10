@@ -31,15 +31,19 @@ if !has('gui_running')
 endif
 
 syntax enable "enable colored syntax highlighting
-set synmaxcol=100 " max columns to syntax highlight. Helps with speed
+set synmaxcol=150 " max columns to syntax highlight. Helps with speed
 
 set background=dark 
+" colorscheme desert "set colorscheme
 colorscheme peachpuff "set colorscheme
+map <Leader>1 :colorscheme peachpuff<CR>
+map <Leader>2 :colorscheme desert<CR>
+
 set cursorline "enable cursos line
 " bottom statusline color of active window
-hi StatusLineNC  ctermfg=238 ctermbg=Grey
-" bottom statusline color of inactive window
 hi StatusLine  ctermfg=DarkGrey ctermbg=232
+" bottom statusline color of inactive window
+hi StatusLineNC  ctermfg=238 ctermbg=Grey
 " text 'INSERT' when in insert mode
 hi ModeMsg  ctermfg=White ctermbg=Red
 "line numbers color
@@ -69,8 +73,8 @@ hi SpellLocal cterm=underline ctermfg=White ctermbg=DarkGreen
 " autocomplete popup menu colors
 hi Pmenu ctermbg=Black ctermfg=Grey
 "set tab colors 
-hi TabLineFill ctermfg=Black ctermbg=White "tabs bar
-hi TabLine ctermfg=Grey ctermbg=Black cterm=bold "non-selected tabs
+hi TabLineFill ctermfg=237 ctermbg=White "tabs bar
+hi TabLine ctermfg=Grey ctermbg=237 cterm=bold "non-selected tabs
 hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
 
 
@@ -142,12 +146,11 @@ autocmd InsertEnter * :let @/ = ""
 " write, quit, clear
 " ==================
 ".. and re-source init.vim to fix the lightline losing color bug
-:map <Leader>w :w<CR> " :so ~/.config/nvim/init.vim<CR>:noh<CR>
-:map <Leader>x :q<CR>
-:map <Leader>X :quitall<CR>
-:map <Leader>/ :noh<CR>
-:map <Leader>r :so ~/.config/nvim/init.vim<CR> " reload init.vim
-:map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
+map <Leader>w :w<CR> " :so ~/.config/nvim/init.vim<CR>:noh<CR>
+map <Leader>x :q<CR>
+map <Leader>X :quitall<CR>
+map <Leader>/ :noh<CR>
+map <Leader>r :so ~/.config/nvim/init.vim<CR> " reload init.vim
 
 "move vertically by visual line
 " =============================
@@ -295,7 +298,7 @@ nnoremap <Down> :resize +1<CR>
 :set complete+=k 
 
 " set height of popup menu  
-:set pumheight=2
+:set pumheight=4
 
 " set autocomplete options
 :set completeopt=menu,menuone,noselect
@@ -394,10 +397,13 @@ Plug 'https://github.com/tpope/vim-commentary'
 " Plug 'https://github.com/chrisbra/Colorizer'
 
 "goyo: distraction-free reader mode
-" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 
 "vim-surround: easily add and edit surrounding character with cs.. and ysiw..
 Plug 'https://github.com/tpope/vim-surround'
+
+"vim-repeat: make plugin command repeatable (like vim-surround)
+Plug 'https://github.com/tpope/vim-repeat'
 
 "auto-pairs: 
 " Plug 'https://github.com/vim-scripts/Auto-Pairs'
@@ -426,7 +432,7 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 
 "requires Python:
 "matchtagsalways: always highligh matching html tags when cursor is within tag
-" Plug 'https://github.com/valloric/MatchTagAlways'
+Plug 'https://github.com/valloric/MatchTagAlways'
 
 "emmet: expand abbreviations with a leader-key
 " Plug 'https://github.com/mattn/emmet-vim'
@@ -512,8 +518,10 @@ let g:mucomplete#chains = {
 " let g:closetag_filetypes = 'html,xhtml,phtml'
 
 
-"Goyo settings:
-" let g:goyo_linenr = 1
+"goyo settings:
+let g:goyo_linenr = 1
+map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
+
 
 
 "emmet settings
@@ -535,9 +543,25 @@ let g:mucomplete#chains = {
 
 
 "MatchTagAlways settings:
+"========================
 "use different color for matching html tags than matching brackets
-"let g:mta_use_matchparen_group = 0
-""do not use the default color for matching html tags
-"let g:mta_set_default_matchtag_color = 0
-""set custom color for matching html tags
-"highlight MatchTag ctermfg=DarkRed ctermbg=LightRed
+let g:mta_use_matchparen_group = 0
+"do not use the default color for matching html tags
+let g:mta_set_default_matchtag_color = 0
+"set custom color for matching html tags
+highlight MatchTag ctermfg=232 ctermbg=Blue
+"map jump to other tag
+nnoremap <leader>t :MtaJumpToOtherTag<cr>
+" filetypes in which to enable plugin
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'php' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \}
+
+" vim-repeat settings
+" enable vim-repeat
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+
