@@ -95,6 +95,7 @@ alias gmp='mbsync -V public@yanndebruyn.com; notmuch new 2>/dev/null'
 alias gmy='mbsync -V yann@yanndebruyn.com; notmuch new 2>/dev/null'
 
 alias mpv='mpv --no-osd-bar'
+alias calculator='bc'
 
 alias fzf='fzf --multi --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 

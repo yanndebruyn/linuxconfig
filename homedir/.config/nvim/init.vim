@@ -186,10 +186,10 @@ nnoremap <Leader>B "*P
 
 " Window splits
 " =============
-nnoremap <S-h> :wincmd h<CR>
+nnoremap <C-h> :wincmd h<CR>
 nnoremap <S-j> :wincmd j<CR>
 nnoremap <S-k> :wincmd k<CR>
-nnoremap <S-l> :wincmd l<CR>
+nnoremap <C-l> :wincmd l<CR>
 nnoremap <S-q> :close<CR>
 nnoremap <C-s> :sp<CR>
 nnoremap <S-s> :vs<CR>
@@ -204,12 +204,9 @@ nnoremap <Down> :resize +1<CR>
 
 " buffers (windows)
 " =================
-"go to previous buffer
-:map <C-k> :bp<CR>
-:map <C-h> :bp<CR>
-"go to next buffer
+"go to next/previous buffer
 :map <C-j> :bn<CR>
-:map <C-l> :bn<CR>
+:map <C-k> :bp<CR>
 "close current buffer
 :map <Leader>q :bd<CR>
 :map <C-q> :bd<CR>
@@ -435,7 +432,7 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/valloric/MatchTagAlways'
 
 "emmet: expand abbreviations with a leader-key
-" Plug 'https://github.com/mattn/emmet-vim'
+Plug 'https://github.com/mattn/emmet-vim'
 
 "Live html, css and javascript editing
 " Plug 'turbio/bracey.vim'
@@ -526,7 +523,7 @@ map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 "emmet settings
 " emmet leader key that has to precede ','
-" let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key=','
 
 "syntastic settings
 "set statusline+=%#warningmsg#
