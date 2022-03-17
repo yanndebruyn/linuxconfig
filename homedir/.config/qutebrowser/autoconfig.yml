@@ -229,7 +229,7 @@ settings:
   content.unknown_url_scheme_policy:
     global: allow-from-user-interaction
   content.user_stylesheets:
-    global: ~/.config/qutebrowser/css/apprentice/apprentice-all-sites.css
+    global: null
   content.webgl:
     global: true
   content.webrtc_ip_handling_policy:

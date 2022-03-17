@@ -251,7 +251,7 @@ bindsym $mod+Control+s exec alacritty --class popup -e ~/bin/scripts/select_edit
 bindsym $mod+Control+r exec alacritty --class popup -e ~/bin/scripts/select_runscript.sh
 
 # edit bookmarks file
-bindsym $mod+Control+b exec alacritty --class largepopup -e ~/bin/scripts/edit_bookmarks.sh
+bindsym $mod+Control+b exec alacritty --class popup -e ~/bin/scripts/edit_bookmarks.sh
 # open bookmark in browser
 bindsym $mod+Shift+b exec alacritty --class popup -e ~/bin/scripts/open_bookmark_qutebrowser.sh
 bindsym $mod+Shift+w exec alacritty --class largepopup -e ~/bin/scripts/open_bookmark_w3m.sh

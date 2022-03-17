@@ -13,7 +13,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 0.95
+  opacity: 0.85
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -79,13 +79,13 @@ scrolling:
   # Specifying '0' will disable scrolling.
   history: 10000
 
-  # Scrolling <dis></dis>tance multiplier.
+  # Scrolling distance multiplier.
   multiplier: 3
 
 # Font configuration
 font:
   # Normal (roman) font face
-  size: 9
+  size: 8
   normal:
     # Font family
     #

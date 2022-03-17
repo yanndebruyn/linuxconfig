@@ -21,7 +21,6 @@ set wrap					 "text wrapping
 set tw=80					 "text width
 set colorcolumn=81 "display column at textwidth
 
-
 " ======
 " Colors 
 " ======
@@ -34,34 +33,35 @@ syntax enable "enable colored syntax highlighting
 set synmaxcol=150 " max columns to syntax highlight. Helps with speed
 
 set background=dark 
-" colorscheme desert "set colorscheme
-colorscheme peachpuff "set colorscheme
+" colorscheme is set near end of file in plugin settings \/
 map <Leader>1 :colorscheme peachpuff<CR>
 map <Leader>2 :colorscheme desert<CR>
+map <Leader>3 :colorscheme torte<CR>
 
 set cursorline "enable cursos line
+
 " bottom statusline color of active window
-hi StatusLine  ctermfg=DarkGrey ctermbg=232
+hi StatusLine  ctermfg=Grey ctermbg=232
 " bottom statusline color of inactive window
-hi StatusLineNC  ctermfg=238 ctermbg=Grey
+hi StatusLineNC  ctermfg=DarkGrey ctermbg=233
 " text 'INSERT' when in insert mode
-hi ModeMsg  ctermfg=White ctermbg=Red
+hi ModeMsg  ctermfg=232 ctermbg=DarkBlue
 "line numbers color
 hi LineNr  ctermfg=DarkGrey ctermbg=NONE
 "cursor line color
-hi CursorLine  cterm=bold ctermbg=Black  
+hi CursorLine  cterm=bold ctermbg=235
 "vertical split line color
 hi VertSplit  ctermfg=Grey ctermbg=Black 
 "textwidth line color
-hi ColorColumn ctermbg=Black 
+hi ColorColumn ctermbg=235 
 "matching bracket color
-hi MatchParen cterm=bold ctermbg=DarkRed ctermfg=white 
+hi MatchParen cterm=bold ctermbg=DarkGrey ctermfg=White
 "comments color
 hi Comment ctermfg=Cyan
 " highlight colors
 hi Search ctermfg=White ctermbg=DarkBlue
 hi IncSearch cterm=underline ctermfg=White ctermbg=Magenta
-hi Visual cterm=reverse ctermbg=Black
+hi Visual cterm=reverse ctermbg=233
 " spell highlight colors
 hi clear SpellBad
 " badly spelled words
@@ -71,12 +71,12 @@ hi SpellCap cterm=underline ctermfg=White ctermbg=DarkCyan
 " words used in another language dictionary
 hi SpellLocal cterm=underline ctermfg=White ctermbg=DarkGreen
 " autocomplete popup menu colors
-hi Pmenu ctermbg=Black ctermfg=Grey
+hi Pmenu ctermbg=235 ctermfg=Grey
+hi PmenuSel ctermbg=Grey ctermfg=232
 "set tab colors 
 hi TabLineFill ctermfg=237 ctermbg=White "tabs bar
 hi TabLine ctermfg=Grey ctermbg=237 cterm=bold "non-selected tabs
 hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
-
 
 " =============
 " Spaces & Tabs
@@ -88,46 +88,6 @@ set softtabstop=2  "number of spaces in tab when editing
 set shiftwidth=2   "number of visual spaces after enter after braces
 set noexpandtab
 
-
-" =============
-" Functionality
-" =============
-
-" Searching
-" =========
-set incsearch  "Search as characters are entered
-set hlsearch   "highligh matches
-
-" Enable Fuzzy Finder in Vim
-" ==========================
-set rtp+=~/.fzf
-" remove default mapping of control-o
-map <C-o> <Nop>
-" map <Leader>o <Nop>
-" map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
-map <C-o> :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
-
-" Folding
-" =======
-set foldenable     "enable folding of code
-" set foldlevelstart=99 "open folds by default
-set foldmethod=manual "fold based on indent level
-
-
-" Immediately detect and apply changes saved to init.vim No more typing :so %
-" augroup myvimrc
-"     au!
-" 				au BufWritePost /home/yann/.config/nvim/init.vim so $MYVIMRC |
-" 				if has('gui_running') | so $MYGVIMRC | endif 
-" augroup  END
-
-" Timeout length
-set timeoutlen=1000
-set ttimeoutlen=0
-
-" Disable some stuff in groff files because it slows then down:
-" au FileType groff setlocal nocursorline
-" au FileType groff setlocal nornu
 
 
 "
@@ -187,10 +147,10 @@ nnoremap <Leader>B "*P
 " Window splits
 " =============
 nnoremap <C-h> :wincmd h<CR>
-nnoremap <S-j> :wincmd j<CR>
-nnoremap <S-k> :wincmd k<CR>
+nnoremap <C-j> :wincmd j<CR>
+nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-nnoremap <S-q> :close<CR>
+nnoremap <C-q> :close<CR>
 nnoremap <C-s> :sp<CR>
 nnoremap <S-s> :vs<CR>
 " Remap default key combo for resizing all window splits to 50%
@@ -204,22 +164,25 @@ nnoremap <Down> :resize +1<CR>
 
 " buffers (windows)
 " =================
+nnoremap <C-p> :Buffers<CR>
 "go to next/previous buffer
-:map <C-j> :bn<CR>
-:map <C-k> :bp<CR>
-"close current buffer
-:map <Leader>q :bd<CR>
-:map <C-q> :bd<CR>
+nnoremap <S-j> :bn<CR>
+nnoremap <S-k> :bp<CR>
+nnoremap <Leader>k :tabp<CR>
+nnoremap <Leader>j :tabn<CR>
+"close current buffer (with vim-bbye plugin command)
+nnoremap <Leader>q :Bdelete<CR> 
 
 " tabs
 " ====
-" nnoremap <Leader>t :tabnew %<CR>
-" nnoremap <C-h> :tabp<CR>
-" nnoremap <C-l> :tabn<CR>
-" nnoremap <C-q> :tabclose<CR>
+nnoremap <Leader>h :tabnew %<CR>
+nnoremap <Leader>k :tabp<CR>
+nnoremap <Leader>j :tabn<CR>
+nnoremap <Leader>l :tabclose<CR>
 
 " open files
 " ==========
+map <Leader>E :Lexplore<CR>
 :map <Leader>ev :e ~/.config/nvim/init.vim<CR>
 :map <Leader>ew :e ~/.w3m/keymap<CR>
 :map <Leader>ei :e ~/.config/i3/config<CR>
@@ -285,29 +248,6 @@ nnoremap <Down> :resize +1<CR>
 :map <Leader>a :MUcompleteAutoToggle<CR>
 
 
-" autocomplete
-"==============
-" add dictionary files for english and dutch
-" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt
-" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt
-
-" set autocomplete to also search dictionary
-:set complete+=k 
-
-" set height of popup menu  
-:set pumheight=4
-
-" set autocomplete options
-:set completeopt=menu,menuone,noselect
-
-" when autocomplete popup menu is visisble, 
-" '/' selects te first entry and closes the menu
-" 'enter' (<CR>) selects the first entry, closes menu and goes to newline
-:inoremap <expr> / pumvisible() ? "\<C-N>\<C-Y>" : "\/"
-:inoremap <expr> <CR> pumvisible() ? "\<C-N>\<C-Y>\<CR>" : "\<CR>"
-
-
-
 " abbreviations for groff
 " =======================
 " italic
@@ -370,25 +310,113 @@ nnoremap <Down> :resize +1<CR>
 
 
 
-	" =========================
-	"  VIM-PLUG PLUGINS
-" =========================
+" =====================
+" ==  Functionality  ==
+" =====================
+
+" Searching
+" =========
+set incsearch  "Search as characters are entered
+set hlsearch   "highligh matches
+
+" Enable Fuzzy Finder in Vim
+" ==========================
+set rtp+=~/.fzf
+" remove default mapping of control-o
+map <C-o> <Nop>
+" map <Leader>o <Nop>
+" map it to fzf#run (https://github.com/junegunn/fzf/blob/master/README-VIM.md)
+map <C-o> :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
+
+" Folding
+" =======
+set foldenable     "enable folding of code
+set foldmethod=manual "fold based on indent level
+" automatically save and load created fold on quit and start
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
+" File explorer
+" =============
+"set width of window
+let g:netrw_winsize = 20
+
+
+" Timeout length
+" ==============
+set timeoutlen=1000
+set ttimeoutlen=0
+
+" Disable some stuff in groff files because it slows then down:
+" =================================
+" au FileType groff setlocal nocursorline
+" au FileType groff setlocal nornu
+
+" autocomplete
+"==============
+" add dictionary files for english and dutch
+" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-en.txt
+" :set dictionary+=/home/yann/.config/nvim/spell/wordlist-nl.txt
+
+" set autocomplete to also search dictionary
+:set complete+=k 
+
+" set height of popup menu  
+" :set pumheight=4
+
+" set autocomplete options
+:set completeopt=menu,menuone,noselect
+
+" when autocomplete popup menu is visible, 
+" '/' selects te first entry and closes the menu
+" 'enter' (<CR>) selects the first entry, closes menu and goes to newline
+" :inoremap <expr> / pumvisible() ? '\<C-N>\<C-Y>' : '\/'
+:inoremap <expr> <CR> pumvisible() ? "\<C-N>\<C-Y>\<CR>" : "\<CR>"
+
+
+
+" ===============
+" ==  PHP DEV  ==
+" ===============
+  
+" Generate ctags every time a PHP file is saved. The file .git/hooks/ctags needs
+" to be in the project dir.	See https://thevaluable.dev/vim-php-ide/
+au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
+
+
+
+
+" ========================
+" ==  VIM-PLUG PLUGINS  ==
+" ========================
   
 " Specify a directory for plugins
 call plug#begin('~/.config/nvim/plugged')
 
 
 "fzf: fuzzy finder for vim
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug '/usr/local/opt/fzf'
+
+
+"vim-startify: add start screen with file selection
+Plug 'mhinz/vim-startify'
+
+"vim-bbye: close buffers without closing windows
+Plug 'https://github.com/moll/vim-bbye'
 
 "vim-bugtabline: buffer list that lives in the tabline
-Plug 'ap/vim-buftabline'
+" Plug 'ap/vim-buftabline'
 
 "vim-mucomplete: minimalist but powerful autocomplete
-Plug 'lifepillar/vim-mucomplete'
+" Plug 'lifepillar/vim-mucomplete'
 
 "vim-commentary: comment and uncomment with gcc
 Plug 'https://github.com/tpope/vim-commentary'
+
+"vim-colorschemes: a huge pack of colorschemes
+Plug 'flazz/vim-colorschemes'
 
 "colorizer: display colornames in their color
 " Plug 'https://github.com/chrisbra/Colorizer'
@@ -421,11 +449,36 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 "for webdev:
 "===========
 
+"ncm2: fast and slim completion manager
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2'
+"nvim-yarp: dependency for ncm2:
+Plug 'https://github.com/roxma/nvim-yarp'
+
+"word completion for words in current buffer for ncm2:
+Plug 'https://github.com/ncm2/ncm2-bufword'
+"path completion for ncm2:
+Plug 'https://github.com/ncm2/ncm2-path'
+"css completion for ncm2:
+Plug 'https://github.com/ncm2/ncm2-cssomni'
+"javascript completion for ncm2:
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+"vimscript completion for ncm2:
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+"phpactor: auto-completion for PHP
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+"phpactor integration into ncm2:
+Plug 'https://github.com/phpactor/ncm2-phpactor'
+
+"ale: linter for various languages
+Plug 'dense-analysis/ale'
+
 "vim-closetag: automatically close html tags when typing '>'
-" Plug 'https://github.com/alvan/vim-closetag'
+Plug 'https://github.com/alvan/vim-closetag'
 
 "vim-matchit: jump to matching html tag when typing '%'
-" Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'https://github.com/adelarsq/vim-matchit'
 
 "requires Python:
 "matchtagsalways: always highligh matching html tags when cursor is within tag
@@ -437,8 +490,9 @@ Plug 'https://github.com/mattn/emmet-vim'
 "Live html, css and javascript editing
 " Plug 'turbio/bracey.vim'
 
-
+"youcompleteme: auto-completion for various languages
 " Plug 'https://github.com/Valloric/YouCompleteMe'
+
 " Plug 'https://github.com/vim-syntastic/syntastic'
 " Plug 'https://github.com/scrooloose/nerdtree'
 " Plug 'https://github.com/vim-scripts/Toggle-NERDTree-width'
@@ -453,20 +507,76 @@ call plug#end()
 "  PLUGINS SETTING
 " =================
 
-"vim-mucomplete settings
-let g:mucomplete#enable_auto_at_startup = 1 " enable autocomplete at startup
+" ncm2 settings
+" =============
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"
+"
+
+" vim-colorschemes
+" ================
+
+colorscheme gruvbox "set colorscheme
+
+"only colorsettings loaded after the colorscheme will take effect:
+
+" enable ctermbg to override colorscheme background:
+" hi Normal ctermbg=none
+
+"cursor line color
+hi CursorLine  cterm=bold ctermbg=236
+"textwidth line color
+hi ColorColumn ctermbg=236
+"set tab colors 
+hi TabLineFill ctermfg=White ctermbg=237 "tabs bar
+hi TabLine ctermfg=Grey ctermbg=237 cterm=bold "non-selected tabs
+hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
+" autocomplete popup menu colors
+hi Pmenu ctermbg=236 ctermfg=Grey
+hi PmenuSel ctermbg=Grey ctermfg=232
+
+
+
+" vim-mucomplete settings
+" =======================
+
+" let g:mucomplete#enable_auto_at_startup = 1 " enable autocomplete at startup
 " let g:mucomplete#completion_delay = 1 " pop up autocomplete after n seconds
-set shortmess+=c   " Shut off completion messages
+" set shortmess+=c   " Shut off completion messages
 "
 " change the order of mucomplete popup menu's: first path, then dictionary, then spelling correction, then current open files
 " scrollable with ctrl-j and ctrl-k
-let g:mucomplete#chains = {
-		\ 'default' : ['path', 'dict', 'uspl', 'omni', 'keyn'],
-		\ }
+" let g:mucomplete#chains = {
+		" \ 'default' : ['path', 'dict', 'uspl', 'omni', 'keyn'],
+		" \ }
 
 
 
-" " lightline-bufferline settings
+" lightline-bufferline settings
+" =============================
+
 " let g:lightline#bufferline#show_number = 1
 " let g:lightline#bufferline#number_separator = ':'
 " let g:lightline#bufferline#margin_left = 1
@@ -504,28 +614,46 @@ let g:mucomplete#chains = {
 ""previous line for the left side of lightline with 'mode' visible
 "" \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ], [ 'buffers-padding', 'buffers' ] ],
 
-"ale settings
+
+
+" ale settings:
+" ============
 " let g:ale_change_sign_column_color = 1
 
 
-"vim-closetag settings:
+
+" vim-closetag settings:
+" =====================
+
 " These are the file extensions where this plugin is enabled:
-" let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+" let g:closetag_filenames = '*.html,*.php,*.xhtml,*.phtml'
 " These are the file types where this plugin is enabled:
 " let g:closetag_filetypes = 'html,xhtml,phtml'
 
 
-"goyo settings:
+
+" goyo settings:
+" =============
+
 let g:goyo_linenr = 1
-map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
+" map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 
 
-"emmet settings
+" emmet settings:
+" ==============
+
 " emmet leader key that has to precede ','
 let g:user_emmet_leader_key=','
+" jump to edit points
+let g:user_emmet_next_key = ',g'
+let g:user_emmet_prev_key = ',G'
 
-"syntastic settings
+
+
+" syntastic settings:
+" ==================
+
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -539,14 +667,16 @@ let g:user_emmet_leader_key=','
 "let g:syntastic_html_checkers = ['w3', 'tidy', 'validator']
 
 
-"MatchTagAlways settings:
-"========================
+
+" MatchTagAlways settings:
+" =======================
+
 "use different color for matching html tags than matching brackets
 let g:mta_use_matchparen_group = 0
 "do not use the default color for matching html tags
 let g:mta_set_default_matchtag_color = 0
 "set custom color for matching html tags
-highlight MatchTag ctermfg=232 ctermbg=Blue
+highlight MatchTag ctermfg=232 ctermbg=Grey
 "map jump to other tag
 nnoremap <leader>t :MtaJumpToOtherTag<cr>
 " filetypes in which to enable plugin
@@ -558,7 +688,13 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 
-" vim-repeat settings
+
+
+" vim-repeat settings:
+" ===================
+
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+
+
 
