@@ -1,0 +1,17 @@
+
+# Apache commands in Arch
+#########################
+
+# restart apache server
+sudo systemctl restart httpd.service
+
+# localhost website location 
+/srv/http/
+
+# edit apache config file 
+sudo vim /etc/httpd/conf/httpd.conf
+
+# edit virtualhosts config file (Include file in httpd.conf first)
+sudo vim /etc/httpd/conf/extra/httpd-vhosts.conf
+
+

@@ -17,9 +17,9 @@ set $workspace2 "2.Term"
 set $workspace3 "3.Term"
 set $workspace4 "4.Term"
 set $workspace11 "11.Web"
-set $workspace12 "12.Graph"
-set $workspace13 "13.Graph"
-set $workspace14 "14.Graph"
+set $workspace12 "12.Web"
+set $workspace13 "13.Gui"
+set $workspace14 "14.Gui"
 
 # Always open certain applications on a certain workspace
 # assign [class="mpv"] $workspace12

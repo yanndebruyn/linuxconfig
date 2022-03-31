@@ -1,0 +1,35 @@
+
+# =============
+# ==  ERRORS ==
+# =============
+
+# ERROR: Removing plugin causes ftp credentials prompt.
+Add to wp-config.php (remove when site goes live?):
+define('FS_METHOD', 'direct');
+
+# ERROR: Plugin could not be fully removed.
+#    OR: Plugin installation could not create directory.
+Change wordpress files ownership to http (arch) or www-data (debian).
+Permissions: 664 for files and 775 for dirs.
+
+# ERROR: 'not a valid JSON response' when creating a new page or post.
+This happens because the webserver does not allow overrides in the .htaccess
+file (eg. to change the permalink url).
+Solution: in httpd.conf set 'AllowOverride FileInfo' in <Directory "/srv/http">
+
+
+# ========================
+# ==  THEME DEVELOPMENT ==
+# ========================
+
+# Get url of theme directory / parent theme directory
+<?php echo get_theme_file_uri(); ?>
+<?php echo get_parent_theme_file_uri(); ?>
+
+# Get url of file in theme directory / parent theme directory
+<?php echo get_theme_file_uri('img/file.jpg'); ?>
+<?php echo get_parent_theme_file_uri('img/file.jpg'); ?>
+
+# Link to page or post by referring to it's ID (so changing it's name later
+# won't break the link)
+<?php echo get_permalink(ID); ?>

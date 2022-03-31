@@ -39,7 +39,9 @@ map <Leader>2 :colorscheme desert<CR>
 map <Leader>3 :colorscheme torte<CR>
 
 set cursorline "enable cursos line
-
+" These color settings are not applied because the colorscheme is set near the
+" end of the file. To change a color setting add the line after the setting of
+" the colorscheme near the end of the file.
 " bottom statusline color of active window
 hi StatusLine  ctermfg=Grey ctermbg=232
 " bottom statusline color of inactive window
@@ -182,7 +184,8 @@ nnoremap <Leader>l :tabclose<CR>
 
 " open files
 " ==========
-map <Leader>E :Lexplore<CR>
+" open Netrw in the directory of the current file
+map <Leader>E :Lexplore %:p:h<CR>
 :map <Leader>ev :e ~/.config/nvim/init.vim<CR>
 :map <Leader>ew :e ~/.w3m/keymap<CR>
 :map <Leader>ei :e ~/.config/i3/config<CR>
@@ -245,7 +248,7 @@ map <Leader>E :Lexplore<CR>
 " ignore word for now
 :map <Leader>0 zG
 " turn automatic MUcomplete trigger on or off
-:map <Leader>a :MUcompleteAutoToggle<CR>
+" :map <Leader>a :MUcompleteAutoToggle<CR>
 
 
 " abbreviations for groff
@@ -296,7 +299,9 @@ map <Leader>E :Lexplore<CR>
 " groff mom bindings
 " ==================
 " compile current mom file to pdf, put pdf file in the same dir
-:map <Leader>c :w<CR> :! pdfmom % > $(echo %:p \| sed 's/mom/pdf/')<CR>
+" TO DO: change this to only work on groff files! You can accidentally wreck
+" your other files with this!
+" :map <Leader>c :w<CR> :! pdfmom % > $(echo %:p \| sed 's/mom/pdf/')<CR>
 " view pdf version of current .mom file with zathura
 :map <Leader>v :! zathura $(echo %:p \| sed 's/mom/pdf/') &disown<CR>
 " run shell command 'pdfinfo' on the word that the cursor is on (should the path
@@ -331,16 +336,10 @@ map <C-o> :call fzf#run({'sink': 'edit', 'options': '--multi'})<CR>
 " Folding
 " =======
 set foldenable     "enable folding of code
-set foldmethod=manual "fold based on indent level
+set foldmethod=indent "fold based on indent level
 " automatically save and load created fold on quit and start
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
-" File explorer
-" =============
-"set width of window
-let g:netrw_winsize = 20
-
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 
 " Timeout length
 " ==============
@@ -371,24 +370,14 @@ set ttimeoutlen=0
 " '/' selects te first entry and closes the menu
 " 'enter' (<CR>) selects the first entry, closes menu and goes to newline
 " :inoremap <expr> / pumvisible() ? '\<C-N>\<C-Y>' : '\/'
-:inoremap <expr> <CR> pumvisible() ? "\<C-N>\<C-Y>\<CR>" : "\<CR>"
-
-
-
-" ===============
-" ==  PHP DEV  ==
-" ===============
-  
-" Generate ctags every time a PHP file is saved. The file .git/hooks/ctags needs
-" to be in the project dir.	See https://thevaluable.dev/vim-php-ide/
-au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
+" :inoremap <expr> <CR> pumvisible() ? "\<C-N>\<C-Y>\<CR>" : "\<CR>"
 
 
 
 
-" ========================
-" ==  VIM-PLUG PLUGINS  ==
-" ========================
+" =============================================================================
+" ============================  VIM-PLUG PLUGINS  =============================
+" =============================================================================
   
 " Specify a directory for plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -399,18 +388,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug '/usr/local/opt/fzf'
 
-
 "vim-startify: add start screen with file selection
 Plug 'mhinz/vim-startify'
 
 "vim-bbye: close buffers without closing windows
 Plug 'https://github.com/moll/vim-bbye'
-
-"vim-bugtabline: buffer list that lives in the tabline
-" Plug 'ap/vim-buftabline'
-
-"vim-mucomplete: minimalist but powerful autocomplete
-" Plug 'lifepillar/vim-mucomplete'
 
 "vim-commentary: comment and uncomment with gcc
 Plug 'https://github.com/tpope/vim-commentary'
@@ -421,9 +403,6 @@ Plug 'flazz/vim-colorschemes'
 "colorizer: display colornames in their color
 " Plug 'https://github.com/chrisbra/Colorizer'
 
-"goyo: distraction-free reader mode
-Plug 'junegunn/goyo.vim'
-
 "vim-surround: easily add and edit surrounding character with cs.. and ysiw..
 Plug 'https://github.com/tpope/vim-surround'
 
@@ -433,49 +412,65 @@ Plug 'https://github.com/tpope/vim-repeat'
 "auto-pairs: 
 " Plug 'https://github.com/vim-scripts/Auto-Pairs'
 
-"lightline: stylized bottom line
-" Plug 'https://github.com/itchyny/lightline.vim'
-
-"lightline-bufferline: adds buffer functionality to lightline
-" Plug 'mengelbrecht/lightline-bufferline'
-
-"ale: fast syntax checking while you type for various prog. languages and tools
-" Plug 'w0rp/ale'
-
 "vim-eunuch: enables a set of bash commands from withing Vim
 Plug 'https://github.com/tpope/vim-eunuch.git'
 
 
 "for webdev:
 "===========
+"
+"coc.vim: vscode-like functionality in Vim. Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"coc-marketplace: browse and install coc extensions
+" Install with :CocInstall coc-marketplace
+Plug 'https://github.com/fannheyward/coc-marketplace'
+
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'https://github.com/marlonfan/coc-phpls'
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+
+
+"vim-polyglot: syntax highlighting and indentation for many languages
+Plug 'sheerun/vim-polyglot'
+
+"wordpress.vim: plugin for wordpress development
+" Plug 'dsawardekar/wordpress.vim'
 
 "ncm2: fast and slim completion manager
 " NOTE: you need to install completion sources to get completions. Check
 " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2'
+" Plug 'ncm2/ncm2'
 "nvim-yarp: dependency for ncm2:
-Plug 'https://github.com/roxma/nvim-yarp'
+" Plug 'https://github.com/roxma/nvim-yarp'
 
 "word completion for words in current buffer for ncm2:
-Plug 'https://github.com/ncm2/ncm2-bufword'
+" Plug 'https://github.com/ncm2/ncm2-bufword'
 "path completion for ncm2:
-Plug 'https://github.com/ncm2/ncm2-path'
+" Plug 'https://github.com/ncm2/ncm2-path'
 "css completion for ncm2:
-Plug 'https://github.com/ncm2/ncm2-cssomni'
+" Plug 'https://github.com/ncm2/ncm2-cssomni'
+"
 "javascript completion for ncm2:
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+" Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+
 "vimscript completion for ncm2:
-Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+" Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
 "phpactor: auto-completion for PHP
-Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+" Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
 "phpactor integration into ncm2:
-Plug 'https://github.com/phpactor/ncm2-phpactor'
+" Plug 'https://github.com/phpactor/ncm2-phpactor'
 
 "ale: linter for various languages
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 "vim-closetag: automatically close html tags when typing '>'
-Plug 'https://github.com/alvan/vim-closetag'
+" Plug 'https://github.com/alvan/vim-closetag'
 
 "vim-matchit: jump to matching html tag when typing '%'
 Plug 'https://github.com/adelarsq/vim-matchit'
@@ -503,34 +498,171 @@ call plug#end()
 
 
 
+" ==============================================================================
+" =======================  PLUGINS SETTING  ====================================
+" ==============================================================================
+
+" coc.vim settings:
 " =================
-"  PLUGINS SETTING
-" =================
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent><Leader>d :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+" nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>F  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>af  <Plug>(coc-fix-current)
+
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
 
 " ncm2 settings
 " =============
 
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
+" au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+" au User Ncm2PopupClose set completeopt=menuone
 
 " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
 " found' messages
-set shortmess+=c
+" set shortmess+=c
 
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
+" inoremap <c-c> <ESC>
 
 " When the <Enter> key is pressed while the popup menu is visible, it only
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "
 "
@@ -540,11 +672,15 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 colorscheme gruvbox "set colorscheme
 
-"only colorsettings loaded after the colorscheme will take effect:
+"following color settings are loaded after the colorscheme will take effect:
 
 " enable ctermbg to override colorscheme background:
 " hi Normal ctermbg=none
-
+"
+" bottom statusline color of active window
+hi StatusLine  ctermfg=Grey ctermbg=232
+" bottom statusline color of inactive window
+hi StatusLineNC  ctermfg=233 ctermbg=White
 "cursor line color
 hi CursorLine  cterm=bold ctermbg=236
 "textwidth line color
@@ -556,6 +692,11 @@ hi TabLineSel ctermfg=LightRed ctermbg=95 cterm=bold "selected tab
 " autocomplete popup menu colors
 hi Pmenu ctermbg=236 ctermfg=Grey
 hi PmenuSel ctermbg=Grey ctermfg=232
+" highlight colors
+hi Search ctermfg=LightBlue ctermbg=232
+hi IncSearch ctermfg=LightGreen ctermbg=232
+hi Visual cterm=reverse ctermbg=233
+
 
 
 
@@ -601,7 +742,7 @@ hi PmenuSel ctermbg=Grey ctermfg=232
 "       \   'right': []
 "       \ },
 "       \ 'component': {
-"       \   'buffers-padding': "      "
+"       \   'buffers-padding': '      '
 "       \ },
 "       \ 'component_expand': {
 "       \   'buffers': 'lightline#bufferline#buffers'
@@ -616,12 +757,6 @@ hi PmenuSel ctermbg=Grey ctermfg=232
 
 
 
-" ale settings:
-" ============
-" let g:ale_change_sign_column_color = 1
-
-
-
 " vim-closetag settings:
 " =====================
 
@@ -629,14 +764,6 @@ hi PmenuSel ctermbg=Grey ctermfg=232
 " let g:closetag_filenames = '*.html,*.php,*.xhtml,*.phtml'
 " These are the file types where this plugin is enabled:
 " let g:closetag_filetypes = 'html,xhtml,phtml'
-
-
-
-" goyo settings:
-" =============
-
-let g:goyo_linenr = 1
-" map <Leader>g :Goyo<CR>:so ~/.config/nvim/init.vim<CR>
 
 
 
@@ -649,22 +776,6 @@ let g:user_emmet_leader_key=','
 let g:user_emmet_next_key = ',g'
 let g:user_emmet_prev_key = ',G'
 
-
-
-" syntastic settings:
-" ==================
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-"let g:syntastic_html_checkers = ['w3', 'tidy', 'validator']
 
 
 
@@ -696,5 +807,13 @@ let g:mta_filetypes = {
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
+
+
+" File explorer (netrw) settings:
+" ===============================
+"set width of window
+let g:netrw_winsize = 15
+"keep netrw browsing dir and current dir synced
+let g:netrw_keepdir = 0
 
 

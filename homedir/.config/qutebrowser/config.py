@@ -36,7 +36,7 @@ config.bind(',4', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/c
 config.bind(',5', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/css/solarized-light/solarized-light-all-sites.css ""')
 
 # set search engine prefixes (when using 'o' or 'O')
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'a': 'https://wiki.archlinux.org/?search={}', 'u': 'https://www.urbandictionary.com/define.php?term={}', 'w': 'https://en.wikipedia.org/wiki/{}', 'y': 'https://www.youtube.com/results?search_query={}'}
+c.url.searchengines = {'DEFAULT': 'https://searx.be/search?q={}', 'a': 'https://wiki.archlinux.org/?search={}', 'u': 'https://www.urbandictionary.com/define.php?term={}', 'w': 'https://en.wikipedia.org/wiki/{}', 'y': 'https://www.youtube.com/results?search_query={}'}
 
 # Set default editor
 c.editor.command = ["nvim", "{file}"]

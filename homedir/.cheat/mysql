@@ -1,28 +1,19 @@
 
-# Apache commands
-#################
-
-# restart apache server
-sudo systemctl restart httpd.service
-
-# localhost website location
-/srv/http/
-
-# edit apache config file 
-sudo vim /etc/httpd/conf/httpd.conf
-
-# edit virtualhosts config file (Include file in httpd.conf first)
-sudo vim /etc/httpd/conf/extra/httpd-vhosts.conf
-
-
-
-# Databse commands
+# MySQL commands
 ##################
 
 ---
 tags: [ database ]
 ---
-# To connect to a database:
+
+# Set root password for mysql
+mysqladmin -u root <password>
+
+# Connect to mysql server:
+mysql -u <username> -p
+mysql -u root -p
+
+# To connect to a specific hostname:
 mysql -h <host> -u <username> -p
 
 # To backup all databases:
@@ -31,11 +22,80 @@ mysqldump --all-databases --all-routines -u <username> -p > ~/dump.sql
 # To restore all databases:
 mysql -u <username> -p  < ~/fulldump.sql
 
+
+# Databse commands
+##################
+
+# Show info on current session (myql user, hostname...)
+SHOW processlist;
+
+# Show current user
+SELECT user();
+
+# Show current database
+SELECT database();
+
+# Show all users in mysql server
+SELECT user FROM mysql.user;
+
+# Show all databases
+SHOW databases;
+
+# Connect to database
+USE <database>;
+
+# Show tables in database
+SHOW tables;
+
+# Show contents of table
+DESCRIBE <table>;
+SHOW COLUMNS OF <table>;
+
+# Create new user
+CREATE USER '<username>'@'<hostname>' IDENTIFIED BY '<password>';
+
+# Grant all privileges to user on all databases and tables
+GRANT ALL PRIVILEGES ON *.* TO '<username>'@'<hostname>' WITH GRANT OPTION;
+
+# Create new user and grant all privileges in one statement
+GRANT ALL PRIVILEGES ON *.* TO '<username>'@'<hostname>' IDENTIFIED BY '<password>' WITH GRANT OPTION;
+
+# Delete user
+DROP USER '<username>'@'<hostname>';
+
+# Create database
+CREATE DATABASE <databasename>;
+
+# Delete database
+DROP DATABASE <databasename>;
+
+# Create table (while connected to a database)
+CREATE TABLE <tablename> (<columnname> <datatype>, <columnname> <datatype>, ...);
+# eg:
+CREATE TABLE teams (
+	team_id			 INT					NOT NULL AUTO_INCREMENT,
+	team_name		 VARCHAR(100) NOT NULL,
+	team_captain VARCHAR(40)  NOT NUTT,
+	start_date	 DATE,
+	PRIMARY KEY (team_id)
+	);
+
+# Delete table
+DROP TABLE <tablename>
+
+# Insert data into table
+INSERT INTO <tablename> (<columnname>, <columnname>,...) VALUES (<value>, <value>,...);
+# eg:
+INSERT INTO teams
+(team_name, team_captain, start_date)
+VALUES
+("Bad Losers", "John Doe", NOW());
+
+
+# =========================================================
+
 # To create a database in utf8 charset:
 CREATE DATABASE owa CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-# To add a user and give rights on the given database:
-GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'IDENTIFIED BY 'password' WITH GRANT OPTION;
 
 # To list the privileges granted to the account that you are using to connect to the server. Any of the 3 statements will work. :
 SHOW GRANTS FOR CURRENT_USER();
