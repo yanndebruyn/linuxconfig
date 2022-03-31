@@ -8,4 +8,6 @@ git add .
 git commit -m "$(date)"
 git push
 
+notify-send "linuxconfig pushed to github."
+
 
