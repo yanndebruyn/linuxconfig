@@ -439,8 +439,10 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 "vim-polyglot: syntax highlighting and indentation for many languages
 Plug 'sheerun/vim-polyglot'
 
+"phpcomplete.vim: dependency of wordpress.vim
+Plug 'shawncplus/phpcomplete.vim'
 "wordpress.vim: plugin for wordpress development
-" Plug 'dsawardekar/wordpress.vim'
+Plug 'dsawardekar/wordpress.vim'
 
 "ncm2: fast and slim completion manager
 " NOTE: you need to install completion sources to get completions. Check

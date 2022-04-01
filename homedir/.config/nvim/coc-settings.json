@@ -1,0 +1,10 @@
+
+{
+  "intelephense.stubs": [
+    "wordpress", 
+		"woocommerce",
+		"acf-pro",
+		"wordpress-globals",
+		"wp-cli",
+  ]
+}
