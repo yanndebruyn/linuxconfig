@@ -20,6 +20,15 @@ set showmatch      "highlight matching bracket when cursor is on it
 set wrap					 "text wrapping
 set tw=80					 "text width
 set colorcolumn=81 "display column at textwidth
+set laststatus=2   " always show statusline
+" build the statusline:
+" set statusline=%F\ 										    "column 1: show full path 
+set statusline=%{expand('%:p:h:t')}/%t\     "column 1: show current file and parent dir 
+set statusline+=%h%w%m%r\ 							    "column 1: show various flags 
+set statusline+=%=[PWD=%<%1.{getcwd()}]\ \  "column 3: show present working dir 
+set statusline+=%-1.(%l,%c%V%)\ \ %P        "column 4: show line number etc.
+
+
 
 " ======
 " Colors 
@@ -177,10 +186,10 @@ nnoremap <Leader>q :Bdelete<CR>
 
 " tabs
 " ====
-nnoremap <Leader>h :tabnew %<CR>
-nnoremap <Leader>k :tabp<CR>
-nnoremap <Leader>j :tabn<CR>
-nnoremap <Leader>l :tabclose<CR>
+nnoremap <Leader>k :tabnew %<CR>
+nnoremap <Leader>j :tabp<CR>
+nnoremap <Leader>l :tabn<CR>
+" nnoremap <Leader>l :tabclose<CR>
 
 " open files
 " ==========
@@ -440,9 +449,9 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'sheerun/vim-polyglot'
 
 "phpcomplete.vim: dependency of wordpress.vim
-Plug 'shawncplus/phpcomplete.vim'
+" Plug 'shawncplus/phpcomplete.vim'
 "wordpress.vim: plugin for wordpress development
-Plug 'dsawardekar/wordpress.vim'
+" Plug 'dsawardekar/wordpress.vim'
 
 "ncm2: fast and slim completion manager
 " NOTE: you need to install completion sources to get completions. Check
@@ -515,7 +524,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+" set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.

@@ -66,6 +66,11 @@ DROP USER '<username>'@'<hostname>';
 # Create database
 CREATE DATABASE <databasename>;
 
+# Duplicate database:
+# First create a new empty database with all the correct GRANT permissions,
+# then in terminal:
+mysqldump -u root -p original_db | mysql -u username -p<password> duplicate_db;
+
 # Delete database
 DROP DATABASE <databasename>;
 

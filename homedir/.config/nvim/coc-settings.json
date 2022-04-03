@@ -3,6 +3,7 @@
   "intelephense.stubs": [
     "wordpress", 
 		"woocommerce",
+		"acf",
 		"acf-pro",
 		"wordpress-globals",
 		"wp-cli",

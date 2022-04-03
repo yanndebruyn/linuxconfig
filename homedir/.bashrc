@@ -157,6 +157,8 @@ YTFZF_CONFIG_FILE=$YTFZF_CONFIG_DIR/conf.sh
 # Prevent loading default rc.conf because we load our own in ~.config/ranger
 RANGER_LOAD_DEFAULT_RC=false
 
+# add wp-cli completion to bash
+source /home/yann/bin/wp-completion.bash
 
 #############################
 ## -begin-npm-completion-  ##

@@ -1,0 +1,18 @@
+
+# All commands can be run on remote server by prepending --ssh and --path:
+# Download wordpress on remote server
+wp --ssh=dreamhost --path=yanndebruyn.com/spelt.2 core download
+# with host alias (in ~/.wp-cli/config.yml):
+wp @spelt.2 core download
+
+# Download wordpress to local dir. pwd has to be website root dir.
+wp core download
+
+# Create wp-config.php. Do manually is you get mysql error.
+wp config create
+
+# Install downloaded wordpress files. 
+# Manually enter WP_HOME and WP_ SITEURL in wp-config.php afterwards
+wp core install --url=example.com --title=Example --admin_user=supervisor --admin_password=strongpassword --admin_email=info@example.com
+
+
